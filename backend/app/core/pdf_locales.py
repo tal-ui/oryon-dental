@@ -28,8 +28,13 @@ PDF_LOCALES: tuple[str, ...] = (
     "pl",
     "it",
     "ar",
+    "he",
 )
 PDF_LOCALE_PATTERN = "^(" + "|".join(PDF_LOCALES) + ")$"
+
+# Right-to-left scripts: the PDF renderers set ``dir="rtl"`` on the
+# document for these, mirroring ``dir: 'rtl'`` in the host's i18n locales.
+RTL_LOCALES: frozenset[str] = frozenset({"ar", "he"})
 
 # UI language -> Babel locale for money and dates. Tamil and Telugu clinics are in
 # India, so their amounts follow en_IN grouping.
@@ -47,4 +52,5 @@ LOCALE_BY_LANG: dict[str, str] = {
     "pl": "pl_PL",
     "it": "it_IT",
     "ar": "ar",
+    "he": "he_IL",
 }

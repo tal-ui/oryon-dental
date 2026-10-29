@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}הצעת המחיר שלך ממתינה לתשובתך - {{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>תזכורת ידידותית</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>הצעת המחיר לטיפול <strong>#{{ budget_number }}</strong> מ<strong>{{ clinic_name | default('DentalPin') }}</strong> עדיין ממתינה לתשובתך.</p>
+
+<div class="info-box">
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">הצעת מחיר</div>
+            <div class="value">{{ budget_number }}</div>
+        </div>
+        {% if total %}
+        <div style="flex: 1; text-align: left;">
+            <div class="label">סה״כ</div>
+            <div class="value">{{ total }}</div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if valid_until %}
+<div class="alert alert-warning">
+    <strong>תוקף:</strong> הצעת מחיר זו בתוקף עד {{ valid_until }}.
+</div>
+{% endif %}
+
+{% if public_url %}
+<div class="button-container">
+    <a href="{{ public_url }}" class="button">לצפייה בהצעת המחיר</a>
+</div>
+{% endif %}
+
+<p>אם כבר קיבלת החלטה או שיש לך שאלות, נא ליצור איתנו קשר — נשמח לעזור.</p>
+{% endblock %}

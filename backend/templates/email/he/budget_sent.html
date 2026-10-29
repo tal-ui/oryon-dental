@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}הצעת מחיר לטיפול - {{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>הצעת מחיר לטיפול</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>להלן הצעת המחיר לטיפול <strong>#{{ budget_number }}</strong> מ<strong>{{ clinic_name | default('DentalPin') }}</strong>:</p>
+
+{% if treatments %}
+<div class="info-box">
+    {% for t in treatments %}
+    <div class="info-row">
+        <div style="flex: 2;">
+            <div class="label">{{ t.name }}{% if t.tooth %} — שן {{ t.tooth }}{% endif %}</div>
+        </div>
+        <div style="flex: 1; text-align: left;">
+            <div class="value">{{ t.price }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="info-box">
+    {% if discount_amount %}
+    <div class="info-row">
+        <div class="label">סכום ביניים</div>
+        <div class="value">{{ subtotal }}</div>
+    </div>
+    <div class="info-row">
+        <div class="label">הנחה</div>
+        <div class="value">-{{ discount_amount }}</div>
+    </div>
+    {% endif %}
+    <div class="info-row">
+        <div class="label">סה״כ</div>
+        <div class="value" style="font-size: 18px; font-weight: 700;">{{ total }}</div>
+    </div>
+    {% if validity_days %}
+    <div class="info-row">
+        <div class="label">בתוקף למשך</div>
+        <div class="value">{{ validity_days }} ימים</div>
+    </div>
+    {% endif %}
+</div>
+
+{% if notes %}
+<p><strong>הערות:</strong> {{ notes }}</p>
+{% endif %}
+
+{% if custom_message %}
+<div class="alert alert-info">
+    {{ custom_message }}
+</div>
+{% endif %}
+
+<p>לכל שאלה בנוגע להצעת מחיר זו, נא ליצור איתנו קשר.</p>
+{% endblock %}

@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 from babel.numbers import format_decimal as _babel_format_decimal
 
 from app.core.pdf_locales import LOCALE_BY_LANG as _LOCALE_BY_LANG
+from app.core.pdf_locales import RTL_LOCALES
 from app.core.utils.currency import format_currency as _fmt_currency
 
 if TYPE_CHECKING:
@@ -283,7 +284,7 @@ class InvoicePDFService:
             """
 
         # Build HTML
-        rtl_attr = ' dir="rtl"' if locale == "ar" else ""
+        rtl_attr = ' dir="rtl"' if locale in RTL_LOCALES else ""
         html = f"""
         <!DOCTYPE html>
         <html lang="{locale}"{rtl_attr}>
@@ -1238,6 +1239,45 @@ class InvoicePDFService:
             },
         }
 
+        labels_he = {
+            "invoice": "חשבונית מס",
+            "credit_note": "חשבונית זיכוי",
+            "credit_note_for": "מזכה את",
+            "draft": "טיוטה",
+            "issue_date": "תאריך הפקה",
+            "due_date": "תאריך לתשלום",
+            "billing_info": "פרטי חיוב",
+            "billing_name": "שם / חברה",
+            "tax_id": "ת״ז / ח״פ",
+            "address": "כתובת",
+            "patient": "מטופל",
+            "items": "פריטים",
+            "description": "תיאור",
+            "qty": "כמות",
+            "unit_price": "מחיר ליחידה",
+            "discount": "הנחה",
+            "vat": "מע״מ",
+            "total": "סה״כ",
+            "subtotal": "סכום ביניים",
+            "total_discount": "סה״כ הנחה",
+            "tax": "מע״מ",
+            "grand_total": "סה״כ לתשלום",
+            "total_paid": "סה״כ שולם",
+            "balance_due": "יתרה לתשלום",
+            "notes": "הערות",
+            "payment_terms": "תנאי תשלום",
+            "days": "ימים",
+            "generated_by": "הופק על ידי",
+            "status": {
+                "draft": "טיוטה",
+                "issued": "הופקה",
+                "partial": "שולמה חלקית",
+                "paid": "שולמה",
+                "cancelled": "בוטלה",
+                "voided": "מבוטלת",
+            },
+        }
+
         if locale == "es":
             return labels_es
         if locale == "ta":
@@ -1262,4 +1302,6 @@ class InvoicePDFService:
             return labels_it
         if locale == "ar":
             return labels_ar
+        if locale == "he":
+            return labels_he
         return labels_en

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}תזכורת לתור - {{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>תזכורת לתור</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>תזכורת ידידותית לתור הקרוב שלך ב<strong>{{ clinic_name | default('DentalPin') }}</strong>:</p>
+
+<div class="info-box">
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">תאריך</div>
+            <div class="value">{{ appointment_date }}</div>
+        </div>
+        <div style="flex: 1;">
+            <div class="label">שעה</div>
+            <div class="value">{{ appointment_time }}</div>
+        </div>
+    </div>
+    {% if professional_name %}
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">מטפל/ת</div>
+            <div class="value">{{ professional_name }}</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<p>נא להגיע כמה דקות לפני המועד. אם יש צורך לשנות את המועד, נא ליצור איתנו קשר בהקדם האפשרי.</p>
+{% if checkin_url %}
+<div class="button-container">
+    <a href="{{ checkin_url }}" class="button">צ׳ק‑אין לתור שלי</a>
+</div>
+{% endif %}
+
+{% endblock %}

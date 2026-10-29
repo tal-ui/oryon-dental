@@ -14,6 +14,8 @@ from datetime import UTC, datetime
 from typing import Any
 from zoneinfo import ZoneInfo
 
+from app.core.pdf_locales import RTL_LOCALES
+
 
 def _e(value: Any) -> str:
     return html.escape("" if value is None else str(value))
@@ -235,6 +237,24 @@ def _get_labels(locale: str) -> dict[str, str]:
         "draft": "డ్రాఫ్ట్",
         "cancelled": "రద్దు చేయబడింది",
     }
+    labels_he = {
+        "title": "מרשם",
+        "date": "תאריך",
+        "patient": "מטופל",
+        "prescriber": "רושם/ת המרשם",
+        "license": "מס׳ רישיון",
+        "signature": "חתימה",
+        "date_format": "%d/%m/%Y",
+        "medication": "תרופה",
+        "dose": "מינון",
+        "route": "דרך מתן",
+        "frequency": "תדירות",
+        "duration": "משך",
+        "instructions": "הוראות",
+        "notes": "הערות",
+        "draft": "טיוטה",
+        "cancelled": "בוטל",
+    }
     labels_hi = {
         "title": "पर्चा",
         "signature": "हस्ताक्षर",
@@ -268,6 +288,7 @@ def _get_labels(locale: str) -> dict[str, str]:
         "pl": labels_pl,
         "it": labels_it,
         "ar": labels_ar,
+        "he": labels_he,
         "ta": labels_ta,
         "te": labels_te,
         "hi": labels_hi,
@@ -355,7 +376,7 @@ def render_html(data: dict[str, Any]) -> str:
     # Arabic mirrors the document; the language is declared either way so
     # the renderer picks the right font and shaping (#485).
     locale = data.get("locale", "es")
-    rtl_attr = ' dir="rtl"' if locale == "ar" else ""
+    rtl_attr = ' dir="rtl"' if locale in RTL_LOCALES else ""
     return f"""<!DOCTYPE html>
 <html lang="{locale}"{rtl_attr}><head><meta charset="utf-8">
 <style>

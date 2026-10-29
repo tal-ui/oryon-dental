@@ -135,6 +135,7 @@ def test_each_locale_renders_own_invoice_heading() -> None:
         "pl": "Faktura",
         "it": "Fattura",
         "ar": "فاتورة",
+        "he": "חשבונית מס",
     }
     for locale, heading in headings.items():
         assert heading in _html(_invoice(), _clinic(), locale=locale)
@@ -162,6 +163,7 @@ def test_each_locale_renders_own_grand_total() -> None:
         "pl": "RAZEM DO ZAPŁATY",
         "it": "TOTALE",
         "ar": "المجموع الإجمالي",
+        "he": "סה״כ לתשלום",
     }
     for locale, total in totals.items():
         assert total in _html(_invoice(), _clinic(), locale=locale)

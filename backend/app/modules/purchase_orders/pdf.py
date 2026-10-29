@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 from zoneinfo import ZoneInfo
 
 from app.core.pdf_locales import LOCALE_BY_LANG as _LOCALE_BY_LANG
+from app.core.pdf_locales import RTL_LOCALES
 from app.core.utils.currency import format_currency as _fmt_currency
 
 if TYPE_CHECKING:
@@ -233,6 +234,30 @@ _LABELS = {
             "cancelled": "ملغي",
         },
     },
+    "he": {
+        "po": "הזמנת רכש",
+        "draft": "טיוטה",
+        "supplier": "ספק",
+        "status": "סטטוס",
+        "expected_date": "תאריך צפוי",
+        "created_at": "תאריך",
+        "notes": "הערות",
+        "item": "פריט",
+        "items": "פריטים",
+        "qty_ordered": "כמות שהוזמנה",
+        "qty_received": "כמות שהתקבלה",
+        "unit_price": "מחיר ליחידה",
+        "total": "סה״כ",
+        "line_total": "סכום",
+        "generated_by": "הופק על ידי",
+        "status_label": {
+            "draft": "טיוטה",
+            "sent": "נשלחה",
+            "confirmed": "אושרה",
+            "received": "התקבלה",
+            "cancelled": "בוטלה",
+        },
+    },
     "ta": {
         "po": "கொள்முதல் ஆணை",
         "draft": "வரைவு",
@@ -322,7 +347,7 @@ class PurchaseOrderPDFService:
     def _generate_html(response: dict, clinic: Clinic, locale: str) -> str:
         labels = _LABELS.get(locale, _LABELS["es"])
         # Arabic mirrors the document; every other host locale is LTR (#485).
-        rtl_attr = ' dir="rtl"' if locale == "ar" else ""
+        rtl_attr = ' dir="rtl"' if locale in RTL_LOCALES else ""
         status_label = labels["status_label"].get(response["status"], response["status"])
         # The footer is a printed "generated at": the clinic's zone, not
         # the server's (#204).

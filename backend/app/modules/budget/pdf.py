@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from zoneinfo import ZoneInfo
 
 from app.core.pdf_locales import LOCALE_BY_LANG as _LOCALE_BY_LANG
+from app.core.pdf_locales import RTL_LOCALES
 from app.core.utils.currency import format_currency as _fmt_currency
 
 if TYPE_CHECKING:
@@ -267,7 +268,7 @@ class BudgetPDFService:
 
         # Arabic mirrors the whole document; every other host locale is
         # left-to-right (#485, same treatment as the invoice in #484).
-        rtl_attr = ' dir="rtl"' if locale == "ar" else ""
+        rtl_attr = ' dir="rtl"' if locale in RTL_LOCALES else ""
 
         # Build HTML
         html = f"""
@@ -1203,6 +1204,51 @@ class BudgetPDFService:
                 "cancelled": "रद्द",
             },
         }
+        labels_he = {
+            "budget": "הצעת מחיר",
+            "version": "גרסה",
+            "date": "תאריך",
+            "draft": "טיוטה",
+            "patient_info": "פרטי המטופל",
+            "patient": "מטופל",
+            "professional": "מטפל/ת",
+            "treatments": "טיפולים",
+            "description": "תיאור",
+            "qty": "כמות",
+            "unit_price": "מחיר ליחידה",
+            "discount": "הנחה",
+            "total": "סה״כ",
+            "subtotal": "סכום ביניים",
+            "total_discount": "סה״כ הנחה",
+            "tax": "מע״מ",
+            "grand_total": "סה״כ לתשלום",
+            "validity": "תוקף",
+            "from": "מ",
+            "until": "עד",
+            "no_expiry": "ללא תאריך תפוגה",
+            "notes": "הערות",
+            "patient_signature": "חתימת המטופל",
+            "clinic_signature": "חתימת המרפאה",
+            "signed_by": "נחתם על ידי",
+            "signed_at": "נחתם בתאריך",
+            "signature_method": "ערוץ",
+            "signature_method_drawn": "חתימה ידנית",
+            "signature_method_click_accept": "אישור דיגיטלי",
+            "signature_method_external": "חתימה חיצונית",
+            "document_hash": "גיבוב המסמך",
+            "generated_by": "הופק על ידי",
+            "status": {
+                "draft": "טיוטה",
+                "sent": "נשלחה",
+                "accepted": "אושרה",
+                "in_progress": "בתהליך",
+                "completed": "הושלמה",
+                "invoiced": "חויבה",
+                "rejected": "נדחתה",
+                "expired": "פג תוקף",
+                "cancelled": "בוטלה",
+            },
+        }
         # English is the fallback for a locale we have not translated yet
         # (#485): the route accepts every host locale, so returning the
         # Spanish set for everything non-es printed a Spanish quote to a
@@ -1218,6 +1264,7 @@ class BudgetPDFService:
             "pl": labels_pl,
             "it": labels_it,
             "ar": labels_ar,
+            "he": labels_he,
             "ta": labels_ta,
             "te": labels_te,
             "hi": labels_hi,

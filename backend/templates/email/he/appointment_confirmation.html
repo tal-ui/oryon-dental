@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}אישור תור - {{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>אישור תור</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>התור שלך ב<strong>{{ clinic_name | default('DentalPin') }}</strong> נקבע:</p>
+
+<div class="info-box">
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">תאריך</div>
+            <div class="value">{{ appointment_date }}</div>
+        </div>
+        <div style="flex: 1;">
+            <div class="label">שעה</div>
+            <div class="value">{{ appointment_time }}</div>
+        </div>
+    </div>
+    {% if professional_name %}
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">מטפל/ת</div>
+            <div class="value">{{ professional_name }}</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<p>אם יש צורך לשנות את המועד או לבטל, נא ליצור איתנו קשר בהקדם האפשרי.</p>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}התור בוטל - {{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>התור בוטל</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>התור שלך ב<strong>{{ clinic_name | default('DentalPin') }}</strong> בוטל.</p>
+
+<div class="info-box">
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">תאריך</div>
+            <div class="value">{{ appointment_date }}</div>
+        </div>
+        <div style="flex: 1;">
+            <div class="label">שעה</div>
+            <div class="value">{{ appointment_time }}</div>
+        </div>
+    </div>
+    {% if professional_name %}
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">מטפל/ת</div>
+            <div class="value">{{ professional_name }}</div>
+        </div>
+    </div>
+    {% endif %}
+    {% if cancellation_reason %}
+    <div class="info-row">
+        <div style="flex: 1;">
+            <div class="label">סיבה</div>
+            <div class="value">{{ cancellation_reason }}</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<p>לקביעת תור חדש, נא ליצור איתנו קשר.</p>
+{% endblock %}

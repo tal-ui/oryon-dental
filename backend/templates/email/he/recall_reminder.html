@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}הביקורת הבאה שלך ב{{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>הגיע הזמן לביקורת הבאה</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>תכננו עבורך את הביקורת הבאה{% if due_month %} ל<strong>{{ due_month }}</strong>{% endif %}{% if reason %} ({{ reason }}){% endif %} ב<strong>{{ clinic_name | default('DentalPin') }}</strong>.</p>
+
+<p>נשמח שתיצרו איתנו קשר כדי לקבוע מועד שנוח לך.</p>
+
+{% if clinic_phone %}
+<div class="button-container">
+    <a href="tel:{{ clinic_phone }}" class="button">לקביעת תור</a>
+</div>
+{% endif %}
+
+<p>לכל שאלה, אנחנו כאן בשבילך.</p>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}הצעת המחיר אושרה - {{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>הצעת המחיר אושרה</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>הצעת המחיר <strong>#{{ budget_number }}</strong> מ<strong>{{ clinic_name | default('DentalPin') }}</strong> אושרה.</p>
+
+<div class="info-box">
+    <div class="info-row">
+        <div class="label">הצעת מחיר</div>
+        <div class="value">#{{ budget_number }}</div>
+    </div>
+    <div class="info-row">
+        <div class="label">אושרה בתאריך</div>
+        <div class="value">{{ accepted_date }}</div>
+    </div>
+    <div class="info-row">
+        <div class="label">סה״כ</div>
+        <div class="value" style="font-size: 18px; font-weight: 700;">{{ total }}</div>
+    </div>
+</div>
+
+<p>ניצור איתך קשר בקרוב לתיאום התורים המתאימים.</p>
+{% endblock %}

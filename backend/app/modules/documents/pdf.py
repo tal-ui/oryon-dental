@@ -15,6 +15,8 @@ from io import BytesIO
 from typing import TYPE_CHECKING
 from zoneinfo import ZoneInfo
 
+from app.core.pdf_locales import RTL_LOCALES
+
 if TYPE_CHECKING:
     from app.core.auth.models import Clinic
     from app.modules.patients.models import Patient
@@ -370,6 +372,35 @@ _LABELS = {
         "referral": "خطاب إحالة",
         "radiology_request": "طلب أشعة",
     },
+    "he": {
+        "patient": "מטופל",
+        "dob": "תאריך לידה",
+        "doc": "מסמך",
+        "issued": "תאריך הפקה",
+        "issued_by": "הופק על ידי",
+        "diagnosis": "אבחנה",
+        "description": "תיאור",
+        "recommendations": "המלצות",
+        "medications": "תרופות",
+        "medName": "תרופה",
+        "dose": "מינון",
+        "frequency": "תדירות",
+        "duration": "משך",
+        "referred_to": "הפניה אל",
+        "specialty": "התמחות",
+        "reason": "סיבת ההפניה",
+        "clinical_summary": "סיכום קליני",
+        "exam_type": "סוג הבדיקה",
+        "region": "אזור",
+        "clinical_question": "שאלה קלינית",
+        "notes": "הערות",
+        "generated_by": "הופק באמצעות DentalPin",
+        "registration_number": "מספר רישיון",
+        "prescription": "מרשם",
+        "medical_certificate": "אישור רפואי",
+        "referral": "מכתב הפניה",
+        "radiology_request": "בקשה לצילום",
+    },
 }
 # pt-BR reuses pt labels as there is no differing words so far.
 _LABELS["pt-BR"] = _LABELS["pt"]
@@ -535,7 +566,7 @@ class DocumentPDFService:
 
         # Arabic is a supported PDF locale, so the page has to be mirrored —
         # the same attribute billing's invoice sets (#524).
-        rtl_attr = ' dir="rtl"' if locale == "ar" else ""
+        rtl_attr = ' dir="rtl"' if locale in RTL_LOCALES else ""
 
         return f"""<!DOCTYPE html>
         <html lang="{locale}"{rtl_attr}>

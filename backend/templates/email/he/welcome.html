@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}ברוכים הבאים ל{{ clinic_name | default('DentalPin') }}{% endblock %}
+
+{% block content %}
+<h2>ברוכים הבאים!</h2>
+
+<p>שלום {{ patient_name }},</p>
+
+<p>אנו שמחים לקבל אותך ב<strong>{{ clinic_name | default('DentalPin') }}</strong>.</p>
+
+<p>מעתה ניתן לנהל את התורים שלך, לצפות בהיסטוריית הטיפולים ולגשת לכל השירותים שלנו דרך הפלטפורמה.</p>
+
+<p>לכל שאלה, אנחנו כאן בשבילך.</p>
+{% endblock %}

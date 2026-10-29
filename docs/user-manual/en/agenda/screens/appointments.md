@@ -45,6 +45,10 @@ professionals and rooms, and walk them through their workflow
 - **Four views** — weekly, daily, and kanban on desktop; a simplified
   one-day mobile view on small screens. The view selector lives in
   the header, except on mobile where only the daily view exists.
+- **First day of the week** — follows the clinic's country, not the
+  browser: Sunday for an Israeli clinic (Sunday–Thursday working week),
+  Monday everywhere else. The mobile week strip and "Today" use the
+  same anchor.
 - **Cabinet and professional filters** — chips above the calendar.
   Appointments with no room assigned are **always** visible so the
   front desk can drag them onto the right room.

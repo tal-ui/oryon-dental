@@ -6,6 +6,7 @@
  */
 import type { WeekdayShifts } from '../../composables/useClinicHours'
 import { errorDetail } from '~~/app/utils/error'
+import { defaultWorkingScheduleWeekdays } from '~~/app/utils/week'
 
 const props = defineProps<{ open: boolean }>()
 const emit = defineEmits<{ (e: 'update:open', v: boolean): void, (e: 'saved'): void }>()
@@ -13,6 +14,9 @@ const emit = defineEmits<{ (e: 'update:open', v: boolean): void, (e: 'saved'): v
 const { t } = useI18n()
 const toast = useToast()
 const { fetchHours, updateHours } = useClinicHours()
+// Presets fill the clinic's working days: Mon–Fri, or Sun–Thu where the
+// week starts on Sunday (Israel).
+const { weekStartsOn } = useWeekStart()
 
 const isOpen = computed({
   get: () => props.open,
@@ -29,9 +33,10 @@ const PRESETS: Record<'split' | 'continuous', Array<{ start_time: string, end_ti
 }
 
 function applyPreset(key: keyof typeof PRESETS) {
+  const working = new Set(defaultWorkingScheduleWeekdays(weekStartsOn.value))
   days.value = Array.from({ length: 7 }, (_, weekday) => ({
     weekday,
-    shifts: weekday < 5 ? PRESETS[key].map(s => ({ ...s })) : []
+    shifts: working.has(weekday) ? PRESETS[key].map(s => ({ ...s })) : []
   }))
 }
 

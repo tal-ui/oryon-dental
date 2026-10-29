@@ -43,6 +43,7 @@ const emit = defineEmits<{
 }>()
 
 const { t, locale } = useI18n()
+const { startOfWeek } = useWeekStart()
 const auth = useAuth()
 const { fetch: fetchAvailability } = useScheduleAvailability()
 
@@ -236,17 +237,8 @@ function isSameDay(a: Date, b: Date): boolean {
     && a.getDate() === b.getDate()
 }
 
-function getMonday(date: Date): Date {
-  const d = new Date(date)
-  const day = d.getDay()
-  const diff = day === 0 ? -6 : 1 - day
-  d.setDate(d.getDate() + diff)
-  d.setHours(0, 0, 0, 0)
-  return d
-}
-
 const weekDays = computed<Date[]>(() => {
-  const start = getMonday(props.currentDate)
+  const start = startOfWeek(props.currentDate)
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(start)
     d.setDate(start.getDate() + i)

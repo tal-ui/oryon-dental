@@ -43,6 +43,7 @@ watch(() => props.highlightedAppointmentId, (newId) => {
 }, { immediate: true })
 
 const { t, locale } = useI18n()
+const { startOfWeek } = useWeekStart()
 
 // Time slots configuration. START_HOUR/END_HOUR default to 8–21 and
 // get narrowed to the actual clinic opening hours when the schedules
@@ -172,13 +173,7 @@ function nextWeek() {
 }
 
 function goToToday() {
-  const today = new Date()
-  const dayOfWeek = today.getDay()
-  const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek // Monday as start
-  const monday = new Date(today)
-  monday.setDate(today.getDate() + diff)
-  monday.setHours(0, 0, 0, 0)
-  emit('week-change', monday)
+  emit('week-change', startOfWeek(new Date()))
 }
 
 // Calculate appointment position and height

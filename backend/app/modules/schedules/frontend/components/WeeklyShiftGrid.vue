@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Shift, WeekdayShifts } from '../composables/useClinicHours'
+import { orderedScheduleWeekdays } from '~~/app/utils/week'
 
 const props = defineProps<{
   modelValue: WeekdayShifts[]
@@ -11,6 +12,10 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+// Rows follow the clinic's first day of the week (Sunday first in Israel);
+// the API weekday numbering (Mon = 0 .. Sun = 6) is untouched.
+const { weekStartsOn } = useWeekStart()
+const weekdays = computed(() => orderedScheduleWeekdays(weekStartsOn.value))
 
 function shiftsForDay(weekday: number): Shift[] {
   const entry = props.modelValue.find(d => d.weekday === weekday)
@@ -58,16 +63,16 @@ function timeForInput(value: string | undefined): string {
 <template>
   <div class="space-y-2">
     <div
-      v-for="weekday in 7"
-      :key="weekday - 1"
+      v-for="weekday in weekdays"
+      :key="weekday"
       class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-800"
     >
       <div class="w-28 pt-1 font-medium">
-        {{ t(`schedules.weekday.${weekday - 1}`) }}
+        {{ t(`schedules.weekday.${weekday}`) }}
       </div>
       <div class="flex-1 space-y-2">
         <div
-          v-for="(shift, idx) in shiftsForDay(weekday - 1)"
+          v-for="(shift, idx) in shiftsForDay(weekday)"
           :key="idx"
           class="flex items-center gap-2"
         >
@@ -77,7 +82,7 @@ function timeForInput(value: string | undefined): string {
             :disabled="disabled"
             size="sm"
             class="w-28"
-            @update:model-value="(v) => updateShift(weekday - 1, idx, 'start_time', String(v))"
+            @update:model-value="(v) => updateShift(weekday, idx, 'start_time', String(v))"
           />
           <span class="text-gray-400">—</span>
           <UInput
@@ -86,7 +91,7 @@ function timeForInput(value: string | undefined): string {
             :disabled="disabled"
             size="sm"
             class="w-28"
-            @update:model-value="(v) => updateShift(weekday - 1, idx, 'end_time', String(v))"
+            @update:model-value="(v) => updateShift(weekday, idx, 'end_time', String(v))"
           />
           <UButton
             color="neutral"
@@ -95,11 +100,11 @@ function timeForInput(value: string | undefined): string {
             :aria-label="t('common.remove')"
             size="xs"
             :disabled="disabled"
-            @click="removeShift(weekday - 1, idx)"
+            @click="removeShift(weekday, idx)"
           />
         </div>
         <div
-          v-if="shiftsForDay(weekday - 1).length === 0"
+          v-if="shiftsForDay(weekday).length === 0"
           class="text-sm text-gray-400 italic"
         >
           {{ t('schedules.weekday.closed') }}
@@ -109,7 +114,7 @@ function timeForInput(value: string | undefined): string {
           variant="soft"
           icon="i-lucide-plus"
           :disabled="disabled"
-          @click="addShift(weekday - 1)"
+          @click="addShift(weekday)"
         >
           {{ t('schedules.weekday.addShift') }}
         </UButton>

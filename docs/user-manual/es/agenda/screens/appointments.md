@@ -46,6 +46,10 @@ flujo (programada → confirmada → en sala → completada → cobrada).
   móvil de un día simplificada en pantallas pequeñas. El selector
   vive en la cabecera, salvo en móvil donde solo existe la vista
   diaria.
+- **Primer día de la semana** — lo decide el país de la clínica, no el
+  navegador: domingo en una clínica israelí (semana laboral de domingo
+  a jueves), lunes en el resto. La tira semanal móvil y «Hoy» usan el
+  mismo anclaje.
 - **Filtros por gabinete y profesional** — chips encima del
   calendario. Las citas sin gabinete asignado **siempre** se ven,
   para que recepción pueda arrastrarlas al gabinete que toque.

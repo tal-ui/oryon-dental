@@ -19,6 +19,8 @@ const clinic = useClinic()
 const { appointments, isLoading, error: loadError, fetchAppointments, updateAppointment } = useAppointments()
 const { professionals, fetchProfessionals, getProfessionalColor } = useProfessionals()
 const { isMobile } = useBreakpoint()
+// First day of the week follows the clinic's country (Sunday in Israel).
+const { startOfWeek, weekStartsOn } = useWeekStart()
 
 // Query params for pre-selecting patient from treatment plan flow
 const initialPatientId = ref<string | undefined>(
@@ -34,7 +36,7 @@ const initialPlanId = ref<string | undefined>(
 const viewMode = ref<'week' | 'day' | 'kanban'>('week')
 
 // Week state (for weekly view)
-const currentWeekStart = ref<Date>(getMonday(new Date()))
+const currentWeekStart = ref<Date>(startOfWeek(new Date()))
 
 // Day state (for daily view)
 const currentDate = ref<Date>(new Date())
@@ -54,7 +56,7 @@ const highlightDate = typeof route.query.date === 'string' ? route.query.date : 
 // Navigate to correct week if highlight date provided
 if (highlightDate) {
   const targetDate = new Date(highlightDate + 'T00:00:00')
-  currentWeekStart.value = getMonday(targetDate)
+  currentWeekStart.value = startOfWeek(targetDate)
   currentDate.value = targetDate
 }
 
@@ -174,17 +176,7 @@ const initialEndTime = ref<string | undefined>()
 const initialProfessionalId = ref<string | undefined>()
 const initialCabinet = ref<string | null | undefined>()
 
-// Get Monday of the current week
-function getMonday(date: Date): Date {
-  const d = new Date(date)
-  const day = d.getDay()
-  const diff = day === 0 ? -6 : 1 - day
-  d.setDate(d.getDate() + diff)
-  d.setHours(0, 0, 0, 0)
-  return d
-}
-
-// Get week end (Sunday)
+// Get week end (6 days after the clinic's first day)
 function getWeekEnd(start: Date): Date {
   const end = new Date(start)
   end.setDate(end.getDate() + 6)
@@ -219,6 +211,15 @@ async function handleWeekChange(newStart: Date) {
   currentWeekStart.value = newStart
   await loadWeekAppointments()
 }
+
+// The clinic (hence its country) can load after the first render: re-anchor
+// the visible week once the first day is known, so a Sunday-start clinic
+// doesn't keep a Monday-anchored grid until the next navigation.
+watch(weekStartsOn, async () => {
+  const realigned = startOfWeek(currentWeekStart.value)
+  if (realigned.getTime() === currentWeekStart.value.getTime()) return
+  await handleWeekChange(realigned)
+})
 
 // Handle slot click from weekly view - open modal for new appointment
 function handleSlotClick(date: Date, time: string) {

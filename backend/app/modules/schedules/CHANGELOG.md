@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- feat(il): `ClinicHoursService.create_default_weekly` takes the clinic `country` and seeds from `DEFAULT_WEEKLY_TEMPLATES` (ES split shift, IL Sunday–Thursday 09–18 + Friday 09–13, Mon–Fri 09–18 otherwise) instead of a `split_shift` flag. The weekly grid lists days from the clinic's first working day and the onboarding presets fill Sun–Thu for Sunday-start clinics.
+- feat(i18n): Hebrew (`he`) locale for the module's frontend layer.
+
 - fix(#779): `find_free_slots` without `date_from` starts on the clinic's day, not the server's UTC day.
 
 - docs(#707): the permissions doc's role table missed `analytics.read`

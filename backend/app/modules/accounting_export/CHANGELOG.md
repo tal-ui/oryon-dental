@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- feat(i18n): Hebrew (`he`) locale for the module's frontend layer.
+
 - feat(i18n): Hindi (`hi`) locale for the module's frontend layer.
 - test(#552): branch-scoped uninstall round-trip test (heads, branch downgrade, reinstall).
 

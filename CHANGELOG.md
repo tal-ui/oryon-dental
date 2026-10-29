@@ -11,6 +11,30 @@ frontend as a Nuxt layer under its own Python package.
 
 ## [Unreleased]
 
+### Added
+
+- **Israel country preset and Hebrew.** `/setup` → Israel seeds ILS,
+  `Asia/Jerusalem`, Hebrew as the communications language, a 9-digit
+  dealer-number (ע.מ / ח.פ) format check, VAT 18 % as the default type
+  (private dental care is taxable; an exempt type stays for עוסק פטור) and
+  a Sunday–Thursday + short-Friday week. The agenda's week view, the
+  mobile week strip and the clinic-hours grid start the week on the
+  clinic's first working day (Sunday in Israel) instead of a hardcoded
+  Monday. Hebrew (`he`, RTL) ships for the host and 30 module layers;
+  the remaining layers degrade to English. Hebrew email templates and
+  Hebrew quote / invoice / prescription / document / purchase-order PDF
+  labels; `core.pdf_locales.RTL_LOCALES` replaces the per-module
+  `locale == "ar"` checks. See `docs/technical/country-readiness.md`.
+- **White-label app shell.** `APP_NAME` / `APP_LOGO` (`NUXT_PUBLIC_APP_NAME`
+  / `NUXT_PUBLIC_APP_LOGO`) rename the product in the login page, sidebar,
+  document title and patient-facing layout at runtime, no rebuild.
+  Patient documents and emails keep using the clinic name.
+- **Clinic bootstrap script.** `scripts/bootstrap_clinic.py <profile>` drives
+  `POST /api/v1/auth/setup` from a `KEY=value` profile (first one:
+  `scripts/clinics/oryon.env`), so a real clinic is created with the same
+  preset and seeding as the wizard, repeatably and without a browser.
+  See `docs/workflows/clinic-bootstrap.md`.
+
 ### Fixed
 
 - **Turning a patient's email off also silenced WhatsApp and SMS.** The

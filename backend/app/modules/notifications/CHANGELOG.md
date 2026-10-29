@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- feat(i18n): Hebrew (`he`) selectable as communications language; `notifications-he.json` for the layer; the email base template renders `dir="rtl"` for Hebrew.
+
 - fix: turning a patient's email off no longer blocks their WhatsApp,
   SMS and push notifications. The consent gate read `email_enabled` as
   a global opt-out (a leftover from when email was the only channel), so

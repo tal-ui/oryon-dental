@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- feat(i18n): Hebrew (`he`) locale for the frontend layer and Hebrew prescription PDF labels; RTL from `core.pdf_locales.RTL_LOCALES`.
+
 - fix(#774): issue and cancel lock the prescription row and re-read it before checking its status. Two issues at once both passed the draft check, ran the country hook twice and published `prescription.issued` twice; the second now answers 422 (409 for cancel).
 
 - fix: date-only fields (`YYYY-MM-DD`) are parsed as local midnight

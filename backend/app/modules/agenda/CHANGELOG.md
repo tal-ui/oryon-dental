@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- feat(il): the week view, the mobile week strip and "Today" anchor the week on the clinic's first working day (`useWeekStart`, host) — Sunday for Israel, Monday elsewhere — instead of a hardcoded Monday; the visible week re-anchors once the clinic loads. Default cabinet seeded on `clinic.created` is now also named in Hebrew (`חדר 1`).
+
 - fix(#774): `AppointmentService.transition` locks the appointment row and re-reads its status before the state-machine check. Two check-ins (kiosk and reception) or a double-clicked no-show at the same moment both passed the check on their unlocked copy and wrote two status events and two bus events. The second now gets 409 "already in status"; a concurrent second cancel stays a no-op.
 
 - fix(#750): deleting a cabinet whose appointments were all cancelled

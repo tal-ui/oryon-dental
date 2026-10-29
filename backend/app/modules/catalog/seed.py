@@ -86,12 +86,43 @@ VAT_TYPES: list[dict[str, Any]] = [
     },
 ]
 
+# Israel — private dental care is liable for VAT at the standard rate (18 %
+# since 2025-01-01, Value Added Tax Order (Tax Rate), 5784-2024), so the
+# standard type is the default and every stock item lands on it: the exempt
+# type is keyed ``exempt_dealer`` on purpose so the Spanish ``"exempt"``
+# items do NOT match it and fall back to the preset default instead. It
+# stays available for exempt dealers (עוסק פטור) and zero-rated lines.
+# Catalog prices are entered net; budget / invoice totals add the 18 %.
+IL_VAT_TYPES: list[dict[str, Any]] = [
+    {
+        "key": "standard",
+        "names": {
+            "es": "General (18%)",
+            "en": "Standard (18%)",
+            "fr": "Général (18%)",
+            "he": 'מע"מ (18%)',
+            "ta": "பொதுவானது (18%)",
+            "te": "సాధారణ రేటు (18%)",
+            "hi": "सामान्य दर (18%)",
+        },
+        "rate": 18.0,
+        "is_default": True,
+    },
+    {
+        **_EXEMPT_BASE,
+        "key": "exempt_dealer",
+        "names": {**_EXEMPT_BASE["names"], "he": 'פטור ממע"מ'},
+        "is_default": False,
+    },
+]
+
 # Country VAT presets consumed by ``on_clinic_created``. "es" is the Spanish
-# trio above; "generic" is a single 0% default the clinic edits under
-# /settings/vat-types. Dental care is VAT-exempt in most jurisdictions, so
-# exempt-by-default is the safe generic choice.
+# trio above; "il" the Israeli pair; "generic" is a single 0% default the
+# clinic edits under /settings/vat-types. Dental care is VAT-exempt in most
+# jurisdictions, so exempt-by-default is the safe generic choice.
 VAT_PRESETS: dict[str, list[dict[str, Any]]] = {
     "es": VAT_TYPES,
+    "il": IL_VAT_TYPES,
     "generic": [_EXEMPT_BASE],
 }
 
@@ -2944,11 +2975,14 @@ async def seed_catalog(
     """Seed catalog items for a clinic. Idempotent (skips existing internal_codes).
 
     ``vat_preset`` picks the VAT types (see ``VAT_PRESETS``); items whose
-    ``vat_type`` key is missing from the preset fall back to the exempt one.
-    ``with_prices=False`` seeds every price as 0 — used for non-EUR clinics
-    where the Spanish reference prices would be meaningless.
+    ``vat_type`` key is missing from the preset fall back to the preset's
+    default type (exempt for ``es`` / ``generic``, the 18 % standard type
+    for ``il``). ``with_prices=False`` seeds every price as 0 — used for
+    non-EUR clinics where the Spanish reference prices would be meaningless.
     """
     vat_type_map, vat_types_created = await _ensure_vat_types(db, clinic_id, vat_preset)
+    preset_types = VAT_PRESETS.get(vat_preset, VAT_PRESETS["generic"])
+    default_vat_type_id = vat_type_map[next(v["key"] for v in preset_types if v["is_default"])]
 
     categories_created = 0
     items_created = 0
@@ -2981,7 +3015,7 @@ async def seed_catalog(
             viz_rules = treatment_data.pop("visualization_rules", None)
             viz_config = treatment_data.pop("visualization_config", None) or {}
             vat_type_key = treatment_data.pop("vat_type", "exempt")
-            vat_type_id = vat_type_map.get(vat_type_key, vat_type_map.get("exempt"))
+            vat_type_id = vat_type_map.get(vat_type_key, default_vat_type_id)
             session_template = treatment_data.pop("sessions", None)
 
             existing = await db.execute(

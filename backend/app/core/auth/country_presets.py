@@ -2,7 +2,8 @@
 
 Pure data: currency / timezone / language defaults per ISO-3166 alpha-2
 code, plus the bits that make Spain special (NIF/CIF format, the "es"
-VAT preset consumed by the catalog module, VeriFactu suggestion).
+VAT preset consumed by the catalog module, VeriFactu suggestion) and
+Israel's fiscal basics (9-digit dealer number, the "il" VAT preset).
 Anything not listed falls back to :data:`GENERIC` — the client still
 lets the user pick currency and timezone by hand.
 
@@ -23,8 +24,8 @@ class CountryPreset:
     code: str  # ISO2, "" for the generic fallback
     currency: str  # ISO 4217
     timezone: str  # IANA — main zone of the country
-    language: str  # es|en|fr|pt|pt-BR|ta|te|hi|de|hu|pl|it|ar — communication_language default
-    vat_preset: str = "generic"  # consumed by catalog: "es" | "generic"
+    language: str  # es|en|fr|pt|pt-BR|ta|te|hi|de|hu|pl|it|ar|he — communication_language default
+    vat_preset: str = "generic"  # consumed by catalog: "es" | "il" | "generic"
     tax_id_label: str = "Tax ID"
     tax_id_pattern: str | None = None  # server-side format check (normalized upper, no separators)
     tax_id_example: str | None = None
@@ -113,6 +114,24 @@ COUNTRY_PRESETS["ES"] = CountryPreset(
     tax_id_pattern=r"^[A-Z0-9][0-9]{7}[A-Z0-9]$",
     tax_id_example="B12345678",
     suggested_modules=("verifactu",),
+)
+
+# Israel — the second country with fiscal defaults. Private dental care is
+# liable for VAT at the standard rate (18 % since 2025-01-01), so the "il"
+# catalog preset makes the standard type the default and keeps an exempt
+# type for exempt dealers (עוסק פטור). The dealer number (מספר עוסק מורשה)
+# is 9 digits: the ID number (ת.ז.) for individuals or the company number
+# (ח.פ.) for companies. Format only — the check digit is a client-side
+# warning, like the Spanish NIF.
+COUNTRY_PRESETS["IL"] = CountryPreset(
+    code="IL",
+    currency="ILS",
+    timezone="Asia/Jerusalem",
+    language="he",
+    vat_preset="il",
+    tax_id_label="ע.מ / ח.פ",
+    tax_id_pattern=r"^[0-9]{9}$",
+    tax_id_example="512345679",
 )
 
 GENERIC = CountryPreset(code="", currency="EUR", timezone="UTC", language="en")

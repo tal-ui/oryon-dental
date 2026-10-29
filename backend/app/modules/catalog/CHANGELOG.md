@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- feat(il): `il` VAT preset — standard 18 % as the default type plus an exempt type keyed `exempt_dealer`; stock items whose `vat_type` key is missing from a preset now fall back to that preset's default type (was: always the exempt one), so an Israeli clinic's whole catalog lands on 18 %.
+
 - fix: `POST /catalog/seed` answered 500 (`MultipleResultsFound`) when the clinic had its own VAT type at one of the preset's rates, such as a second 0% type next to the seeded exempt one. `_ensure_vat_types` now reuses the system row first, then the active one, the same tolerance #736 gave the treatment lookup.
 
 - fix(#740): a treatment's price, cost or duration could not be removed.

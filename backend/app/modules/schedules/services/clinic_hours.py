@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, time
 from typing import Any
 from uuid import UUID
 
@@ -13,6 +13,32 @@ from sqlalchemy.orm import selectinload
 from app.core.auth.models import Clinic
 
 from ..models import ClinicOverride, ClinicWeeklySchedule, ScheduleShift
+
+# Default weekly templates seeded on ``clinic.created``, keyed by ISO2
+# country; ``weekday`` follows the model (Mon=0..Sun=6). Anything not
+# listed gets ``_DEFAULT_WEEK``. Add a row when a market's working week
+# differs — the setup wizard's "real hours on first login" promise
+# (docs/features/onboarding.md) is only as good as this table.
+_DEFAULT_WEEK: dict[int, list[tuple[time, time]]] = {
+    weekday: [(time(9, 0), time(18, 0))]
+    for weekday in range(5)  # Mon–Fri
+}
+DEFAULT_WEEKLY_TEMPLATES: dict[str, dict[int, list[tuple[time, time]]]] = {
+    # Spanish split shift.
+    "ES": {
+        weekday: [(time(9, 0), time(14, 0)), (time(16, 0), time(20, 0))] for weekday in range(5)
+    },
+    # Israel: the working week is Sunday–Thursday with a short Friday;
+    # Saturday (Shabbat) is closed.
+    "IL": {
+        6: [(time(9, 0), time(18, 0))],  # Sun
+        0: [(time(9, 0), time(18, 0))],
+        1: [(time(9, 0), time(18, 0))],
+        2: [(time(9, 0), time(18, 0))],
+        3: [(time(9, 0), time(18, 0))],  # Thu
+        4: [(time(9, 0), time(13, 0))],  # Fri
+    },
+}
 
 
 class ClinicHoursService:
@@ -86,32 +112,27 @@ class ClinicHoursService:
 
     @staticmethod
     async def create_default_weekly(
-        db: AsyncSession, clinic_id: UUID, split_shift: bool = False
+        db: AsyncSession, clinic_id: UUID, country: str | None = None
     ) -> ClinicWeeklySchedule | None:
-        """Create a Mon–Fri weekly template for a brand-new clinic.
+        """Create the default weekly template for a brand-new clinic.
 
-        ``split_shift=True`` → 09:00–14:00 + 16:00–20:00 (Spanish pattern);
-        otherwise 09:00–18:00. Returns None (no-op) when the clinic already
-        has a weekly schedule — the 24/7 ``get_or_create_weekly`` fallback
-        keeps serving legacy clinics.
+        Picks the country's row in :data:`DEFAULT_WEEKLY_TEMPLATES` (ES split
+        shift, IL Sunday–Thursday + short Friday) and falls back to Mon–Fri
+        09:00–18:00. Returns None (no-op) when the clinic already has a
+        weekly schedule — the 24/7 ``get_or_create_weekly`` fallback keeps
+        serving legacy clinics.
         """
-        from datetime import time as _time
-
         existing = await db.execute(
             select(ClinicWeeklySchedule.id).where(ClinicWeeklySchedule.clinic_id == clinic_id)
         )
         if existing.scalar_one_or_none() is not None:
             return None
 
-        shifts = (
-            [(_time(9, 0), _time(14, 0)), (_time(16, 0), _time(20, 0))]
-            if split_shift
-            else [(_time(9, 0), _time(18, 0))]
-        )
+        template = DEFAULT_WEEKLY_TEMPLATES.get((country or "").upper(), _DEFAULT_WEEK)
         weekly = ClinicWeeklySchedule(clinic_id=clinic_id, is_active=True)
         db.add(weekly)
         await db.flush()
-        for weekday in range(5):  # Mon–Fri
+        for weekday, shifts in sorted(template.items()):
             for start, end in shifts:
                 db.add(
                     ScheduleShift(

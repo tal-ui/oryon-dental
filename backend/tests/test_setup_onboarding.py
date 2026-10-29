@@ -38,6 +38,9 @@ async def test_setup_presets_public(client: AsyncClient) -> None:
     es = next(c for c in data["countries"] if c["code"] == "ES")
     assert es["currency"] == "EUR" and es["vat_preset"] == "es"
     assert es["suggested_modules"] == ["verifactu"]
+    il = next(c for c in data["countries"] if c["code"] == "IL")
+    assert (il["currency"], il["timezone"], il["language"]) == ("ILS", "Asia/Jerusalem", "he")
+    assert il["vat_preset"] == "il" and il["tax_id_pattern"]
     assert data["fallback"]["vat_preset"] == "generic"
 
 
@@ -181,6 +184,86 @@ async def test_setup_unknown_country_generic_no_prices(client: AsyncClient, db_s
         .where(ScheduleShift.clinic_weekly_id == weekly.id)
     )
     assert n == 5  # Mon–Fri single shift
+
+
+@pytest.mark.asyncio
+async def test_setup_il_applies_preset_and_seeds(client: AsyncClient, db_session: AsyncSession):
+    """Israel: ILS / Asia/Jerusalem / Hebrew, VAT 18 % default (every stock
+    item lands on it), Sunday–Thursday + short Friday hours, Hebrew cabinet."""
+    r = await client.post(
+        "/api/v1/auth/setup",
+        json={**_BASE, "country": "IL", "clinic_tax_id": "512345678"},
+    )
+    assert r.status_code == 201, r.text
+
+    clinic = (await db_session.execute(select(Clinic))).scalar_one()
+    assert clinic.timezone == "Asia/Jerusalem"
+    assert clinic.currency == "ILS"
+    assert clinic.settings["country"] == "IL"
+    assert clinic.settings["communication_language"] == "he"
+
+    vat_types = (
+        (await db_session.execute(select(VatType).where(VatType.clinic_id == clinic.id)))
+        .scalars()
+        .all()
+    )
+    assert {(v.rate, v.is_default) for v in vat_types} == {(18.0, True), (0.0, False)}
+    standard = next(v for v in vat_types if v.rate == 18.0)
+    assert standard.names["he"] == 'מע"מ (18%)'
+    # No Spanish exemption leaks into an Israeli clinic: all items are 18 %.
+    assert await _count(db_session, TreatmentCatalogItem, clinic.id) > 100
+    non_standard = await db_session.scalar(
+        select(func.count())
+        .select_from(TreatmentCatalogItem)
+        .where(
+            TreatmentCatalogItem.clinic_id == clinic.id,
+            TreatmentCatalogItem.vat_type_id != standard.id,
+        )
+    )
+    assert non_standard == 0
+    # ILS clinic → Spanish reference prices are meaningless, seeded at 0.
+    priced = await db_session.scalar(
+        select(func.count())
+        .select_from(TreatmentCatalogItem)
+        .where(TreatmentCatalogItem.clinic_id == clinic.id, TreatmentCatalogItem.default_price > 0)
+    )
+    assert priced == 0
+
+    cabinet = (
+        await db_session.execute(select(Cabinet).where(Cabinet.clinic_id == clinic.id))
+    ).scalar_one()
+    assert cabinet.name == "חדר 1"
+
+    weekly = (
+        await db_session.execute(
+            select(ClinicWeeklySchedule).where(ClinicWeeklySchedule.clinic_id == clinic.id)
+        )
+    ).scalar_one()
+    shifts = (
+        (
+            await db_session.execute(
+                select(ScheduleShift).where(ScheduleShift.clinic_weekly_id == weekly.id)
+            )
+        )
+        .scalars()
+        .all()
+    )
+    assert {s.weekday for s in shifts} == {6, 0, 1, 2, 3, 4}  # Sun–Fri, Saturday closed
+    friday = next(s for s in shifts if s.weekday == 4)
+    assert (friday.start_time.hour, friday.end_time.hour) == (9, 13)
+    assert all(s.end_time.hour == 18 for s in shifts if s.weekday != 4)
+
+
+@pytest.mark.asyncio
+async def test_setup_il_rejects_bad_tax_id_format(client: AsyncClient) -> None:
+    r = await client.post(
+        "/api/v1/auth/setup", json={**_BASE, "country": "IL", "clinic_tax_id": "B12345678"}
+    )
+    assert r.status_code == 422
+    r = await client.post(
+        "/api/v1/auth/setup", json={**_BASE, "country": "IL", "clinic_tax_id": "12345"}
+    )
+    assert r.status_code == 422
 
 
 @pytest.mark.asyncio

@@ -35,7 +35,7 @@ Submit → `POST /api/v1/auth/setup` → auto-login → `/`.
 | catalog | VAT types from the country preset (`es` → exento / 10 % / 21 %; `generic` → exento) + categories + the default treatment catalog (prices at 0 for non-EUR clinics) |
 | billing | `FAC` (invoice) and `RECT` (credit note) default series |
 | agenda | one cabinet ("Gabinete 1" / "Room 1" by clinic language) |
-| schedules | Mon–Fri weekly hours (ES: 09–14 + 16–20; otherwise 09–18) |
+| schedules | Weekly hours from `DEFAULT_WEEKLY_TEMPLATES` by country: ES Mon–Fri 09–14 + 16–20; IL Sun–Thu 09–18 + Fri 09–13; otherwise Mon–Fri 09–18 |
 
 A failing seed never fails setup; the card shows the gap.
 

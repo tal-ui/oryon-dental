@@ -8,6 +8,7 @@ import {
   guessBrowserCountry
 } from '~/utils/countries'
 import { isValidSpanishTaxId } from '~/utils/spanishTaxId'
+import { isValidIsraeliTaxId } from '~/utils/israeliTaxId'
 
 definePageMeta({
   layout: 'guest'
@@ -86,11 +87,18 @@ const localeOptions = computed(() =>
 const taxIdLabel = computed(() =>
   preset.value?.tax_id_pattern ? preset.value.tax_id_label : t('setup.taxIdGeneric')
 )
-const taxIdWarning = computed(() =>
-  isSpain.value && form.taxId.trim() && !isValidSpanishTaxId(form.taxId)
+// Client-side check-digit advisories per country; the server enforces
+// only the format. Add a row when a market ships a preset with a checksum.
+const TAX_ID_CHECKSUMS: Record<string, (value: string) => boolean> = {
+  ES: isValidSpanishTaxId,
+  IL: isValidIsraeliTaxId
+}
+const taxIdWarning = computed(() => {
+  const check = TAX_ID_CHECKSUMS[form.country]
+  return check && form.taxId.trim() && !check(form.taxId)
     ? t('setup.taxIdLooksInvalid')
     : ''
-)
+})
 
 onMounted(async () => {
   try {

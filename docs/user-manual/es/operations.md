@@ -1,0 +1,457 @@
+# Operar una instancia de DentalPin
+
+Guía para administradores y auto-alojados: instalar y eliminar módulos,
+provocar reinicios, hacer copias de seguridad, recuperarse de errores.
+Cubre los comandos que ejecuta un operador — no los internos de Python.
+
+> **Audiencia**: usuario con conocimientos de operaciones y acceso por
+> shell al host que ejecuta `docker compose up`. Para la documentación
+> de contribuidores, ver `docs/technical/creating-modules.md`.
+
+---
+
+## 1. Requisitos previos
+
+- Docker + Docker Compose en el host.
+- Repositorio de DentalPin clonado (o artefactos de despliegue equivalentes).
+- `.env` rellenado con `POSTGRES_PASSWORD`, `SECRET_KEY`, etc.
+- Un stack en marcha: `docker compose up -d`.
+- **¿La aplicación y la API en hosts distintos?** Entonces deben ser
+  hermanos de un mismo dominio padre y `.env` debe fijar `COOKIE_DOMAIN` a
+  ese padre (`COOKIE_DOMAIN=.example.com` para `app.example.com` +
+  `api.example.com`). Sin eso las cookies de sesión son de host único, las
+  páginas renderizadas en el servidor no ven la sesión, cada recarga
+  cierra la sesión del usuario y toda escritura falla con "CSRF token
+  missing" porque la aplicación tampoco puede leer la cookie `dp_csrf`.
+  El backend avisa en el log con el valor a poner.
+  El dominio padre tiene que ser tuyo. Dominios de hosting como
+  `onrender.com`, `vercel.app`, `herokuapp.com` o `sslip.io` son sufijos
+  públicos: el navegador trata cada subdominio como un sitio distinto y
+  rechaza `COOKIE_DOMAIN=.onrender.com`, así que el login responde 200 y
+  `/auth/me` 401. Pon un dominio propio en ambos servicios, o sírvelos
+  desde un único origen.
+- **¿Sin dominio propio (Render, Railway, Vercel…)?** Deja que el frontend
+  haga de proxy de `/api/v1` hacia el backend: el navegador solo habla con
+  el origen de la aplicación y las cookies quedan ligadas a ese host. En el
+  servicio **frontend**: `NUXT_API_PROXY=true`,
+  `NUXT_PUBLIC_API_BASE_URL=https://<host-app>` (la URL de la propia
+  aplicación) y `NUXT_API_BASE_URL_SERVER=https://<host-api>`. En el
+  **backend**: `ALLOWED_ORIGINS=https://<host-app>`, `ENVIRONMENT=production`,
+  `COOKIE_DOMAIN` vacío y `FORWARDED_ALLOW_IPS` (más abajo): el host de la
+  API sigue accesible directamente, así que aquí esta variable importa.
+- **`FORWARDED_ALLOW_IPS` — qué proxies pueden fijar la IP del cliente.**
+  El límite de intentos de login y el `client_ip` de la sesión salen los
+  dos de `X-Forwarded-For`, una cabecera que el cliente puede escribir.
+  uvicorn solo la lee de los pares que figuren en esta lista, y recorre
+  la cabecera de derecha a izquierda tomando como cliente real la primera
+  dirección que *no* esté en la lista. Hay que listar por tanto todos los
+  saltos entre el navegador y el backend: si falta uno, ese salto pasa a
+  ser el "cliente" y todas las peticiones que vengan detrás comparten un
+  único cubo de límite. Nunca `*`: eso se fía de cualquier par y entonces
+  toma la entrada más a la izquierda, la que escribió quien llama, así
+  que cualquiera que alcance el puerto elige su propio cubo y su propia
+  IP de auditoría. El valor por defecto
+  (`127.0.0.1,::1,172.16.0.0/12,192.168.0.0/16`) cubre los rangos de
+  Docker, que es lo correcto para compose y Coolify. En Swarm o
+  Kubernetes añadir `10.0.0.0/8`. Con el proxy anterior el salto más
+  cercano es el contenedor *frontend* y el borde de la plataforma queda
+  entre él y el navegador, así que ambos rangos deben constar. El backend
+  registra el valor efectivo al arrancar: conviene leer esa línea tras
+  cualquier cambio de despliegue, porque los dos errores son silenciosos.
+
+Comprobación rápida:
+
+```bash
+curl -s http://localhost:8000/health
+# {"status":"healthy","version":"0.1.0"}
+```
+
+---
+
+## 2. Operaciones diarias
+
+### Listar módulos
+
+```bash
+./bin/dentalpin modules list
+```
+
+Salida (recortada):
+
+```
+NAME            VERSION  STATE       CATEGORY  DEPENDS
+billing         0.1.0    installed   official  clinical,catalog,budget
+budget          0.1.0    installed   official  clinical,catalog
+clinical        0.1.0    installed   official  -
+```
+
+Variante JSON: `./bin/dentalpin modules list --json`.
+
+### Inspeccionar un módulo
+
+```bash
+./bin/dentalpin modules info billing
+```
+
+Muestra versión, estado, revisión aplicada, último cambio de estado y
+errores. Forma JSON: el mismo comando con `--json`.
+
+### Resumen de estado
+
+```bash
+./bin/dentalpin modules status
+```
+
+Recuentos por estado más las listas de pendientes y con error.
+
+### Chequeo de salud
+
+```bash
+./bin/dentalpin modules doctor
+```
+
+Detecta:
+
+- **Huérfanos** — filas de `core_module` cuyo código desapareció del disco.
+- **Dependencias ausentes** — el módulo X depende de Y y no se encontró.
+- **Errores de manifest** — violaciones de esquema en `MANIFEST`.
+- **Módulos con error** — filas cuyo último paso de instalación o
+  actualización falló.
+
+El código de salida es distinto de cero cuando se detecta cualquier
+problema; ideal para scripts de monitorización.
+
+---
+
+## 3. Instalar un módulo
+
+### Módulos oficiales
+
+Vienen incluidos en cada versión de DentalPin. Se instalan
+automáticamente en el primer arranque de una base de datos nueva.
+Reinstala si quedaron en `uninstalled`:
+
+```bash
+./bin/dentalpin modules install billing
+./bin/dentalpin modules restart
+```
+
+### Módulos de la comunidad
+
+```bash
+# 1. Instalar el paquete Python en el contenedor del backend
+docker compose exec backend pip install dentalpin-my-module
+
+# 2. Programar la instalación
+./bin/dentalpin modules install my_module
+
+# 3. Reiniciar el backend — aplica migraciones + seed + ciclo de vida
+docker compose restart backend
+# o: POST /api/v1/modules/-/restart
+
+# 4. Reconstruir el frontend si el módulo incluye una capa Nuxt
+docker compose build frontend && docker compose up -d frontend
+```
+
+La salida del paso 2 lista la cadena de dependencias que se tocará:
+
+```
+Scheduled for install on next restart:
+  - clinical
+  - my_module
+```
+
+---
+
+## 4. Actualizar un módulo
+
+Actualiza el paquete del módulo (`pip install -U ...`) para que la nueva
+versión aparezca en disco, y después:
+
+```bash
+./bin/dentalpin modules upgrade my_module
+./bin/dentalpin modules restart
+```
+
+El reinicio ejecuta las nuevas migraciones, vuelve a aplicar los seeds y
+llama al hook `post_upgrade(ctx, from_version)` del módulo.
+
+Si las versiones de disco y base de datos ya coinciden, el comando
+termina con "Module is already at the declared version."
+
+---
+
+## 5. Desinstalar un módulo
+
+```bash
+./bin/dentalpin modules uninstall my_module
+docker compose restart backend
+```
+
+El reinicio:
+
+1. **Hace copia de seguridad** de todas las tablas del módulo en
+   `storage/backups/module_<name>_<timestamp>.sql` mediante
+   `pg_dump --data-only`.
+2. Llama al hook `uninstall(ctx)` del módulo.
+3. Elimina todos los registros rastreados vía `core_external_id`.
+4. Ejecuta `alembic downgrade <module>@base` — revierte solo la rama
+   del módulo.
+5. Cambia `core_module.state = uninstalled`.
+
+### Por qué algunos módulos se niegan a desinstalarse
+
+Dos salvaguardas:
+
+- `removable: false` en el manifest (oficiales). Se puede forzar con
+  `--force` si de verdad es lo que quieres.
+- Sin rama de Alembic (módulos legacy de la Fase A). No pueden hacer
+  downgrade limpio; la desinstalación está bloqueada incluso con
+  `--force`. Espera a la Fase B.
+- Dependencias inversas — otro módulo instalado lista este en su
+  `depends`. Desinstala primero los dependientes, o pasa `--force`.
+
+---
+
+## 6. Reinicios
+
+Tres vías, efecto idéntico (SIGTERM al backend y Docker lo relanza):
+
+| Canal | Comando |
+|-------|---------|
+| Pista del CLI | `./bin/dentalpin modules restart` imprime el siguiente paso |
+| REST | `POST /api/v1/modules/-/restart` (token de admin) |
+| Host | `docker compose restart backend` |
+
+El relanzamiento tarda 3-5 segundos. El lifespan procesa cada fila
+`to_*` en orden topológico antes de aceptar tráfico. Los errores por
+módulo quedan registrados en `core_module.error_message`; el resto del
+stack arranca igualmente.
+
+---
+
+## 7. Reconstrucciones del frontend
+
+Los módulos de la comunidad con capa Nuxt requieren reconstruir el
+frontend:
+
+```bash
+docker compose build frontend && docker compose up -d frontend
+```
+
+30-60 s de inactividad en la interfaz. Los módulos oficiales **no**
+necesitan reconstrucción — ya están en el bundle; alternar su
+visibilidad es un filtro sobre `/api/v1/modules/-/active`.
+
+Si el frontend arranca pero un módulo no aparece:
+
+1. Inspecciona `frontend/modules.json` — debería listar la ruta de la
+   capa del módulo.
+2. Ejecuta `./bin/dentalpin modules sync-frontend` para regenerar el
+   archivo.
+3. Confirma que el usuario tiene el permiso listado en
+   `navigation[].permission`.
+
+---
+
+## 8. Copias de seguridad
+
+Las copias por módulo viven en `storage/backups/` dentro del volumen
+`storage_data` del backend:
+
+```bash
+docker compose exec backend ls -l /app/storage/backups
+```
+
+Cada desinstalación produce un archivo `.sql` con los INSERT de todas
+las tablas que el módulo poseía. Restaura con:
+
+```bash
+docker compose exec -T db psql -U dental -d dental_clinic \
+  < storage/backups/module_my_module_20260420T080000Z.sql
+```
+
+El esquema debe existir previamente (reinstala primero el módulo y
+después restaura los datos).
+
+### Copia completa (base de datos + archivos)
+
+```bash
+docker compose exec -T backend python -m app.cli db backup
+```
+
+Genera `full_<fecha>.dump` (toda la base de datos) y
+`storage_<fecha>.tar.gz` (documentos, radiografías, importaciones) en
+`storage/backups/`. Programa este comando cada noche y copia los
+archivos fuera del servidor: una copia en el mismo disco no es una
+copia de seguridad. Procedimiento completo de restauración,
+migración de hardware y verificación mensual: la guía
+`docs/workflows/backup-restore.md`.
+
+---
+
+## 9. Recuperación
+
+### Una instalación fallida
+
+`dentalpin modules doctor` lista el módulo con su error. Opciones:
+
+1. Corrige la causa raíz (normalmente un bug de migración o seed) y
+   después `dentalpin modules install <name>` + reinicio para
+   reintentar.
+2. Ríndete: `dentalpin modules orphan <name>` (lo marca como
+   desinstalado sin ejecutar el flujo de desinstalación). Hazlo solo
+   cuando el módulo no estaba realmente presente en disco.
+
+### Un `to_install` atascado
+
+Ocurre cuando un fallo tumba el backend a mitad de un paso. Reinicia —
+el procesador del lifespan reintenta desde el primer paso incompleto.
+El diseño idempotente hace que migrate/seed/lifecycle sean seguros de
+re-ejecutar.
+
+```bash
+docker compose exec backend \
+  psql -U dental -d dental_clinic \
+  -c "SELECT * FROM core_module_operation_log ORDER BY id DESC LIMIT 20;"
+```
+
+### Una fila huérfana
+
+El código del módulo se eliminó del disco sin desinstalarlo (p. ej.
+alguien desinstaló el paquete Python directamente). El arranque fallará
+de forma visible:
+
+```
+Orphan modules (in DB, missing from disk):
+  - ghost
+```
+
+Opciones:
+
+- Restaurar el paquete (`pip install dentalpin-ghost`).
+- Marcarlo como desinstalado:
+
+  ```bash
+  ./bin/dentalpin modules orphan ghost
+  ```
+
+La vía de huérfano **no** ejecuta los pasos de desinstalación (no se
+revierten las migraciones, no se purgan los external ids, no se hace
+copia de seguridad). Úsala con cuidado.
+
+### Permiso denegado tras un cambio de rol
+
+Borra las cookies de autenticación del usuario y vuelve a iniciar
+sesión. Los permisos se cargan desde `/me` al iniciar sesión; las
+sesiones antiguas conservan la lista anterior.
+
+---
+
+## 10. Referencia rápida de SQL
+
+Ejecutar dentro de `docker compose exec db psql -U dental -d dental_clinic`:
+
+```sql
+-- Todos los módulos + estado + error
+SELECT name, state, version, installed_at, error_message
+FROM core_module
+ORDER BY name;
+
+-- Operaciones pendientes
+SELECT name, state, last_state_change
+FROM core_module
+WHERE state LIKE 'to_%';
+
+-- Registro de operaciones reciente
+SELECT module_name, operation, step, status, created_at
+FROM core_module_operation_log
+ORDER BY id DESC
+LIMIT 25;
+
+-- Registros de seed rastreados de un módulo
+SELECT xml_id, table_name, record_id, noupdate
+FROM core_external_id
+WHERE module_name = 'inventory';
+
+-- Limpiar el puntero de Alembic (peligroso — lo usa reset-db.sh)
+DELETE FROM alembic_version;
+```
+
+---
+
+## 11. Tabla de resolución de problemas
+
+| Síntoma | Causa probable | Solución |
+|---------|----------------|----------|
+| `relation "core_module" does not exist` | Los tests borraron todas las tablas | `docker compose exec backend alembic upgrade head` |
+| Módulo atascado en `to_install` | Fallo a mitad de un paso | Inspeccionar `core_module_operation_log`, reiniciar el backend |
+| `403 Permission denied: billing.read` | El rol carece del permiso | Revisar `ROLE_PERMISSIONS`, confirmar el `/me` cacheado |
+| Barra lateral del frontend vacía | `/api/v1/modules/-/active` falló (¿token inválido?) | Revisar la consola del navegador, volver a iniciar sesión |
+| Página de módulo comunitario 404 | Falta la ruta de la capa en `modules.json` | `./bin/dentalpin modules sync-frontend` + reconstruir el frontend |
+| Desinstalación bloqueada: "no Alembic branch" | Módulo legacy de la Fase A | No soportado; esperar a la Fase B |
+| Desinstalación bloqueada: "required by ..." | Existe una dependencia inversa | Desinstalar primero los dependientes, o `--force` |
+| Sesión cerrada en cada recarga, aunque navegar funciona | Aplicación y API en hosts distintos con `COOKIE_DOMAIN` vacío: las cookies de sesión nunca llegan a la aplicación | Fijar `COOKIE_DOMAIN` al dominio padre compartido (p. ej. `.example.com`) y reiniciar el backend |
+| Cada guardado responde `403 CSRF token missing or invalid`, aunque leer funciona | La misma causa: la aplicación no puede leer la cookie `dp_csrf`, así que nunca envía la cabecera `X-CSRF-Token` | La misma solución: fijar `COOKIE_DOMAIN` al dominio padre compartido |
+| El login responde 200, luego `/auth/me` 401 y vuelve a la pantalla de login | Aplicación y API en un dominio de hosting que es sufijo público (`*.onrender.com`, `*.vercel.app`…): el navegador rechaza las cookies | Poner un dominio propio en ambos (`app.example.com` + `api.example.com`) y fijar `COOKIE_DOMAIN=.example.com`, o activar el proxy de mismo origen del frontend (`NUXT_API_PROXY=true`, §1) |
+
+---
+
+## 12. Dónde reportar errores
+
+GitHub: https://github.com/dentalpin/dentalpin/issues — incluye la
+salida de:
+
+```bash
+./bin/dentalpin modules doctor --json
+./bin/dentalpin modules info <affected-module> --json
+docker compose logs backend --tail 100
+```
+
+Para reportes de seguridad contacta con los mantenedores en privado en
+lugar de abrir un issue público.
+
+---
+
+## 13. Interfaz de gestión de módulos (`/settings/modules`)
+
+Todo lo descrito en §§2–6 también está disponible como página web de
+administración — sin necesidad de acceso a la terminal. Abre
+**Ajustes → Módulos** (`/settings/modules`).
+
+- **Permisos:** ver la página requiere `admin.clinic.read`; los botones
+  Instalar / Desinstalar / Actualizar / Aplicar requieren
+  `admin.clinic.write`. Otros roles ven un mensaje de acceso denegado.
+- **Lista de módulos:** todos los módulos descubiertos con su estado
+  (`installed`, `uninstalled`, `to_install`, `to_upgrade`,
+  `to_remove`, `disabled`, `error`), versión, insignia de categoría
+  (oficial/comunitario), dependencias y resumen.
+- **Buscar y paginar:** la lista tiene un buscador y un filtro por
+  estado (instalado / desinstalado / pendiente / deshabilitado /
+  error), y muestra veinte módulos por página. La consulta
+  (`?q=…`, `?states=…`, `?page=…`) está sincronizada con la URL, por lo
+  que una vista filtrada puede guardarse en marcadores o enlazarse.
+- **Instalar:** disponible para módulos desinstalados e instalables
+  presentes en disco. El modal de confirmación muestra la cadena
+  transitiva de dependencias que se programará.
+- **Actualizar:** disponible para módulos instalados cuyo manifiesto en
+  disco difiere de la versión instalada (se muestra como
+  "instalada → en disco"). El modal programa la actualización; como
+  las instalaciones, necesita Aplicar + reinicio (abajo) para
+  ejecutarse. La alcanzabilidad de dependencias la impone Instalar,
+  no esta señal.
+- **Desinstalar:** disponible para módulos instalados y removibles. El
+  modal avisa de la copia de seguridad `pg_dump` automática (§8).
+  Cuando dependencias inversas bloquean la eliminación, el error se
+  muestra en el propio modal con opción de reintentar forzando.
+- **Aplicar cambios:** las operaciones programadas quedan pendientes
+  hasta pulsar **Aplicar**. El backend se reinicia, la página consulta
+  `GET /-/status` hasta que `pending=[]` y refresca la lista y la barra
+  lateral. Un aviso superior muestra siempre los módulos pendientes.
+- **Aviso de diagnóstico:** cuando `GET /-/doctor` reporta huérfanos,
+  dependencias faltantes, errores de manifiesto o módulos en error, un
+  aviso los resume al inicio de la página.
+- **Panel de detalle:** por módulo, datos clave (estado, categoría,
+  fecha de instalación, revisiones), el mensaje de error si lo hay, el
+  registro reciente de operaciones (migrate → seed → lifecycle →
+  finalize por operación) y el manifiesto en bruto.

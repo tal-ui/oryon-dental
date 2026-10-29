@@ -1,0 +1,53 @@
+{
+  "whatsapp_kapso": {
+    "settings": {
+      "title": "WhatsApp (Kapso)",
+      "description": "Ligue o número de WhatsApp da clínica através da Kapso para enviar e receber mensagens."
+    },
+    "connection": "Ligação",
+    "verified": "Verificado",
+    "notVerified": "Não verificado",
+    "apiKey": "Chave de API da Kapso",
+    "phoneNumberId": "ID do número de telefone",
+    "businessAccountId": "ID da conta empresarial",
+    "businessAccountHelp": "Necessário para sincronizar os modelos aprovados.",
+    "displayPhone": "Número apresentado",
+    "webhookSecret": "Segredo do webhook",
+    "secretStored": "Guardado. Deixe vazio para o manter inalterado.",
+    "webhook": "Webhook",
+    "webhookHelp": "Cole este URL nas definições de webhook da Kapso para receber estados e respostas.",
+    "copy": "Copiar",
+    "copied": "URL copiado",
+    "templates": "Modelos",
+    "sync": "Sincronizar",
+    "noTemplates": "Não há modelos aprovados. Sincronize para os obter da Kapso.",
+    "notificationType": "Tipo de notificação",
+    "template": "Modelo",
+    "map": "Associar",
+    "mapped": "Modelo associado",
+    "mapError": "Não foi possível associar o modelo",
+    "test": "Envio de teste",
+    "sendTest": "Enviar teste",
+    "testOk": "Mensagem de teste enviada",
+    "testFail": "Falha ao enviar o teste",
+    "saved": "Definições guardadas",
+    "saveError": "Não foi possível guardar",
+    "synced": "{n} modelos sincronizados",
+    "syncError": "Não foi possível sincronizar",
+    "types": {
+      "appointment_confirmation": "Confirmação de consulta",
+      "appointment_reminder": "Lembrete de consulta",
+      "appointment_cancelled": "Cancelamento de consulta",
+      "budget_sent": "Orçamento enviado",
+      "budget_accepted": "Orçamento aceite",
+      "budget_reminder": "Lembrete de orçamento",
+      "invoice_sent": "Fatura enviada",
+      "recall_reminder": "Lembrete de revisão",
+      "welcome": "Boas-vindas"
+    },
+    "onboarding": {
+      "label": "Envio por WhatsApp",
+      "description": "O WhatsApp é o canal preferido da clínica, mas o Kapso ainda não está ligado. Ligue-o para que as mensagens automáticas possam ser enviadas."
+    }
+  }
+}

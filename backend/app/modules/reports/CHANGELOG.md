@@ -1,0 +1,97 @@
+# Changelog — reports module
+
+## Unreleased
+
+- fix(#689): the numbering-gaps report groups sequentials by the invoice's `fiscal_year` (the year its number was drawn in) instead of the year the draft was created, so one year's counter can no longer fill another year's gap.
+
+- fix: date-only fields (`YYYY-MM-DD`) are parsed as local midnight
+  (`parseDateOnly`, host `utils/wallClock.ts`) instead of `new Date(s)`, which
+  is UTC midnight and rendered every such date one day early in zones behind
+  UTC — all of the Americas.
+- fix(#718): overdue counts/lists, aging buckets and patient ages are computed
+  against the clinic's calendar date instead of the server's (UTC).
+- docs: the reports user manual (en + es) described the dashboard as extended through the `reports.categories` slot, which the page stopped rendering when it moved to native drill-down chips. Rewritten to describe what the page does, and `last_verified_commit` bumped in both locales.
+- fix(#690): receivables are net of refunds again. `get_summary`'s
+  `total_pending` and `get_overdue_invoices`' per-row `balance_due` summed
+  `invoice_payments.amount` raw, so a refunded payment kept reducing what the
+  clinic was owed: a fully refunded invoice reported `0` outstanding on the
+  manager dashboard and sat in the overdue list with nothing to chase, while
+  the invoice page and the patient tab both showed it unpaid. Both now go
+  through `compute_paid_summaries_for_invoices`, the helper
+  `billing/CLAUDE.md` names as the only paid arithmetic and the one
+  `get_patient_summary` already used (#178). `total_paid` is unchanged — it
+  is the gross "cobrado via factura" fiscal axis on purpose, and a test now
+  pins that too so the pair cannot be "fixed" into two inconsistent
+  balances.
+
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- fix(#611): report CSVs run every cell through `csv_cell`. Professional
+  names and address areas reach those rows from user data, and a value
+  starting with `=`, `+`, `-` or `@` is executed by Excel/LibreOffice on
+  open. Decimal totals and counts are untouched — the guard is
+  type-aware.
+- fix(#610): the operational report's `plan_pipeline` counted soft-deleted
+  treatment plans. `TreatmentPlan` carries `deleted_at` and the owning
+  module filters it on every read; this aggregate did not, so a deleted
+  plan went on being reported as work in progress. The sibling billing
+  report already applies the same filter in twelve places.
+
+- fix(#522): the billing, budgets and scheduling report pages, the home
+  dashboard snapshot and the week-glance panel all built their ranges from
+  local midnights and sent them as UTC, so every clinic east of UTC saw a
+  window shifted one day back — "This month" starting on the last day of the
+  previous month, "Last year" missing 31 December. Now use `toISODate`.
+
+- feat(#232): sidebar entry grouped under the Practice header (`nav.section` "practice").
+- feat(#230): patient-stats + operational families. `GET
+  /patients/demographics` (age bands, gender, area with explicit
+  unknowns), `/patients/visits` (new-vs-returning + frequency) and
+  `/operational/productivity` (completed per professional/cabinet +
+  plan pipeline), all with `?format=csv`; `patient_stats_report` +
+  `operational_report` copilot tools; manual index en+es.
+- feat(#230): financial family (reports v0.2.0). `GET
+  /billing/aging` (outstanding buckets 0-30/31-60/61-90/90+, invoice
+  axis only) + `GET /billing/issued-trend` (monthly issued totals),
+  both with `?format=csv`; new `reports.financial.read` (+ reserved
+  `patient_stats.read`/`operational.read` with the approved role
+  mapping); `financial_report` copilot tool (invoice axis only);
+  invoice-aging + issued-trend sections on `/reports/billing` (the
+  dashboard receivables card keeps its earned-paid definition);
+  off-books guard test pins the family source to the invoice
+  axis.
+- feat(i18n): the frontend layer's directional spacing, borders, text alignment and inset positioning now resolve against the document direction (physical→logical CSS utilities, Arabic RTL support).
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- fix(#101): report dashboards render an error banner with Retry on fetch failure instead of 0 € / empty charts (shared fetch-failed flag across the 24 fetchers + dashboard snapshot).
+
+- fix(#242): patient billing KPI "Trabajo completado" is no longer permanently 0. The `completed` budget status was removed in 2026-04, so `get_patient_summary` now derives `work_completed` from **fully invoiced** accepted quotes (every line's `invoiced_quantity` ≥ `quantity`), and `work_in_progress` becomes the complement (accepted, not yet fully invoiced) so the two KPIs partition the accepted total.
+- fix(#201): dashboard week-glance no longer shows `↘ NaN%` on a fresh clinic — `delta()` coerces its operands (the API sends monetary fields as decimal strings, so the `!prev` guard never fired for `"0.00"`) and treats a non-finite percentage as no-delta.
+
+- feat(#181): `get_patient_summary` returns `total_discount` (Σ line + global discounts on the patient's budgets).
+- fix(#184): type-check clean — sibling composable imports are relative (the `~/` form resolved to the host for vue-tsc and made half the page implicitly `any`), ISO dates via `.slice(0, 10)`, budget status badge colour is `UiColor`.
+- style(lint): first ESLint pass over this module's frontend layer —
+  module layers were outside the linter's base path until now, so
+  CI had never checked them. Mostly auto-fixed formatting; see the
+  PR for the handful of manual fixes.
+
+- feat(agents): expose `tools.py` — `billing_report`,
+  `top_clients_by_billing`, `scheduling_report` (all READ). Off-books:
+  the billing tools are **invoice-axis only** (gross invoiced; never
+  paid/pending/overdue). Adds `BillingReportService.top_clients_by_billing`.
+  Issue #81 P0 batch.
+
+- ux(dashboard): drill-down chips moved from the page footer up to a horizontal nav row right under the header, so detail pages stay one tap away. The legacy `reports.categories` slot is no longer rendered (size mismatch with the new compact chips); the "Cobros" chip is hardcoded since `payments` is already in `manifest.depends`. The slot stays registered for backwards compat but is dormant — future contributions should target `reports.dashboard.widgets`.
+- feat(dashboard): rewrite `/reports` index from a 3-card nav into an integrated manager dashboard. Hero KPIs (caja cobrada, saldo a favor, producción, top forma de pago), charts (cobros en el periodo, producción por doctor), operational tiles (pacientes nuevos, no-show, ticket medio cobrado) and aging-receivables. Mobile-first responsive grid, sticky date-range filter with URL persistence, per-card loading skeletons, point-in-time snapshot badge on filter-immune tiles, and a new `reports.dashboard.widgets` slot for third-party widget injection. Detail pages preserved as drilldown. Zero new backend endpoints: consumes existing `/payments/reports/*` and `/reports/scheduling/*` over HTTP, no cross-module service imports.
+- fix(i18n): ``useReports.getPaymentMethodLabel`` was calling the non-existent ``invoice.paymentMethods.*`` i18n key and rendering the raw key as fallback; now uses the shared ``paymentMethodLabel`` util reading the canonical ``invoice.payments.methods.*`` path.
+- safety(billing-overdue): ``GET /reports/billing/overdue`` accepts a
+  ``limit`` query parameter (default 200, max 1000) and the service
+  enforces it. Previously the endpoint returned every overdue
+  invoice for a clinic, which scaled with years of unpaid balance.
+- docs(user-manual): reescribir pantallas con guía operativa (ES + EN).
+- Added per-module `CLAUDE.md` for AI-agent context (2026-04-27).
+
+## 0.1.0 — initial
+
+- Billing, budget, and scheduling report families.
+- Read-only across the business modules.

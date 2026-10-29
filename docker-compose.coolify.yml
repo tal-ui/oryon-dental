@@ -1,0 +1,140 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-dental_clinic}
+      POSTGRES_USER: ${POSTGRES_USER:-dental}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dental} -d ${POSTGRES_DB:-dental_clinic}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_FQDN_BACKEND_8000: ${BACKEND_FQDN}
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-dental}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-dental_clinic}
+      SECRET_KEY: ${SECRET_KEY}
+      # Required in production since #538 (the backend refuses to boot
+      # without it): generate with `openssl rand -hex 32` and store it in
+      # Coolify alongside SECRET_KEY.
+      BUDGET_PUBLIC_SECRET_KEY: ${BUDGET_PUBLIC_SECRET_KEY:?Set BUDGET_PUBLIC_SECRET_KEY in Coolify}
+      AGENDA_PUBLIC_SECRET_KEY: ${AGENDA_PUBLIC_SECRET_KEY:?Set AGENDA_PUBLIC_SECRET_KEY in Coolify}
+      # Trusted-proxy set for uvicorn's --proxy-headers (#623). NOT "*":
+      # with "*" uvicorn takes the leftmost X-Forwarded-For entry, which
+      # the client controls, so any peer that can reach this port picks
+      # its own login rate-limit bucket and its own audit IP. Restricted,
+      # uvicorn instead walks the header right-to-left and stops at the
+      # first hop outside this set — the real client — which is correct
+      # whether the proxy overwrites or appends. Covers loopback plus
+      # Docker's default address pools, plus 10.0.0.0/8: Coolify creates
+      # its networks there (coolify-proxy/Traefik reaches the backend from
+      # 10.0.x), and without it every client collapses onto Traefik's IP
+      # and the login limit goes global. A PaaS edge must set its own value.
+      FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:-127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+      # `console` never delivers: in production it logs metadata only,
+      # reports the send failed and logs an ERROR naming this remedy (#614).
+      EMAIL_PROVIDER: ${EMAIL_PROVIDER:-console}
+      EMAIL_ENABLED: ${EMAIL_ENABLED:-true}
+      EMAIL_SMTP_HOST: ${EMAIL_SMTP_HOST:-smtp.gmail.com}
+      EMAIL_SMTP_PORT: ${EMAIL_SMTP_PORT:-587}
+      # Real default, not ${X:-}: an empty value fails pydantic bool parsing
+      # at boot (#604).
+      EMAIL_SMTP_TLS: ${EMAIL_SMTP_TLS:-true}
+      EMAIL_SMTP_USER: ${EMAIL_SMTP_USER:-}
+      EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD:-}
+      EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS:-noreply@dentalpin.com}
+      EMAIL_FROM_NAME: ${EMAIL_FROM_NAME:-DentalPin}
+      ENVIRONMENT: production
+      # Self-hosted Ollama endpoint (#332). No bundled Ollama service: run
+      # one and point this at it (e.g. http://192.168.1.20:11434, a host
+      # reachable from the container). Leave empty for the provider's
+      # built-in default.
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+      ALLOWED_ORIGINS: ${FRONTEND_URL}
+      # App and API live on different hosts here, so the session cookies
+      # (ADR 0023) must be set on the shared parent domain, e.g.
+      # ".dentalpin.com" — host-only cookies of the API host would never
+      # reach the app (no dp_csrf → no CSRF header, no session on reload).
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-}
+      SISTEMA_TS_CA_BUNDLE: ${SISTEMA_TS_CA_BUNDLE:-}
+      # Optional Sentry/GlitchTip DSN (see .env.example). Empty = off.
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      # Traces stay off unless explicitly enabled (backend default 0.0).
+      SENTRY_TRACES_SAMPLE_RATE: ${SENTRY_TRACES_SAMPLE_RATE:-0.0}
+      STORAGE_BACKEND: local
+      STORAGE_LOCAL_PATH: /app/storage
+      # AI Copilot. The key reaches the app ONLY through these mappings:
+      # there is no env_file here, `CopilotSettings` stores provider and
+      # model but no key, and `bridge.py` resolves the key from settings
+      # alone — so without these the copilot raises LLMConfigError on
+      # every request no matter what is set in Coolify. Empty = assistant
+      # off, the rest of the app runs.
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      # Which provider a clinic gets before it picks one in settings.
+      COPILOT_PROVIDER_DEFAULT: ${COPILOT_PROVIDER_DEFAULT:-openai}
+      # Output ceiling per assistant turn. Forwarded for the same reason
+      # as the keys: the backend enumerates its environment, so a value
+      # set in Coolify never reaches the container otherwise. The bridge
+      # starts reading it in #673; forwarding it here is inert until then
+      # and correct afterwards.
+      COPILOT_MAX_TOKENS: ${COPILOT_MAX_TOKENS:-4096}
+      # Demo deployments set SEED_ON_STARTUP=1 in Coolify env so a wiped
+      # DB volume self-heals on next restart: alembic recreates the
+      # schema and seed_demo.py repopulates it (idempotent — no-op when
+      # the demo clinic already exists). Real production deployments
+      # leave it unset so seed never runs.
+      SEED_ON_STARTUP: ${SEED_ON_STARTUP:-0}
+      SEED_LANG: ${SEED_LANG:-es}
+      # Public demo: blocks user edits/removal and module lifecycle
+      # (block_in_demo). One Coolify flag drives backend and frontend.
+      DEMO_MODE: ${NUXT_PUBLIC_DEMO_MODE:-false}
+    volumes:
+      - storage_data:/app/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health', timeout=2).status == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.prod
+      args:
+        API_BASE_URL: ${BACKEND_URL}
+    environment:
+      SERVICE_FQDN_FRONTEND_3000: ${FRONTEND_FQDN}
+      NUXT_PUBLIC_API_BASE_URL: ${BACKEND_URL}
+      NUXT_PUBLIC_DEMO_MODE: ${NUXT_PUBLIC_DEMO_MODE:-false}
+    depends_on:
+      backend:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:3000/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  storage_data:

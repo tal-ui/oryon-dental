@@ -1,0 +1,54 @@
+{
+  "inventory": {
+    "title": "Inventário",
+    "add": "Adicionar item",
+    "edit": "Editar item",
+    "item": "Item",
+    "category": "Categoria",
+    "unit": "Unidade",
+    "stock": "Stock",
+    "minimum": "Mínimo",
+    "notes": "Notas",
+    "status": "Estado",
+    "ok": "OK",
+    "low": "Baixo",
+    "filterByCategory": "Filtrar por categoria",
+    "lowStockOnly": "Apenas stock baixo",
+    "includeInactive": "Mostrar inativos",
+    "increment": "Aumentar stock",
+    "decrement": "Reduzir stock",
+    "delete": "Excluir",
+    "deleteTitle": "Excluir item",
+    "deleteMessage": "Excluir este item do inventário? Esta ação não pode ser desfeita.",
+    "cannotDeleteWithHistory": "Este item tem histórico de movimentos. Desative-o para preservar a pista de auditoria.",
+    "cannotDeleteInUse": "Este artigo está associado a um fornecedor, a um tratamento ou a uma encomenda de compra. Desative-o em vez disso.",
+    "deactivate": "Desativar",
+    "reactivate": "Reativar",
+    "deactivated": "Item desativado",
+    "reactivated": "Item reativado",
+    "empty": "Sem movimentos ainda",
+    "allCategories": "Todas as categorias",
+    "adjustBy": "Ajustar em…",
+    "apply": "Aplicar",
+    "cost": "Custo unitário",
+    "valuation": "Valor do stock",
+    "movements": "Movimentos",
+    "movementsTitle": "Movimentos de stock",
+    "reasons": {
+      "initial": "Abertura",
+      "restock": "Reposição",
+      "consumption": "Consumo",
+      "adjustment": "Ajuste",
+      "correction": "Correção"
+    },
+    "categories": {
+      "consumables": "Consumíveis",
+      "equipment": "Equipamento",
+      "office": "Escritório",
+      "other": "Outro"
+    }
+  },
+  "nav": {
+    "inventory": "Inventário"
+  }
+}

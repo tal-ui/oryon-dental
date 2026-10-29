@@ -1,0 +1,257 @@
+# Changelog — copilot module
+
+## Unreleased
+
+- fix(#723): the paginated list query now ends its `order_by` on the primary key. Rows that tied on the sort column (same date, name or timestamp) were cut from different orderings on each page, so some appeared twice and others on no page.
+- feat(#332): Ollama LLM provider adapter (self-hosted, local, no API key)
+  over its OpenAI-compatible endpoint. `OLLAMA_SPEC` declares
+  `needs_api_key=False`, a nullable `api_key_setting` and a new
+  `base_url_setting` (`OLLAMA_BASE_URL`, default `http://ollama:11434`,
+  `/v1` appended by the adapter) the factory now threads into
+  `ProviderConfig`. `COPILOT_MODEL_CHAT_OLLAMA` default `llama3.1:8b`;
+  spec registered from `on_activate`. No bridge, settings or UI change.
+  The mandatory PHI redactor still runs upstream (the local-tier
+  redaction relaxation from the #332 brief stays deferred), and save-time
+  validation stays key-only: Ollama is not probed for reachability or
+  model tool support (the brief's tool-use-incapable 422 stays deferred
+  too). The endpoint is deployment-level (`OLLAMA_BASE_URL`), not
+  per-clinic (the brief's per-clinic `base_url` stays deferred). Since the
+  endpoint is the only one that can be dropped rather than unkeyed, the
+  adapter wraps its stream and re-raises a connection failure as an
+  `LLMConfigError` naming `OLLAMA_BASE_URL` (the setting) and the dialed
+  URL, reporting a stall (`APITimeoutError`, the subclass) as a timeout
+  rather than an unreachable host, instead of the SDK's bare
+  `Connection error.`
+
+- fix(#701): `SettingsUpdate.model` (100) and `provider` (20) are capped
+  at their column lengths. `provider` was already rejected by the
+  provider registry with a 400; `model` is free text and a long one hit
+  the INSERT as a 500.
+
+- fix(#687): the redaction boundary stops leaking names and contact details
+  under keys its denylist did not list. `professional_name` and
+  `created_by_name` (staff are data subjects too — the same columns are
+  tokenized when returned as `first_name`/`last_name`), `recipient_email`,
+  `billing_email`, `filename` / `original_filename` (an RVG is filed as
+  `Surname_Firstname_date.dcm`, which is the identity the module's own
+  matcher scores on) and `suggested_patient_id` are now covered. A value the
+  symbol table already holds is tokenized under *any* key, so one payload
+  can no longer send the same address as a token under `email` and verbatim
+  under `recipient_email`. Guarded by
+  `tests/test_redaction_key_coverage.py`, which walks every module's tool
+  results rather than a restated list.
+- fix(#332): `COPILOT_MAX_TOKENS` was declared in `Settings` and read
+  nowhere, while `drive_turn` and `resume_turn` each hardcoded
+  `max_tokens=4096`, so the setting an operator could change did
+  nothing. Both call sites read it now. It is documented in
+  `.env.example` and `.env.prod.example`, and forwarded by
+  `docker-compose.yml` and `docker-compose.prod.yml` - the backend
+  service lists its environment explicitly, so documenting the key
+  without forwarding it would have left the operator's change inside
+  the container's 4096 default.
+- fix: the Coolify stack forwarded no LLM API key, so the copilot raised
+  `LLMConfigError` on every request there whatever the operator
+  configured. `docker-compose.coolify.yml` now maps every provider key
+  (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`,
+  `OPENROUTER_API_KEY`, `GROQ_API_KEY`) plus
+  `COPILOT_PROVIDER_DEFAULT`, like `docker-compose.prod.yml` already did,
+  and `tests/test_copilot_compose_wiring.py` derives the required keys
+  from the registered provider specs so the two stacks cannot drift
+  apart again. `COPILOT_PROVIDER_DEFAULT` and `COPILOT_MAX_TOKENS` are
+  forwarded there too, for the same reason. The guard also covers a
+  keyless provider's endpoint setting (`OLLAMA_BASE_URL`), which fails
+  the same way when it is not forwarded.
+- feat(#332): OpenRouter + Groq LLM provider adapters, same subclass shape
+  as Gemini over their OpenAI-compatible endpoints (`OPENROUTER_API_KEY` /
+  `GROQ_API_KEY` + per-provider default models, specs registered from
+  `on_activate`). No bridge, settings or UI change.
+- feat(#332): Gemini LLM provider adapter over Google's OpenAI-compatible
+  endpoint (same wire format and `openai` tool dialect as `OpenAIProvider`;
+  `GEMINI_API_KEY` + `COPILOT_MODEL_CHAT_GEMINI`, spec registered from
+  `on_activate`). No bridge, settings or UI change: selection and
+  validation are registry-driven.
+- feat(i18n): Hindi (`hi`) locale for the module's frontend layer; Hindi subject for the morning digest email.
+- test(#552): branch-scoped uninstall round-trip test (heads, branch downgrade, reinstall).
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- fix(#532): re-confirming an approved write replays the stored result
+  instead of executing the tool again (retry/double-click safe).
+- fix(#586): redaction tokens are salted per conversation
+  (`copilot_conversations.redaction_salt`, minted on first use, never
+  logged) and widened to 12 hex chars. Same value maps to unrelated
+  tokens across conversations; dictionary attacks over low-cardinality
+  fields (e.g. birth dates) no longer apply to the token holder.
+- feat(i18n): Telugu (`te`) locale for the module's frontend layer.
+- feat(i18n): Telugu (`te`) morning-digest email subject.
+- fix: a confirmed write tool now publishes its module namespace on the data
+  bus. The confirmation stream only returns `tool_result` (no `tool_call`), so
+  the old lookup of a tool message never matched and no page refetched (#568).
+
+- feat: Arabic subject for the morning digest email ("الملخص اليومي", same
+  wording as the `ar/` template title; from #426 by @dev-7aider).
+
+- Dropped the unused `nav.copilot` locale key (sidebar entry removed in #467).
+
+- feat(#232): no standalone sidebar entry — the assistant launcher is the app-overlay floating button; manifest `navigation` is empty.
+- fix(#452): the chat stream refreshes the session once and replays the turn when the first response is a 401; a failed refresh shows `copilot.sessionExpired` (all locales) and ends the session instead of dropping `HTTP 401` into the chat.
+
+- refactor(#332): resolve LLM providers through a process-wide registry;
+  Copilot registers the existing OpenAI and Anthropic specifications from
+  `on_activate()` so only an installed module affects runtime. Settings and
+  the bridge now read default models, API-key requirements and tool dialects
+  from the registered specification instead of provider-name branches.
+
+- feat(#46): history scoping, nudge visibility, and agent-context grant sets
+  resolve flag-aware (`RBAC_FROM_DB` on: custom roles and per-clinic
+  overrides apply to chat, digest, pendientes, and tool calls).
+
+- feat(#343): morning-digest subject line localized for all 9 communication languages (was es/en with es fallback).
+
+- feat(#332): Anthropic joins OpenAI as a live LLM provider — per-clinic `copilot_settings.provider = "anthropic"` streams chat turns through `AnthropicProvider` (`app/core/llm/anthropic_provider.py`). The bridge now passes the provider-matching tool-schema dialect to the orchestrator, settings-save rejects `anthropic` when `ANTHROPIC_API_KEY` is missing, and switching provider without naming a model falls back to that provider's default (`COPILOT_MODEL_CHAT_ANTHROPIC`).
+
+- feat(i18n): Arabic (ar) locale for the module's frontend layer.
+- feat(i18n): the frontend layer's directional spacing, borders, text alignment and inset positioning now resolve against the document direction (physical→logical CSS utilities, Arabic RTL support).
+
+
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- feat(#131): German (de) locale for the module's frontend layer.
+- feat(#144, #132): Polish (pl) and Italian (it) locales for the module's frontend layer.
+- feat(#334): Hungarian (hu) locale for the module's frontend layer.
+- fix(#184): `PERMISSIONS` imported from `~~/app/config/permissions` (the `~/` form only worked through the layer-aliasing fallback).
+- i18n: add Tamil locale (`ta.json`) with full UI coverage.
+
+- style(lint): first ESLint pass over this module's frontend layer —
+  module layers were outside the linter's base path until now, so
+  CI had never checked them. Mostly auto-fixed formatting; see the
+  PR for the handful of manual fixes.
+
+- fix(ui): surface the API error instead of a generic toast in the settings panel save.
+  `catch {}` discarded the server's message, so any failure read as
+  "Error" with no way to tell what went wrong. Now via
+  `errorMessage()` / `errorDetail()`.
+
+- i18n: add Portuguese locale (`pt.json`) with full UI coverage.
+
+- i18n: add French locale (`fr.json`) with full UI coverage.
+
+- feat(pending): "Pendientes" feed (IA redesign Fase 2, ADR 0015). New
+  read-only `GET /pending` aggregates overdue recalls + budgets awaiting
+  response through the tool registry with the caller's role (RBAC parity;
+  no new tables, `depends = []` holds). Drawer gains a [Pendientes | Chat]
+  segmented control (`CopilotPending.vue` + `CopilotDrawer.vue`); each row
+  deep-links to the owning module. Cash-mismatch and the "Hecho"/done
+  timeline filter are deferred until their tools exist.
+
+- feat(nudges): event-driven proactive nudges (ADR 0014 §Deferred). New
+  `copilot_nudges` table (`cop_0004`); `appointment.cancelled` →
+  "fill the freed slot from recalls?" nudge, deduped per appointment with
+  a same-day TTL and per-viewer permission gating. New endpoints
+  `GET /nudges` + `POST /nudges/{id}/dismiss` (`copilot.chat`); drawer
+  renders banners (`CopilotNudges.vue`) whose text/prompt are localized
+  client-side from `kind` + `payload`. Subscription only — `depends = []`
+  holds.
+
+- feat(observability): `GET /copilot/metrics` (gated by `copilot.supervise`)
+  — read-only usage dashboard aggregating `agent_audit_logs` (filtered to
+  copilot agents) for tool-call counts, error rate, average latency,
+  conversation count, top tools, and monthly token-budget usage. No new
+  table. Surfaced as a "Usage" card on the settings panel.
+
+- feat(digest): morning digest v2 — multi-recipient + clinic-timezone
+  aware. `copilot_settings.digest_recipient_user_id` (single FK) becomes
+  `digest_recipient_user_ids` (JSONB list, migration `cop_0003`); the
+  task sends one email per recipient, each scoped to that recipient's
+  role, and matches `digest_hour` against the clinic's local hour
+  (`clinics.timezone`) instead of server-local. Settings PATCH validates
+  recipients are clinic members; the settings panel gains a recipient
+  multi-select.
+
+- refactor(scheduler): declare the morning-digest job via
+  `get_scheduled_jobs()` instead of being imported by name in
+  `app/core/scheduler.py`. The scheduler now registers jobs only for
+  loaded modules, so an uninstalled copilot contributes no job (resolves
+  the import-coupling tech debt noted in ADR 0014).
+
+- fix(settings): `CopilotSettingsService.update` validated `OPENAI_API_KEY`
+  even when the PATCH did not touch `provider`, breaking digest-only opt-in
+  on deployments without a key (CI). Now validates only on provider change.
+
+- feat(digest): opt-in morning digest email (proactivity v1, ADR 0014) —
+  deterministic daily briefing (today's agenda, overdue recalls, budgets
+  awaiting response) gathered through the tool registry with the
+  recipient's role permissions. New `copilot_settings` columns
+  (`cop_0002`), hourly scheduler job, ES/EN email templates, settings
+  page at `/settings/integrations/copilot`, `copilot.digest.sent` event.
+
+- feat(playbooks): system prompt now ships three multi-step playbooks
+  (daily briefing, prepare visit, fill gap from recalls) and the
+  empty-state suggestions gained `workflows`, `recalls` and `money`
+  categories with six new permission-gated chips (ES+EN).
+
+- fix(bridge): `_tool_names_for` now actually excludes `exposes_free_text`
+  tools when redaction is enabled (the CLAUDE.md contract promised this but
+  no tool had the flag until `recalls.get_recall` landed).
+
+- chore(copilot): `auto_install=True` — the module now installs on every
+  clinic by default instead of requiring manual activation from the module
+  admin UI.
+
+- fix(copilot): after a confirmed write tool, publish the mutated module's
+  namespace on the shared client `useDataBus` so the owning page refetches.
+  Fixes appointments booked via the copilot not appearing in the agenda
+  until a manual reload — the row persisted, but the decoupled agenda view
+  was never told to refresh. Generic: forwards `{module}` from the tool name,
+  no hardcoded consumer.
+
+- fix(copilot): `CopilotSlotCard` reads `find_free_slots`' new `free_windows`
+  shape and renders each as a real time range + duration (e.g. "16:00–19:00
+  · 3h") instead of a bare start-time chip.
+
+- feat(copilot): UI Fase 1 (PR-C) — humanized confirmations + copy. Write
+  confirmations now render labeled rows (`CopilotConfirmCard`) instead of raw
+  JSON: ids resolved to names via a session name cache harvested from read
+  tools (`patient_id` → "Olivia Wilson"), ISO datetimes formatted, a friendly
+  action line, and a red ring + "can't be undone" note for destructive tools
+  (cancel/delete/refund). Assistant messages get a hover "copy" button.
+  ES/EN parity. Frontend-only.
+
+- chore(copilot): default OpenAI chat model → `gpt-5.4-mini`
+  (`COPILOT_MODEL_CHAT_OPENAI`). The OpenAI provider now sends
+  `max_completion_tokens` instead of `max_tokens` for GPT-5 / o-series
+  models, which reject the legacy param.
+- feat(copilot): UI Fase 1 — rich result cards. Tool results now render as
+  typed cards instead of a bare chip: `CopilotPatientCard` (search_patients,
+  get_patient), `CopilotAppointmentCard` (get_day_overview, get_appointment),
+  `CopilotSlotCard` (find_free_slots, get_availability), with a generic
+  key/value fallback for the rest (reports, timeline, …) via
+  `CopilotResultCard`. The tool chip is now an accordion (expanded by
+  default) toggling the card; `ToolUiMessage` carries `args`/`result`;
+  locale-aware date/money formatting (`useCopilotFormat`); ES/EN parity.
+  Frontend-only; no backend or tool-contract changes.
+- fix(copilot): expose "New conversation" action (calls `reset()`) on the
+  `/copilot` page header and the slide-over header, shown once a
+  conversation has messages and disabled while streaming. Previously an
+  open conversation could not be cleared from the UI.
+- feat(copilot): UI Fase 0 — rebrand the surface to **"IA"** across i18n
+  (ES/EN), markdown rendering for assistant replies (`CopilotMarkdown`,
+  `marked` + `isomorphic-dompurify`, sanitized), permission-filtered
+  empty-state starter chips (`CopilotSuggestions`), a live activity phase
+  indicator ("Trabajando…/Redactando…" instead of static "Pensando…"), and
+  a privacy trust line under the composer. Frontend-only; no backend or
+  contract changes.
+
+- feat(copilot): initial backend — conversational agent over DentalPin
+  (issue #81 Layer C). Tables `copilot_conversations`, `copilot_messages`,
+  `copilot_settings` on the `copilot` Alembic branch. SSE chat
+  (`/sessions/{id}/messages`) driving the core orchestrator, inline
+  write-confirmation (`/sessions/{id}/confirmations/{call_id}`),
+  per-clinic provider/model/budget settings, and per-clinic token budget.
+  Conversations link to a core `agent_sessions` row so tool calls audit
+  to `agent_audit_logs`. Mandatory PHI redaction; OpenAI provider only in
+  v1. `auto_install=False`, `removable=True`.
+- feat(copilot): Nuxt layer — global `<CopilotMount>` (FAB + slide-over,
+  Cmd/Ctrl+K) mounted via the new host `app.overlays` slot, a `/copilot`
+  page, streaming chat over `fetch`+`ReadableStream` (`useCopilotStream`),
+  tool-call chips and inline confirmation cards (`useCopilot`). Mobile-
+  first, ES default + EN parity, permission-gated by `copilot.chat`.

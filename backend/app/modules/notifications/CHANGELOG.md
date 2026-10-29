@@ -1,0 +1,257 @@
+# Changelog — notifications module
+
+## Unreleased
+
+- fix: turning a patient's email off no longer blocks their WhatsApp,
+  SMS and push notifications. The consent gate read `email_enabled` as
+  a global opt-out (a leftover from when email was the only channel), so
+  every unforced send (`appointment_confirmation`,
+  `appointment_cancelled`, `welcome`, `budget_accepted`,
+  `budget_reminder`, `recall_reminder`) was skipped as `patient_opted_out` for a patient who had only declined
+  email. Each channel toggle now opts out of its own channel, as the
+  patient card says. With no other channel left, the skip reads
+  `no_viable_channel`, the same as a forced send.
+
+- fix(#683): a patient's per-type opt-out now holds under `force_send`.
+  The gateway checked it only inside the non-forced branch, and the
+  appointment-reminder cron, the manual reminder and the staff budget and
+  invoice sends all pass `force_send=True`, so an `appointment_reminder`,
+  `budget_sent` or `invoice_sent` opt-out never applied. Like
+  `do_not_contact` and the channel toggles, it now blocks every send;
+  `force_send` still bypasses the clinic's `enabled` / `auto_send` gate.
+- feat(#683): the patient card's notification preferences list one switch
+  per notification type under the channel switches, from the same list
+  the clinic settings page renders. A switch writes one key (the PUT
+  merges). A backend test keeps that list equal to `NotificationType`.
+
+- fix(#683): a patient's per-type opt-out is keyed by a closed
+  vocabulary. `NotificationType` (`models.py`) lists the nine types the
+  product enqueues; `PUT /preferences/patient/{id}` answers 422 for any
+  other key, where a misspelt one used to return 200 and never block
+  anything (an absent key reads as consent). The PUT merges
+  `preferences` into the stored dict instead of replacing it, and the
+  default record now carries all nine types (`budget_reminder`,
+  `recall_reminder` and `invoice_sent` had no key). A test keeps every
+  `notification_type="..."` call site and the clinic defaults inside the
+  vocabulary.
+- fix(#768): every `SELECT … FOR UPDATE` in this module now re-reads the locked row (`populate_existing`). A locking select on a row already in the session returned the cached instance with its pre-lock values. A guard test now enforces this across the tree.
+
+- fix(#765): `GET`/`PUT /preferences/patient/{id}` and
+  `POST /conversations/{id}/reply` answer 404 unless the patient is the
+  caller's clinic's. An unknown id hit the patients FK
+  (500), and another clinic's patient got a row here. Concurrent first
+  reads no longer 500: the loser of the
+  `uq_notification_pref_clinic_patient` race reads the winner's row.
+
+- fix: notification handler row reads now scope their appointment, patient, budget and invoice lookups by the event payload's clinic. Defence in depth; a payload whose clinic did not own the row was still resolved by id alone and could enqueue for the wrong clinic.
+
+- fix(#723): the paginated list query now ends its `order_by` on the primary key. Rows that tied on the sort column (same date, name or timestamp) were cut from different orderings on each page, so some appeared twice and others on no page.
+
+- fix(#614): production with `EMAIL_PROVIDER=console` (or unknown)
+  boots normally but delivers nothing loudly - resolving the provider
+  logs an ERROR, the console provider writes metadata-only lines (masked
+  recipient, no subject/body/names) and reports sends as failed so the UI
+  stops claiming delivery. `EMAIL_ENABLED=false` is a real opt-out: the
+  send path returns SKIPPED without resolving the per-clinic provider or
+  touching the network, and the gateway records SKIPPED as a skip (no
+  retry, no `notification.failed`) instead of collapsing it into a
+  failure. The public demo runs production, so it reports those sends as
+  failed too.
+  `.env.prod.example` documents the SMTP section.
+- feat(#480, ADR 0037): the appointment reminder sweep mints a
+  `source=reminder` check-in token (valid until the end of the
+  appointment's clinic-local day) and passes `checkin_url` into the
+  reminder context; the email templates render it as a button when
+  present (de/fr/it/pt/hu/pl translated; ar/hi/ta/te English fallback).
+  A missing public origin degrades to a link-less reminder instead of
+  failing the sweep. No new dependency: `notifications` already
+  depends on `agenda`.
+- feat(#546, ADR 0038): expose a `NotificationsErasureContributor` instead of
+  subscribing to `gdpr.erasure.executed`; `gdpr` pulls it inside the
+  erasure transaction. Same redaction (recipient, subject, body, template
+  context, failure text; unsent rows cancelled) and the contributor
+  reports its own coverage row. Transactional.
+- feat(i18n): Hindi (`hi`) locale for the module's frontend layer; Hindi option in the clinic communication-language picker.
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- feat(i18n): Telugu (`te`) locale (`notifications-te.json`) and Telugu (తెలుగు) in the clinic communications-language picker.
+- feat(#509): communication-language picker offers both Português (Portugal) `pt`
+  and Português (Brasil) `pt-BR`.
+
+- fix(#527): a manual `budget_sent` send no longer raises
+  `AttributeError`. `router.py` read `catalog_item.name`; the model has
+  no such attribute, only a per-locale `names` dict — and because
+  `budget_items.catalog_item_id` is a non-nullable FK with no
+  `ON DELETE`, the `else "Tratamiento"` branch that would have survived
+  is unreachable, so *every* budget with lines hit it. #287 fixed the
+  identical block in `handlers.py` and left this copy behind.
+- perf(#527): both copies fetched one catalog row per budget line. The
+  shared `budget_treatments_context()` they now call resolves every name
+  in a single `IN` query — a treatment plan commonly carries 5-30 lines.
+
+- feat: `العربية` in the clinic communication-language selector (templates
+  from #426 by @dev-7aider).
+- fix(#63 maintainer review): `notif_0008` seeds system push templates
+  (title + body, es/en, one per notification type, `smg_0002` shape) —
+  without a `channel='push'` row every template-kind push failed at
+  dispatch with "empty body"; manual send (`POST /send`) accepts
+  `channels: ["push"]` (the recipient pre-check knew only phone/email);
+  `test_clinic_channels_sms_fallback_order` pins VAPID unset so a
+  configured runner no longer appends `push` to the expected order.
+- fix(#63 review round 3): dropped the `ImportError` fallback (plain
+  top-level `webpush` import, no runtime branch); `_fit_payload`
+  re-serialises with `ensure_ascii=False` (accented bodies stay under
+  the 3990-byte cap) with a regression test; cross-clinic HTTP test
+  now asserts B's row is invisible/untouchable from A; sign-path
+  test runs the real `webpush_async` (only HTTP stubbed) to cover
+  `Vapid.sign`; token minting documented as API-only (en+es);
+  `push-sw.js` moved into the module layer `frontend/public/`.
+- fix(#63 review round 2): cached `Vapid` instance (PEM strings fail
+  deserialization); schema-level `https://` validators; hard
+  `webpush` import; atomic single-use redeem returning
+  `{subscribed: true}`; budget-mirror rate limits on the public
+  router; 3990-byte wire cap; SW ready-gate + payload URL
+  forwarding; HTTP cross-clinic + pruning-isolation tests.
+- fix(#63 review): patient subscribe flow end to end — staff-minted
+  single-use tokens (`notif_0007`, 24 h expiry) redeemed by the
+  browser at `/p/push/<token>` (public page + `push-sw.js` service
+  worker, auth middleware exemption); async `webpush_async` send
+  (10 s timeout, 24 h TTL, 4 KB cap); `https://`-only endpoints;
+  settings-backed VAPID; `push:<n>` log recipients; top-level
+  `webpush` import with `status_code` pruning; model/migration index
+  parity; unused TS permission mirror dropped; cross-clinic tests.
+- fix: the "connect WhatsApp" / "configure SMS" hints on the settings page
+  link to `/settings/integrations/<page>` (the registry route); the bare
+  `/settings/<page>` form 404s.
+
+- feat(#231 PR2): SMS in the UI. `sms` joins the `NotificationChannel`
+  union, `CHANNEL_ORDER`, and the settings page (preferred select +
+  manual checkbox + unconfigured hint, all gated by adapter
+  availability); new `PatientNotificationPrefs` card on the patient
+  summary (email/WhatsApp/SMS opt-out toggles over the preferences
+  API). Host locale keys added in all 9 languages.
+
+- feat(#231 PR1): SMS channel core support. `Channel.SMS` enum;
+  `_resolve_channel` SMS branch (destination = patient E.164 phone,
+  `sms_enabled` opt-out honoured even on force_send, text-only so both
+  template and session kinds resolve); `sms` in the ordered
+  preferred/fallback channel list (replaces the hardcoded
+  email/whatsapp pair); per-clinic `sms_daily_limit` (default 100/day,
+  skips with `sms_rate_limited`); `sms_enabled` + `sms_opt_in_at` on
+  preferences and `preferred_channel` accepting `sms`
+  (`notif_0005_sms_channel`). An exhausted cap falls through to the
+  next channel in the order (fallback) and only skips with
+  `sms_rate_limited` when nothing else is viable; inbound rows never
+  consume the cap; `sms_daily_limit` is echoed back by `/settings`.
+- feat: WebPush channel (T6) — `PushAdapter` + `notification_push_subscriptions`
+  table (`notif_0006`, chained on the SMS `notif_0005`) + `push_enabled`
+  preference + `push.read`/`push.write`
+  permissions + subscription endpoints + VAPID public-key endpoint. One VAPID
+  pair per deployment (`DENTALPIN_VAPID_PRIVATE_KEY`, env only). Dead
+  endpoints (410/404) prune on send. Browser service worker is a follow-up.
+- fix(#326): the SMTP onboarding rule carries `permission: 'notifications.settings.read'`.
+
+- refactor(#126): budget_sent treatment names resolve through the shared `app.core.i18n_names.catalog_name` helper (was es → en → first value).
+
+- feat(#343): patient communications in German, Hungarian, Polish and Italian — full email-template sets under `backend/templates/email/{de,hu,pl,it}/`, the clinic communication-language gate and pickers extended to all 9 UI languages, and parity gaps in existing locales filled (`en` verifactu `.txt` bodies, `invoice_sent` for es/fr/pt). A parity test now pins every locale to the same template set.
+
+- feat(#334): Hungarian (hu) locale for the module's frontend layer.
+
+- fix(#325): the built-in EmailAdapter registers from `on_activate()` instead of at import in `channels/registry.py` (ADR 0020); activation order still guarantees email precedes vendor channels.
+
+- feat(i18n): Arabic (ar) locale for the module's frontend layer.
+- feat(i18n): the frontend layer's directional spacing, borders, text alignment and inset positioning now resolve against the document direction (physical→logical CSS utilities, Arabic RTL support).
+
+
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- feat(#287): clinic-wide channel configuration — `preferred_channel`, `fallback_enabled`, `manual_channels` on clinic_notification_settings (migration notif_0004) with `available_channels` computed from the adapter registry; the gateway resolves auto-sends as preferred→fallback instead of per-type channel lists; missing preference rows no longer block WhatsApp (opt-out, bug 11); manual `POST /send` accepts `channels` and no longer 400s phone-only WhatsApp sends; every contact guard is email-OR-phone; the broken 7/14-day budget reminder actually sends (new `budget_reminder` handler + templates); skip rows carry the real channel; Settings page grew a Channels card; the type table gained invoice_sent/budget_reminder/recall_reminder.
+
+- fix(#287): an explicit `whatsapp_enabled=False` opt-out blocks WhatsApp even under `force_send` — same contract as `email_enabled` (the reminder cron and staff Send buttons pass `force_send` and must not override a recorded opt-out); missing rows still don't block.
+
+- feat(#287): `settings.read` granted to dentist/assistant/receptionist so every manual-send surface can read the clinic channel config and render its channel buttons (write stays admin-only).
+
+
+- feat(#207): `GET /notifications/channels` reports which channels are configured for the clinic (each adapter's `supports`); the patient-summary WhatsApp conversation card hides until the channel is actually available instead of offering a reply box that can only 409.
+
+- feat(#131): German (de) locale for the module's frontend layer.
+
+- feat(#144, #132): Polish (pl) and Italian (it) locales for the module's frontend layer.
+- fix(#184): type-check clean — per-type settings read/written through typed helpers (`settingsFor()`, generic `updateLocalSetting`) instead of casts; `UModal :ui.width` is `content` in Nuxt UI v4.
+- fix(#183): the six event handlers are transactional (ADR 0019) and no longer fire `asyncio.create_task` at a fresh session. That task raced the request's commit, and lost for `patient.created`: the patient row was invisible, so the **welcome message was never queued**. Each body runs in a savepoint — queueing must not be able to fail the appointment it announces.
+- refactor: `NotificationGateway.enqueue` flushes instead of committing; the session's owner (`get_db`, or the scheduler job) commits.
+- feat(onboarding): optional getting-started rule `smtp` — suggests configuring the email sender.
+
+- i18n: add Tamil locale (`notifications-ta.json`) with full UI coverage.
+
+- style(lint): first ESLint pass over this module's frontend layer —
+  module layers were outside the linter's base path until now, so
+  CI had never checked them. Mostly auto-fixed formatting; see the
+  PR for the handful of manual fixes.
+
+- fix(ui): surface the API error instead of a generic toast in the settings, SMTP and manual-send composables.
+  `catch {}` discarded the server's message, so any failure read as
+  "Error" with no way to tell what went wrong. Now via
+  `errorMessage()` / `errorDetail()`.
+
+- i18n: add Portuguese locale (`notifications-pt.json`) with full UI coverage.
+
+- i18n: add French locale (`fr.json`) with full UI coverage.
+
+- feat(conversation): inbound replies + bidirectional WhatsApp (Phase 2A,
+  ADR 0017). ``communication_messages`` gains ``direction`` (outbound/inbound)
+  and ``body_text``; it is now the full per-patient thread (Alembic
+  ``notif_0003``). New gateway methods ``record_inbound_reply`` (idempotent,
+  opens the 24h window via ``last_inbound_at``, publishes
+  ``notification.reply_received``) and ``resolve_patient_by_phone``. The
+  channel resolver allows free-form (``message_kind="session"``) WhatsApp only
+  inside the 24h window. New conversation API (``GET /conversations/{patient_id}``,
+  ``POST /conversations/{patient_id}/reply``) + ``ConversationThread`` card on
+  the patient summary. New ``NotificationService.upsert_provider_template``
+  public seam so vendor modules can register HSM template mappings.
+
+- feat(multichannel): turn the email-only module into a channel-agnostic
+  gateway. New ``channels/`` package (``ChannelAdapter`` protocol,
+  ``OutboundMessage``/``AdapterResult``, idempotent ``channel_registry``,
+  built-in ``EmailAdapter``). Vendor modules register adapters at import
+  time. See ADR 0016.
+- feat(outbox): ``gateway.NotificationGateway.enqueue`` persists a ``queued``
+  row (no network in-request) and a ``dispatch_outbox`` scheduled job
+  (every 45s) sends with ``FOR UPDATE SKIP LOCKED`` + exponential backoff.
+  ``do_not_contact`` is now a hard block on every channel.
+- refactor(models): ``email_logs`` → ``communication_messages`` (outbox +
+  audit in one table, ``channel``/``attempts``/``next_attempt_at``/
+  ``dedup_key``/delivery timestamps); ``email_templates`` →
+  ``notification_templates`` (``channel`` + ``provider_template_name`` for
+  WhatsApp HSM); per-channel WhatsApp opt-in on ``notification_preferences``;
+  new generic ``clinic_channel_settings``. Alembic ``notif_0002`` (data
+  preserved, ``channel`` backfilled to ``email``).
+- refactor(send-path): handlers, the reminder cron, and the manual-send
+  route now ``enqueue`` instead of sending synchronously; the reminder
+  dedup moved from a ``context_data["appointment_id"]`` scan to a
+  ``dedup_key`` unique index. Removed the dead ``send_notification``/
+  ``create_log`` service methods.
+- feat(events): ``notification.queued/sent/failed/delivered/reply_received``.
+  ``EMAIL_SENT/FAILED`` are dual-published for ``channel=email`` for one
+  release so ``patient_timeline`` keeps working unchanged.
+- feat(agents): ``tools.py`` exposes ``send_notification`` (WRITE) wrapping
+  the gateway; respects consent, never bypasses ``do_not_contact``.
+- refactor(scheduler): declare the ``appointment_reminders`` interval job
+  via ``get_scheduled_jobs()`` instead of being imported by name in
+  ``app/core/scheduler.py``.
+- refactor(types): drop the ``as unknown as Record<string, unknown>`` cast pattern (4 sites) in ``useNotificationSettings`` now that ``useApi`` accepts ``object`` payloads.
+- fix(isolation): declare ``catalog`` in ``manifest.depends`` — the
+  email-template handlers and the preview endpoint already imported
+  catalog models to render line items. The dependency was real,
+  just undeclared. ``KNOWN_VIOLATIONS`` allowlist trimmed
+  accordingly.
+- chore(events): subscribe via ``EventType.X`` constants instead of
+  string literals — the events were already registered in the enum,
+  the handler dict was the last drift site.
+- Added per-module `CLAUDE.md` for AI-agent context (2026-04-27).
+
+## 0.1.0 — initial
+
+- Email templates, per-patient preferences, SMTP/console providers.
+- APScheduler-backed sending queue (`tasks.py`).
+- Subscribes to 6 events across patients, agenda, budget, billing.

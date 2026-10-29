@@ -1,0 +1,99 @@
+# Changelog — schedules module
+
+## Unreleased
+
+- fix(#779): `find_free_slots` without `date_from` starts on the clinic's day, not the server's UTC day.
+
+- docs(#707): the permissions doc's role table missed `analytics.read`
+  for `dentist` and described `assistant` as `professional.own.{read,write}`
+  while the manifest grants `professional.read` (any professional's
+  hours). Both tables also pointed at `core/auth/permissions.py`, while
+  module grants live in `manifest.role_permissions`.
+
+- feat(i18n): Hindi (`hi`) locale for the module's frontend layer.
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- fix(#590): `ProfessionalHoursService.is_professional` tolerates
+  duplicated membership rows (`.limit(1)` existence read, same fix as
+  #598 for orthodontics). `clinic_memberships` has no unique
+  `(clinic_id, user_id)` constraint, so a duplicate used to 500 with
+  `MultipleResultsFound`.
+- feat(i18n): Telugu (`te`) locale for the module's frontend layer.
+- fix(#522): the clinic-hours and professional-schedule pages defaulted
+  `start_date` / `end_date` and computed "today" from the UTC day. Now use
+  `toISODate`.
+
+- feat(#46): the professional-hours gate resolves flag-aware (`RBAC_FROM_DB`
+  on: custom roles and per-clinic overrides apply; off: static map as before).
+
+- fix(#326): the clinic-hours onboarding rule carries `permission: 'schedules.clinic_hours.read'`.
+
+- feat(#334): Hungarian (hu) locale for the module's frontend layer.
+
+- feat(i18n): Arabic (ar) locale for the module's frontend layer.
+
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- feat(#131): German (de) locale for the module's frontend layer.
+- feat(#144, #132): Polish (pl) and Italian (it) locales for the module's frontend layer.
+- docs(#91): `events.py` header states the real contract — handlers are only subscribed while the module is installed.
+- fix(#184): type-check clean — `useProfessionalHours` re-exports `Shift`/`WeekdayShifts`, override forms keep `reason` as a string and normalise to `null` on submit, shift edits guard the indexed row.
+- docs(#183): `on_clinic_created` documented as own-session (published after setup commits); the appointment handlers are payload-only logging.
+- feat(onboarding): `ClinicHoursQuickModal` — inline weekly-hours editor with two presets, used as the getting-started mini-modal.
+
+- feat(onboarding): getting-started rule `clinic-hours` — flags clinics still on the 24/7 default template.
+
+- feat(onboarding): subscribe to `clinic.created` — seed a Mon–Fri weekly template (`ClinicHoursService.create_default_weekly`, ES split shift) instead of 24/7.
+
+- i18n: add Tamil locale (`ta.json`) with full UI coverage.
+
+- style(lint): first ESLint pass over this module's frontend layer —
+  module layers were outside the linter's base path until now, so
+  CI had never checked them. Mostly auto-fixed formatting; see the
+  PR for the handful of manual fixes.
+
+- fix(ui): surface the API error instead of a generic toast in the clinic-hours and professional-hours settings pages.
+  `catch {}` discarded the server's message, so any failure read as
+  "Error" with no way to tell what went wrong. Now via
+  `errorMessage()` / `errorDetail()`.
+
+- fix(professionals): professional-hours eligibility and analytics now
+  check `ClinicMembership.is_professional` instead of `role IN
+  (dentist, hygienist)` — an admin who also practises gets working
+  hours (core migration 0006).
+
+- i18n: add Portuguese locale (`pt.json`) with full UI coverage.
+
+- i18n: add French locale (`fr.json`) with full UI coverage.
+
+- fix(agents): `find_free_slots` now returns contiguous free **windows**
+  (`free_windows` with real `start`/`end`/`minutes`) instead of a single
+  fixed-size slot per gap that masked its true extent. The agent could not
+  tell a 9:00–9:30 hole from a 9:00–18:00 one; now it can. `slot_minutes`
+  becomes a minimum-duration filter; `part_of_day` filtering is overlap-based
+  (`_in_part` → `_overlaps_part`).
+
+- feat(agents): expose `tools.py` — `get_availability` (READ) wrapping
+  `AvailabilityService.resolve` (open working windows for a day; the
+  agent combines it with `agenda.get_day_overview` to find gaps). Issue
+  #81 P0 batch.
+- feat(agents): add `find_free_slots` (READ) — real bookable gaps for a
+  professional (open hours minus booked appointments), filterable by
+  duration / part-of-day / window, nearest first. Reads agenda
+  appointments (agenda is in `depends`). Issue #81 P1 batch.
+
+- refactor(perms): migrate hardcoded ``can('schedules.{clinic_hours.write, professional.read, professional.write, professional.own.write}')`` strings in ``ClinicHoursPage`` and ``ProfessionalSchedulesPage`` to ``PERMISSIONS.schedules.*`` (new entries in the host permissions config).
+- Settings UI migrated to host's settings registry: clinic-hours and
+  professional-schedules are now registered as cards/pages under
+  `/settings/workspace`. Replaces the legacy `settings.sections` slot
+  and the `pages/settings/*.vue` file-based routes (2026-04-28).
+- Added per-module `CLAUDE.md` for AI-agent context (2026-04-27).
+
+## 0.1.0 — initial
+
+- Clinic weekly schedule + per-day overrides.
+- Per-professional weekly schedule + overrides.
+- `/api/v1/schedules/availability` resolver consumed by the agenda
+  frontend with a 404-tolerant composable fallback.
+- Occupancy analytics computed from `appointment.*` events.
+- First officially-removable optional module (issue #39).

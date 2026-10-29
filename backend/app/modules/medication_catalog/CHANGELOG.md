@@ -1,0 +1,50 @@
+# Changelog — medication_catalog module
+
+## Unreleased
+
+- fix(#723): the paginated list query now ends its `order_by` on the primary key. Rows that tied on the sort column (same date, name or timestamp) were cut from different orderings on each page, so some appeared twice and others on no page.
+
+- fix(#703): `mc_0002` makes `created_at` / `updated_at` NOT NULL.
+  `mc_0001` created them with a `now()` server default but without
+  `nullable=False`, while `TimestampMixin` declares both as
+  `Mapped[datetime]` — this table was one of the two places in the schema
+  where the column could hold NULL against a response schema that types
+  it as a required `datetime`.
+
+- feat(i18n): Hindi (`hi`) locale for the module's frontend layer.
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- feat(i18n): Telugu (`te`) locale for the module's frontend layer.
+- feat(i18n): Arabic (ar) locale for the module's frontend layer.
+
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- feat(#144, #132): Polish (pl) and Italian (it) locales for the module's frontend layer.
+
+- Name normalisation now matches the unique index key exactly
+  (`lower(btrim(name))`); a duplicate that differed only in inner
+  whitespace used to escape the 409 and surface as a raw 500.
+- Settings entry is gated on `medication_catalog.read` instead of
+  `write`, so dentists (read-only by manifest) can actually open the
+  list; write actions stay behind `canWrite`.
+
+## 0.1.0 — initial release
+
+- Clinic-wide medication catalog: name, dose, unit, pharmaceutical
+  form (fixed set), prescribable and active status. CRUD under
+  Settings → Clinical, no sidebar entry.
+- Idempotent 56-item dental seed list: runs on `clinic.created`
+  (own session), via `POST /medication_catalog/seed`, and re-runnable
+  after imports without duplication.
+- Case-insensitive unique names per clinic: service-level 409 plus a
+  functional unique index closing the concurrent-create race at the DB.
+- Agent tool `list_medications` (READ, cloud-eligible — structured data
+  only).
+- Search by name, form/status filters, server-side pagination.
+- `auto_install=False`, `removable=True`, own Alembic branch
+  (`medication_catalog`), uninstall round-trip + tenant isolation +
+  duplicate-name + seed idempotency tests.
+- Default roles: admin full, dentist read-only.
+- Docs: technical overview/events/permissions pages, user manual en+es
+  with real `last_verified_commit`, module CHANGELOG, CLAUDE.md tools
+  section.

@@ -1,0 +1,140 @@
+# Production stack from prebuilt images. No repo clone, no build.
+#
+#   curl -O https://raw.githubusercontent.com/dentalpin/dentalpin/main/docker-compose.prod.yml
+#   curl -O https://raw.githubusercontent.com/dentalpin/dentalpin/main/Caddyfile
+#   curl -o .env https://raw.githubusercontent.com/dentalpin/dentalpin/main/.env.prod.example
+#   # edit .env, then:
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Caddy fronts both services on a single origin, so the browser only ever
+# talks to PUBLIC_URL: no CORS to configure, and TLS is provisioned
+# automatically from Let's Encrypt when PUBLIC_URL is a real https host.
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-dental_clinic}
+      POSTGRES_USER: ${POSTGRES_USER:-dental}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dental} -d ${POSTGRES_DB:-dental_clinic}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  backend:
+    image: ghcr.io/dentalpin/dentalpin-backend:${DENTALPIN_VERSION:-latest}
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-dental}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-dental_clinic}
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env}
+      # Trusted-proxy set for uvicorn's --proxy-headers (#623). NOT "*":
+      # with "*" uvicorn takes the leftmost X-Forwarded-For entry, which
+      # the client controls, so any peer that can reach this port picks
+      # its own login rate-limit bucket and its own audit IP. Restricted,
+      # uvicorn instead walks the header right-to-left and stops at the
+      # first hop outside this set — the real client — which is correct
+      # whether the proxy overwrites or appends. Covers loopback plus
+      # Docker's default address pools (the proxy container's network).
+      # Swarm/k8s (10.0.0.0/8) or a PaaS edge must set their own value.
+      FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:-127.0.0.1,::1,172.16.0.0/12,192.168.0.0/16}
+      # `console` never delivers: in production it logs metadata only,
+      # reports the send failed and logs an ERROR naming this remedy (#614).
+      EMAIL_PROVIDER: ${EMAIL_PROVIDER:-console}
+      EMAIL_ENABLED: ${EMAIL_ENABLED:-true}
+      EMAIL_SMTP_HOST: ${EMAIL_SMTP_HOST:-smtp.gmail.com}
+      EMAIL_SMTP_PORT: ${EMAIL_SMTP_PORT:-587}
+      # Real default, not ${X:-}: an empty value fails pydantic bool parsing
+      # at boot (#604).
+      EMAIL_SMTP_TLS: ${EMAIL_SMTP_TLS:-true}
+      EMAIL_SMTP_USER: ${EMAIL_SMTP_USER:-}
+      EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD:-}
+      EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS:-noreply@dentalpin.com}
+      EMAIL_FROM_NAME: ${EMAIL_FROM_NAME:-DentalPin}
+      # Required in production since #538 (config.py refuses to boot
+      # without them): generate each with `openssl rand -hex 32`.
+      BUDGET_PUBLIC_SECRET_KEY: ${BUDGET_PUBLIC_SECRET_KEY:?Set BUDGET_PUBLIC_SECRET_KEY in your .env}
+      AGENDA_PUBLIC_SECRET_KEY: ${AGENDA_PUBLIC_SECRET_KEY:?Set AGENDA_PUBLIC_SECRET_KEY in your .env}
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      ENVIRONMENT: production
+      ALLOWED_ORIGINS: ${PUBLIC_URL:-http://localhost}
+      STORAGE_BACKEND: local
+      STORAGE_LOCAL_PATH: /app/storage
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      # Output ceiling per assistant turn (tokens); forwarded so the
+      # value in .env reaches the container instead of the 4096 default.
+      COPILOT_MAX_TOKENS: ${COPILOT_MAX_TOKENS:-4096}
+      # Self-hosted Ollama endpoint (#332). No bundled Ollama service: run
+      # one and point this at it (e.g. http://192.168.1.20:11434, a host
+      # reachable from the container). Leave empty for the provider's
+      # built-in default.
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+      # Seeds the demo clinic on first boot. Leave at 0 for a real clinic.
+      SEED_ON_STARTUP: ${SEED_ON_STARTUP:-0}
+      SEED_LANG: ${SEED_LANG:-es}
+    volumes:
+      - storage_data:/app/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health', timeout=2).status == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  frontend:
+    image: ghcr.io/dentalpin/dentalpin-frontend:${DENTALPIN_VERSION:-latest}
+    environment:
+      # Nuxt overrides runtimeConfig.public.apiBaseUrl from this at boot,
+      # so one image serves every deployment — nothing is baked in.
+      NUXT_PUBLIC_API_BASE_URL: ${PUBLIC_URL:-http://localhost}
+      API_BASE_URL_SERVER: http://backend:8000
+      NUXT_PUBLIC_DOCS_URL: ${DOCS_URL:-https://docs.dentalpin.com}
+      # Content-Security-Policy rollout (#355): report | enforce | off.
+      # Report-Only by default; violations are logged by the backend
+      # (`grep "csp violation"`). Flip to enforce once the log is quiet.
+      # See docs/technical/security-csp.md.
+      NUXT_CSP_MODE: ${NUXT_CSP_MODE:-report}
+    depends_on:
+      backend:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:3000/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  storage_data:
+  caddy_data:
+  caddy_config:

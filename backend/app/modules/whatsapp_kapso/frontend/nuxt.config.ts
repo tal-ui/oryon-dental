@@ -1,0 +1,26 @@
+// Nuxt layer for the `whatsapp_kapso` module.
+//
+// Components auto-resolve with no folder prefix; the i18n block merges our
+// `whatsapp_kapso.*` keys into the host es/en.
+export default defineNuxtConfig({
+  components: [
+    { path: './components', pathPrefix: false }
+  ],
+  i18n: {
+    locales: [
+      { code: 'en', file: 'en.json' },
+      { code: 'es', file: 'es.json' },
+      { code: 'fr', file: 'fr.json' },
+      { code: 'pt', file: 'pt.json' },
+      { code: 'ta', file: 'ta.json' },
+      { code: 'te', file: 'te.json' },
+      { code: 'hi', file: 'hi.json' },
+      { code: 'de', file: 'de.json' },
+      { code: 'pl', file: 'pl.json' },
+      { code: 'it', file: 'it.json' },
+      { code: 'hu', file: 'hu.json' },
+      { code: 'ar', file: 'ar.json' }
+    ],
+    langDir: 'locales'
+  }
+})

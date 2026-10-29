@@ -1,0 +1,126 @@
+# Changelog — recalls module
+
+## Unreleased
+
+- fix(#684): the dashboard's `completed_this_month` and `conversion_rate` changed with the app container's `TZ`. The month bounds were naive datetimes compared with `timestamptz` columns, so they were read in the process's zone: the same rows gave 1 on a UTC host and 3 on a Madrid one. They are now midnight in the clinic's `timezone` (`clinic_zone_for`, `app/core/utils/dates.py`), the same zone `today` already came from, so a recall completed at 00:30 on 1 June in a Madrid clinic counts in June on every host.
+
+- fix: the next-recall suggestion now scopes its patient lookup by clinic, so another clinic's patient row is never read. Defence in depth; the row was already discarded before use.
+- fix(#723): the paginated list query now ends its `order_by` on the primary key. Rows that tied on the sort column (same date, name or timestamp) were cut from different orderings on each page, so some appeared twice and others on no page.
+
+- fix: date-only fields (`YYYY-MM-DD`) are parsed as local midnight
+  (`parseDateOnly`, host `utils/wallClock.ts`) instead of `new Date(s)`, which
+  is UTC midnight and rendered every such date one day early in zones behind
+  UTC — all of the Americas.
+- fix(#718): the `overdue` filter, the suggested due month and the dashboard
+  month/week windows use the clinic's calendar date instead of the server's.
+- docs(#711): the events doc said the module publishes nothing; it
+  publishes `recall.created` (read by activity_journal and
+  recall_reminders), `snoozed`, `cancelled` and `completed`.
+
+- feat(#546, ADR 0038): expose a `RecallsErasureContributor` instead of
+  subscribing to `gdpr.erasure.executed`; `gdpr` pulls it inside the
+  erasure transaction. Same per-channel note clearing (recall and
+  `reason_note` stay) and the contributor reports its own coverage row.
+  Transactional.
+- feat(i18n): Hindi (`hi`) locale for the module's frontend layer; Hindi demo seed contact attempts.
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- fix(#611): the recall CSV export no longer emits live spreadsheet
+  formulas. Patient names arrive through the public lead intake and
+  `reason_note` is free text; both are now apostrophe-prefixed when they
+  start with a formula character. As a side effect, `+34…` phone numbers
+  stop being formula cells in Excel.
+
+- feat(i18n): Telugu (`te`) locale for the module's frontend layer.
+- feat(i18n): Telugu (`te`) demo recall notes in the seed.
+- feat(#232): sidebar entry grouped under the Clinical header (`nav.section` "clinical").
+- fix(#126): de/it/pl locale parity with en (confirms.cancel / confirms.done).
+
+- feat(i18n): Arabic (ar) locale for the module's frontend layer.
+- feat(i18n): the frontend layer's directional spacing, borders, text alignment and inset positioning now resolve against the document direction (physical→logical CSS utilities, Arabic RTL support).
+
+
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- fix(#101): cancel and mark-done confirm before closing a recall (no undo endpoint exists); cancel gets destructive styling.
+
+
+- feat(#131): German (de) locale for the module's frontend layer.
+- feat(#144, #132): Polish (pl) and Italian (it) locales for the module's frontend layer.
+- feat(#334): Hungarian (hu) locale for the module's frontend layer.
+- fix(#184): type-check clean — the new-category reason ref is typed to the `reasons` union.
+- fix(#183): the four event handlers are transactional (ADR 0019). `on_appointment_scheduled` writes `linked_appointment_id`, an FK to the appointment the publisher has only flushed — from its own session that write was rejected and swallowed, so **auto-link never worked** through the API.
+- i18n: add Tamil locale (`ta.json`) with full UI coverage.
+
+- style(lint): first ESLint pass over this module's frontend layer —
+  module layers were outside the linter's base path until now, so
+  CI had never checked them. Mostly auto-fixed formatting; see the
+  PR for the handful of manual fixes.
+
+- fix(ui): surface the API error instead of a generic toast in the recall row (no-answer, snooze), the settings panel and the attempt form.
+  `catch {}` discarded the server's message, so any failure read as
+  "Error" with no way to tell what went wrong. Now via
+  `errorMessage()` / `errorDetail()`.
+
+- i18n: add Portuguese locale (`pt.json`) with full UI coverage.
+
+- i18n: correct French wording in seed note (Contrôle mensuel).
+
+- i18n: add French translations to seed data; fix `t()` dict pattern.
+
+- fix(security): reject `create` when `patient_id` belongs to another
+  clinic (audit multi-tenancy #1, #95). Previously the recall was
+  inserted with the caller's `clinic_id` but no check that the patient
+  was theirs, and the list/export join had no `Patient.clinic_id`
+  predicate — so a caller could point a recall at a foreign patient and
+  read that patient's name/phone back. `create` now 404s on a foreign
+  patient (HTTP and copilot tool paths), and the list join is scoped to
+  `Patient.clinic_id` as defense in depth.
+
+- feat(agents): expose `tools.py` for the copilot agentic layer —
+  `list_due_recalls`, `get_recall` (READ; the latter `exposes_free_text`),
+  `create_recall`, `log_contact_attempt`, `snooze_recall`,
+  `complete_recall` (WRITE). Thin wrappers over `RecallService`;
+  clinic-scoped; RBAC via existing `recalls.read`/`recalls.write`.
+
+- refactor(perms): migrate the hardcoded ``can('recalls.read')`` route guard on ``/recalls`` to ``PERMISSIONS.recalls.read`` (new entry in the host permissions config; also covers ``recalls.write`` / ``recalls.delete``).
+- perf(list): rewrite ``RecallService.list`` to count via a direct
+  ``COUNT(Recall.id)`` over the joined ``recalls × patients`` filter
+  set instead of materialising the data query as a subquery. Pairs
+  with the new ``patients`` indices on ``status`` /
+  ``do_not_contact`` to keep the monthly call-list page sub-second.
+- docs(user-manual): reescribir pantallas con guía operativa (ES + EN).
+- Initial release. Patient call-back workflow (issue #62).
+- Tables: `recalls`, `recall_contact_attempts`, `recall_settings`
+  on the `recalls` Alembic branch (`rec_0001`).
+- Endpoints under `/api/v1/recalls/*` — list, create (duplicate
+  guard), detail, snooze, cancel, mark-done, log-attempt, link
+  appointment, settings, dashboard stats, suggestions/next, CSV
+  export.
+- Events published: `recall.created`, `recall.completed`,
+  `recall.snoozed`, `recall.cancelled`. `recall.due` enum value
+  reserved for a future cron — not published in V1.
+- Events consumed: `appointment.scheduled` (auto-link),
+  `appointment.completed` (auto-close), `appointment.cancelled`
+  (revert), `treatment_plan.treatment_completed` (suggestion hook,
+  stateless), `patient.archived` (move active → needs_review).
+- Frontend layer registers slot entries in:
+  - `patient.summary.actions` — "Set recall" button
+  - `patient.summary.feed` — recall pill + recent history
+  - `odontogram.condition.actions` — per-treatment "Set recall"
+  - `appointment.completed.followup` — "Schedule recall?" prompt
+  - `dashboard.attention` — due/overdue/conversion widget
+  - `settings.sections` — reason-interval + category-map editor
+- Permissions: `recalls.{read,write,delete}`. Receptionist + dentist
+  + hygienist + assistant get read+write; admin gets `*`.
+- Auto-link policy on `appointment.scheduled` is **conservative**:
+  fires only when the patient has exactly one matching active recall.
+  Two-plus candidates → no-op, reception links manually from the
+  call-list row. Avoids silent wrong-association across multiple
+  reasons (no reliable signal in agenda's free-text `treatment_type`).
+- `installable=True`, `auto_install=True`, `removable=True`.
+  Round-trip uninstall test verifies all three tables drop cleanly.
+- Sidebar entry registered via `manifest.frontend.navigation`
+  (`/recalls`, icon `i-lucide-bell`, gated by `recalls.read`,
+  `order: 25` — between `Agenda` and `Planes de tratamiento`).
+  Host i18n adds `nav.recalls` for ES/EN.

@@ -1,0 +1,183 @@
+# Changelog — clinical_notes
+
+## Unreleased
+
+- fix(#699): `linkAttachment` / `unlinkAttachment` posted to
+  `/api/v1/clinical_notes/attachments`, which does not exist — this
+  module exposes only the note-aware read, while media owns the rows and
+  the write endpoints (and grants `attachments.write` to every role).
+  Both now call `/api/v1/media/attachments`. No caller in the tree today,
+  so nothing user-visible changed.
+
+- feat(#657): owns the `clinical_notes` GDPR erasure coverage scope
+  (`get_erasure_contributors()`). Notes are retained as health-care
+  records (Art. 17(3)(c)/(h)) and their prose is never redacted. One of
+  the three scopes that replaced `gdpr`'s hardcoded `clinical` row —
+  there is no `clinical` module to own it.
+
+- feat(i18n): Hindi (`hi`) locale for the module's frontend layer; Hindi demo seed notes.
+- fix: an admin editing a note written by someone else got a 500.
+  `NoteService.update` did not eager-load `author`, and
+  `ClinicalNoteResponse` declares the field, so building the response
+  lazy-loaded the relationship inside an async session
+  (`MissingGreenlet`). Editing your own note never hit it — the author is
+  the caller, already in the session's identity map — which is why the
+  documented admin-override path shipped broken and untested. `get()`
+  gained the same eager load; it has no callers yet and fed the same
+  response shape.
+
+- chore(#557): slot/settings permission gates now reference PERMISSIONS constants (no behavior change).
+
+- feat(i18n): Telugu (`te`) locale for the module's frontend layer.
+- feat(i18n): Telugu (`te`) demo clinical notes in the seed.
+- chore(#337): imports `AppointmentTreatment` from its new home in treatment_plan (a declared dependency).
+
+- refactor(#126): linked-treatment labels resolve catalog names through the shared `app.core.i18n_names.catalog_name` helper.
+
+- fix(#325): the attachment-owner registration moved from import time to `on_activate()` (ADR 0020).
+
+- feat(i18n): Arabic (ar) locale for the module's frontend layer.
+- feat(i18n): the frontend layer's directional spacing, borders, text alignment and inset positioning now resolve against the document direction (physical→logical CSS utilities, Arabic RTL support).
+
+
+- fix(#101): the module's frontend adopts the useApi error contract — 400/409/422 failures the UI used to swallow now toast the backend's message; calls whose surrounding code already presents the error pass `errorToast: false` (single toast), and hand-built error reads use the shared `errorMessage`/`errorDetail` helpers.
+
+- fix(#101): the note composer keeps typed text and attachments when a save fails (teardown only on success); the three unconfirmed delete surfaces now confirm like the other two.
+
+- feat(#131): German (de) locale for the module's frontend layer.
+- feat(#144, #132): Polish (pl) and Italian (it) locales for the module's frontend layer.
+- feat(#334): Hungarian (hu) locale for the module's frontend layer.
+
+- i18n(#131/#275): `_resolve_label` falls back to any non-empty catalog
+  name after `es→en→fr→pt→ta` (items created under core-only locales
+  like de/hu).
+- fix(#203): the patient-feed filter bar showed "Administrativa" twice — patient-level and appointment-level administrative notes have identical labels. The six note types now collapse into five filter chips (the Administrativa chip toggles both administrative types); the API call and NoteCard badges are unchanged.
+
+- fix(#184): type-check clean — `sourceBadgeColor()` returns `UiColor` (plan notes use `neutral`, the design-system role, instead of `secondary`).
+- i18n: add Tamil locale (`ta.json`); add Tamil translations to seed
+  data; add `body_i18n_key` to template responses so template bodies
+  resolve in the active locale. Labels now resolve via
+  `es → en → fr → ta` catalog-name fallback (still falling back to
+  `treatment.clinical_type` when no catalog item). Date formatting in
+  NoteCard, PlanNotesTimeline, and PatientClinicalNotesByPlan uses
+  locale-aware `toLocaleString(locale)`.
+
+- style(lint): first ESLint pass over this module's frontend layer —
+  module layers were outside the linter's base path until now, so
+  CI had never checked them. Mostly auto-fixed formatting; see the
+  PR for the handful of manual fixes.
+
+- i18n: extend the catalog label fallback chain to `es → en → fr → pt`.
+
+- i18n: add Portuguese locale (`pt.json`) with full UI coverage.
+
+- i18n: correct French terminology in `fr.json` (Diagnostic).
+
+- i18n: add French locale (`fr.json`); add French translations to seed
+  data; add `body_i18n_key` to template responses so template bodies
+  resolve in the active locale. Labels now resolve via
+  `es → en → fr` catalog-name fallback (still falling back to
+  `treatment.clinical_type` when no catalog item). Date formatting in
+  NoteCard, PlanNotesTimeline, and PatientClinicalNotesByPlan uses
+  locale-aware `toLocaleString(locale)`.
+
+- feat(appointment-owner): add ``owner_type='appointment'`` with two
+  new ``note_type`` values (``appointment_clinical`` +
+  ``appointment_administrative``) so notes can attach to a
+  ``agenda.Appointment``. Matrix CHECK extended (``cn_0003``); media
+  owner registry resolves ``appointment → patient`` so adjuntos
+  surface in the patient gallery. Two new events
+  (``CLINICAL_NOTE_APPOINTMENT_CLINICAL_CREATED`` /
+  ``CLINICAL_NOTE_APPOINTMENT_ADMINISTRATIVE_CREATED``) follow the
+  existing ``clinical_notes.<note_type>_created`` naming so
+  ``patient_timeline`` picks them up via its string-derived dispatch.
+  Frontend: new ``AppointmentNotesPanel`` mounted on the
+  ``appointment.detail.notes`` slot (agenda hosts; no cross-import).
+- feat(ux): hovering or keyboard-focusing a note in ``DiagnosisNotesSidebar`` or
+  ``PlanNotesTimeline`` now pulses the matching tooth on the odontogram, mirroring
+  the existing hover behaviour of the per-tooth treatment list. ``DiagnosisNotesSidebar``
+  resolves the tooth via two new optional ``ctx`` props (``treatmentsToothById`` +
+  ``onTeethHover``) so the module stays decoupled from odontogram. ``PlanNotesTimeline``
+  emits ``item-hover`` (matching ``PlanTreatmentList``); ``PlanDetailView`` wires it
+  into the existing ``hoveredItemId`` highlight pipeline. Notes with no tooth
+  (plan-level, administrative without ``tooth_number``) silently no-op — no ghost
+  pulse.
+- feat(timeline): surface author (avatar + name) on every entry in the plan notes timeline. ``ClinicalNoteEntry`` now carries an ``author: AuthorBrief | None`` (notes: from ``ClinicalNote.author``; visits: from ``Appointment.professional``). ``PlanNotesTimeline.vue`` renders the author header so the dentist can tell who wrote each note at a glance.
+- refactor(perms): migrate hardcoded ``can('clinical_notes.notes.{read,write}')`` strings in ``TreatmentNoteButton`` / ``DiagnosisNotesSidebar`` / ``PlanNotesTimeline`` / ``RecentNotesFeed`` to ``PERMISSIONS.clinicalNotes.*``.
+- fix(isolation): declare ``agenda`` in ``manifest.depends`` — the
+  service already imported ``Appointment`` / ``AppointmentTreatment``
+  to surface visit-level notes. The dependency was real, just
+  undeclared. ``KNOWN_VIOLATIONS`` allowlist trimmed accordingly.
+
+### Changed
+
+- **0.2.0 (issue #55)** — Polymorphic attachments delegated to `media`:
+  the legacy `clinical_note_attachments` table is dropped (migration
+  `cn_0002`, depends on `med_0002`); the model is removed and the
+  service/routes now proxy to `media.AttachmentService`. New
+  `owner_resolvers.py` registers `patient`, `treatment`, `plan` and
+  `clinical_note` owner_types with `media.attachment_registry` at
+  module import time. `NoteService.create`
+  links each `attachment_document_id` twice (once to the note's owner
+  for gallery surfacing, once to `clinical_note` for note-scoped
+  rendering).
+- `DiagnosisNotesSidebar` now uses cursor pagination (`limit=20`,
+  `before` timestamp) with a "Cargar más" button, mirroring
+  `RecentNotesFeed`. Previously fetched a hard-coded `limit=30` once
+  and stopped.
+
+### Fixed
+
+- `DiagnosisNotesSidebar` no longer highlights every note without a
+  tooth on load. The previous `selectedTooth === tooth_number` check
+  matched `null === null` when no tooth was selected, painting a blue
+  `ring-2 ring-primary` around all administrative / non-tooth-bound
+  diagnosis notes until a tooth was clicked.
+
+### Added
+
+- Demo seed (`seed.py::seed_clinical_notes_demo`) wired into
+  `scripts/seed_demo.py` step 7. Creates administrative + diagnosis
+  notes per patient (diagnosis tooth-pinned where odontogram has data),
+  `treatment_plan` notes on ~2/3 of plans and `treatment` notes on
+  every other performed treatment, with author rotation between dentist
+  and hygienist and time-staggered `created_at`. Inserts rows directly
+  without firing events to keep `patient_timeline` re-derivation clean.
+- New module owning the polymorphic `clinical_notes` and
+  `clinical_note_attachments` tables (extracted from `treatment_plan`).
+- `note_type` discriminator: `administrative`, `diagnosis`, `treatment`,
+  `treatment_plan`.
+- `tooth_number` column on `clinical_notes` for diagnosis notes
+  optionally tied to a tooth.
+- New owner type `treatment` — notes attach directly to the underlying
+  `treatments.id` so they travel with the Treatment from diagnosis →
+  plan → completion.
+- Endpoints: `/notes`, `/attachments`, `/patients/{id}/recent`,
+  `/patients/{id}/by-plan`, `/treatment-plans/{id}/merged`,
+  `/note-templates`.
+- Events: `clinical_notes.{administrative,diagnosis,treatment,plan}_created`.
+- Migration `cn_0001` extends the legacy `clinical_notes` /
+  `clinical_note_attachments` tables in place; backfills `note_type`
+  and remaps `plan_item` notes onto the underlying `treatment` row.
+
+### Changed
+
+- Existing `treatment_plan.notes.*` permissions are replaced by
+  `clinical_notes.notes.*`. The completion modal and per-row note UI
+  in `treatment_plan` now call this module's API.
+
+### Removed
+
+- Notes-related endpoints, services and models from `treatment_plan`.
+- `DiagnosisNotesSidebar` no longer exposes Tratamiento / Administrativas
+  tabs. The composer is diagnosis-only (treatment notes belong on the
+  treatment-plan UI; administrative notes are written from the patient
+  Summary feed), but the listing shows **every** note type colour-coded
+  via `NoteCard` so the dentist sees full context. The sidebar still
+  receives `sessionTreatmentIds` in ctx but ignores it.
+- `PlanNotesTimeline` redesigned: source-coloured left border on each
+  card (plan = secondary, treatment = success, visit = primary), source
+  icon + treatment name in the card header, and a Todas / Plan /
+  Tratamiento / Visita filter row matching the patient Summary feed UX.
+  The merged endpoint already returned plan + treatment + visit notes;
+  the new visual makes that obvious at a glance.

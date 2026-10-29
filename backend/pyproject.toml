@@ -1,0 +1,155 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dentalpin"
+version = "2.0.0"
+description = "Open source dental clinic management software"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "sqlalchemy[asyncio]>=2.0.25",
+    "asyncpg>=0.29.0",
+    "pydantic[email]>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "python-jose[cryptography]>=3.3.0",
+    "cryptography>=42.0.0",
+    "bcrypt>=4.0.0",
+    "python-multipart>=0.0.6",
+    "alembic>=1.13.0",
+    "slowapi>=0.1.9",
+    "weasyprint>=62.0",
+    "jinja2>=3.1.0",
+    "apscheduler>=3.10.0",
+    "aiofiles>=23.0.0",
+    # Shipped IANA timezone database so zoneinfo works regardless of
+    # which Python base image the backend runs on (Alpine ships with
+    # no system tzdata by default).
+    "tzdata>=2024.1",
+    # Locale-aware currency formatting (PDFs, emails). Stdlib has no
+    # equivalent of Intl.NumberFormat; babel is the de facto standard.
+    "babel>=2.14",
+    # Verifactu (AEAT) module dependencies. httpx for mTLS submissions,
+    # lxml for SOAP response parsing, qrcode for the per-invoice QR.
+    "httpx>=0.26.0",
+    "lxml>=5.0.0",
+    "qrcode[pil]>=7.4.0",
+    # Image processing for media module: thumbnail generation + EXIF
+    # extraction on upload. Drives the photo gallery UX.
+    "Pillow>=10.0.0",
+    # migration_import module: zstd unwrap for DPMF files (.dpm.zst /
+    # .dpm.zst.enc). cryptography (already above) handles AES-256-GCM
+    # + scrypt for the DPME envelope.
+    "zstandard>=0.22.0",
+    # copilot agentic layer (app/core/llm/): the Provider protocol is
+    # vendor-agnostic; OpenAI and Anthropic are the live providers, and
+    # further vendors (Gemini, Ollama) slot in without touching callers.
+    "openai>=1.40",
+    "anthropic>=0.40",
+    # telephony module: E.164 normalization of caller numbers (issue #64).
+    "phonenumbers>=8.13",
+    # imaging_viewer (study index + PNG render) and imaging_ai (pano
+    # DICOM→PNG input, nnU-Net volume stacking) both need pydicom pixel
+    # ops + numpy; declared so installs get full functionality.
+    "pydicom>=3.0",
+    "numpy>=1.26",
+    # Error tracking: Sentry SDK (also speaks to self-hosted GlitchTip).
+    # Only activated when SENTRY_DSN is set; see setup_error_tracking.
+    "sentry-sdk>=2.0.0",
+    # WebPush channel (notifications): push delivery to patient browsers.
+    "pywebpush>=1.14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.26.0",
+    "ruff>=0.1.0",
+]
+
+[project.entry-points."dentalpin.modules"]
+patients = "app.modules.patients:PatientsModule"
+patients_clinical = "app.modules.patients_clinical:PatientsClinicalModule"
+agenda = "app.modules.agenda:AgendaModule"
+patient_timeline = "app.modules.patient_timeline:PatientTimelineModule"
+catalog = "app.modules.catalog:CatalogModule"
+budget = "app.modules.budget:BudgetModule"
+billing = "app.modules.billing:BillingModule"
+odontogram = "app.modules.odontogram:OdontogramModule"
+treatment_plan = "app.modules.treatment_plan:TreatmentPlanModule"
+media = "app.modules.media:MediaModule"
+notifications = "app.modules.notifications:NotificationsModule"
+reports = "app.modules.reports:ReportsModule"
+schedules = "app.modules.schedules:SchedulesModule"
+recalls = "app.modules.recalls:RecallsModule"
+verifactu = "app.modules.verifactu:VerifactuModule"
+migration_import = "app.modules.migration_import:MigrationImportModule"
+copilot = "app.modules.copilot:CopilotModule"
+expenses = "app.modules.expenses:ExpensesModule"
+india_gst = "app.modules.india_gst:IndiaGstModule"
+patient_relationships = "app.modules.patient_relationships:PatientRelationshipsModule"
+recall_reminders = "app.modules.recall_reminders:RecallRemindersModule"
+contacts = "app.modules.contacts:ContactsModule"
+integrations = "app.modules.integrations:IntegrationsModule"
+staff_tasks = "app.modules.staff_tasks:StaffTasksModule"
+medical_reference = "app.modules.medical_reference:MedicalReferenceModule"
+inventory = "app.modules.inventory:InventoryModule"
+treatment_consumables = "app.modules.treatment_consumables:TreatmentConsumablesModule"
+lab_orders = "app.modules.lab_orders:LabOrdersModule"
+activity_journal = "app.modules.activity_journal:ActivityJournalModule"
+medication_catalog = "app.modules.medication_catalog:MedicationCatalogModule"
+accounting_export = "app.modules.accounting_export:AccountingExportModule"
+clinical_notes = "app.modules.clinical_notes:ClinicalNotesModule"
+payments = "app.modules.payments:PaymentsModule"
+periodontogram = "app.modules.periodontogram:PeriodontogramModule"
+whatsapp_kapso = "app.modules.whatsapp_kapso:WhatsappKapsoModule"
+documents = "app.modules.documents:DocumentsModule"
+whatsapp_webhook = "app.modules.whatsapp_webhook:WhatsappWebhookModule"
+telephony = "app.modules.telephony:TelephonyModule"
+nav_online = "app.modules.nav_online:NavOnlineModule"
+sdi_it = "app.modules.sdi_it:SdiItModule"
+sistema_ts = "app.modules.sistema_ts:SistemaTsModule"
+suppliers = "app.modules.suppliers:SuppliersModule"
+supplier_items = "app.modules.supplier_items:SupplierItemsModule"
+purchase_orders = "app.modules.purchase_orders:PurchaseOrdersModule"
+gdpr = "app.modules.gdpr:GdprModule"
+inventory_reorder = "app.modules.inventory_reorder:InventoryReorderModule"
+supplier_ratings = "app.modules.supplier_ratings:SupplierRatingsModule"
+payroll = "app.modules.payroll:PayrollModule"
+prescriptions = "app.modules.prescriptions:PrescriptionsModule"
+payment_gateways = "app.modules.payment_gateways:PaymentGatewaysModule"
+razorpay = "app.modules.razorpay:RazorpayModule"
+sms_gateway = "app.modules.sms_gateway:SmsGatewayModule"
+patient_segments = "app.modules.patient_segments:PatientSegmentsModule"
+leads = "app.modules.leads:LeadsModule"
+staff_attendance = "app.modules.staff_attendance:StaffAttendanceModule"
+treasury = "app.modules.treasury:TreasuryModule"
+imaging_viewer = "app.modules.imaging_viewer:ImagingViewerModule"
+imaging_ai = "app.modules.imaging_ai:ImagingAiModule"
+orthodontics = "app.modules.orthodontics:OrthodonticsModule"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+# Slow-marked suites — opt-in with `-m <mark>` or included in CI via
+# an explicit step. Unmarked runs exclude them to keep local TDD fast.
+markers = [
+    "alembic_roundtrip: full base → head → base migration cycle (slow, needs DB)",
+]
+addopts = "-m 'not alembic_roundtrip'"

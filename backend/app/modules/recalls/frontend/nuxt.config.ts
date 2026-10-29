@@ -1,0 +1,27 @@
+// Nuxt layer for the `recalls` module.
+//
+// Components live under ./components with no folder-prefix naming so
+// they auto-resolve across layers. The i18n block makes
+// @nuxtjs/i18n merge our `recalls.*` keys into the host es/en.
+export default defineNuxtConfig({
+  components: [
+    { path: './components', pathPrefix: false }
+  ],
+  i18n: {
+    locales: [
+      { code: 'en', file: 'en.json' },
+      { code: 'es', file: 'es.json' },
+      { code: 'fr', file: 'fr.json' },
+      { code: 'pt', file: 'pt.json' },
+      { code: 'ta', file: 'ta.json' },
+      { code: 'te', file: 'te.json' },
+      { code: 'hi', file: 'hi.json' },
+      { code: 'de', file: 'de.json' },
+      { code: 'pl', file: 'pl.json' },
+      { code: 'it', file: 'it.json' },
+      { code: 'hu', file: 'hu.json' },
+      { code: 'ar', file: 'ar.json' }
+    ],
+    langDir: 'locales'
+  }
+})

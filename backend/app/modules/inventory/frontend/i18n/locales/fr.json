@@ -1,0 +1,54 @@
+{
+  "inventory": {
+    "title": "Inventaire",
+    "add": "Ajouter un article",
+    "edit": "Modifier l'article",
+    "item": "Article",
+    "category": "Catégorie",
+    "unit": "Unité",
+    "stock": "Stock",
+    "minimum": "Minimum",
+    "notes": "Notes",
+    "status": "Statut",
+    "ok": "OK",
+    "low": "Bas",
+    "filterByCategory": "Filtrer par catégorie",
+    "lowStockOnly": "Stock bas uniquement",
+    "includeInactive": "Afficher les inactifs",
+    "increment": "Augmenter le stock",
+    "decrement": "Réduire le stock",
+    "delete": "Supprimer",
+    "deleteTitle": "Supprimer l'article",
+    "deleteMessage": "Supprimer cet article de l'inventaire ? Cette action est irréversible.",
+    "cannotDeleteWithHistory": "Cet article a un historique de mouvements. Désactivez-le pour préserver la piste d'audit.",
+    "cannotDeleteInUse": "Cet article est lié à un fournisseur, un traitement ou un bon de commande. Désactivez-le plutôt.",
+    "deactivate": "Désactiver",
+    "reactivate": "Réactiver",
+    "deactivated": "Article désactivé",
+    "reactivated": "Article réactivé",
+    "empty": "Pas encore de mouvements",
+    "allCategories": "Toutes les catégories",
+    "adjustBy": "Ajuster de…",
+    "apply": "Appliquer",
+    "cost": "Coût unitaire",
+    "valuation": "Valeur du stock",
+    "movements": "Mouvements",
+    "movementsTitle": "Mouvements de stock",
+    "reasons": {
+      "initial": "Ouverture",
+      "restock": "Réappro.",
+      "consumption": "Consommation",
+      "adjustment": "Ajustement",
+      "correction": "Correction"
+    },
+    "categories": {
+      "consumables": "Consommables",
+      "equipment": "Équipement",
+      "office": "Bureau",
+      "other": "Autre"
+    }
+  },
+  "nav": {
+    "inventory": "Inventaire"
+  }
+}

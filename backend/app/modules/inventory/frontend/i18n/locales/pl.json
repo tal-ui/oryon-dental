@@ -1,0 +1,54 @@
+{
+  "inventory": {
+    "title": "Magazyn",
+    "add": "Dodaj pozycję",
+    "edit": "Edytuj pozycję",
+    "item": "Pozycja",
+    "category": "Kategoria",
+    "unit": "Jednostka",
+    "stock": "Stan",
+    "minimum": "Minimum",
+    "notes": "Notatki",
+    "status": "Status",
+    "ok": "OK",
+    "low": "Niski",
+    "filterByCategory": "Filtruj wg kategorii",
+    "lowStockOnly": "Tylko niski stan",
+    "includeInactive": "Pokaż nieaktywne",
+    "increment": "Zwiększ stan",
+    "decrement": "Zmniejsz stan",
+    "delete": "Usuń",
+    "deleteTitle": "Usuń pozycję",
+    "deleteMessage": "Usunąć tę pozycję magazynową? Tej operacji nie można cofnąć.",
+    "cannotDeleteWithHistory": "Ta pozycja ma historię ruchów. Dezaktywuj ją, aby zachować ślad audytu.",
+    "cannotDeleteInUse": "Ta pozycja jest powiązana z dostawcą, zabiegiem lub zamówieniem zakupu. Zamiast tego dezaktywuj ją.",
+    "deactivate": "Dezaktywuj",
+    "reactivate": "Aktywuj ponownie",
+    "deactivated": "Pozycja dezaktywowana",
+    "reactivated": "Pozycja aktywowana ponownie",
+    "empty": "Brak ruchów",
+    "allCategories": "Wszystkie kategorie",
+    "adjustBy": "Zmień o…",
+    "apply": "Zastosuj",
+    "cost": "Koszt jednostkowy",
+    "valuation": "Wartość zapasu",
+    "movements": "Ruchy",
+    "movementsTitle": "Ruchy magazynowe",
+    "reasons": {
+      "initial": "Otwarcie",
+      "restock": "Uzupełnienie",
+      "consumption": "Zużycie",
+      "adjustment": "Korekta ilościowa",
+      "correction": "Korekta"
+    },
+    "categories": {
+      "consumables": "Materiały zużywalne",
+      "equipment": "Sprzęt",
+      "office": "Biuro",
+      "other": "Inne"
+    }
+  },
+  "nav": {
+    "inventory": "Magazyn"
+  }
+}

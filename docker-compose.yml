@@ -94,6 +94,10 @@ services:
       # .env (plus the same origin in ALLOWED_ORIGINS) to reach the app
       # from a phone or another machine.
       NUXT_PUBLIC_API_BASE_URL: ${API_BASE_URL:-http://localhost:8000}
+      # White-label app shell (login, sidebar, title). Patient documents
+      # and emails are branded with the clinic name regardless.
+      NUXT_PUBLIC_APP_NAME: ${APP_NAME:-DentalPin}
+      NUXT_PUBLIC_APP_LOGO: ${APP_LOGO:-/logo-icon.svg}
       NODE_OPTIONS: --max-old-space-size=4096
       # Set NUXT_DEVTOOLS=false for a stable local e2e run — devtools
       # full-page reloads abort Playwright navigation (#260).

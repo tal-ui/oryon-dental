@@ -26,6 +26,7 @@ interface CountryPreset {
 }
 
 const { t } = useI18n()
+const { appName, appLogo } = useBranding()
 const api = useApi()
 const auth = useAuth()
 const toast = useToast()
@@ -238,8 +239,8 @@ async function onSubmit() {
     <div class="flex items-start justify-between gap-3 mb-6">
       <div class="flex items-center gap-3">
         <img
-          src="/logo-icon.svg"
-          alt="DentalPin"
+          :src="appLogo"
+          :alt="appName"
           width="44"
           height="44"
         >
@@ -619,7 +620,7 @@ async function onSubmit() {
     </UCard>
 
     <p class="text-center text-caption text-subtle mt-6">
-      &copy; {{ new Date().getFullYear() }} DentalPin
+      &copy; {{ new Date().getFullYear() }} {{ appName }}
     </p>
   </div>
 </template>

@@ -80,7 +80,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'DentalPin',
+      // White-label product name (#branding): build-time default for the
+      // first paint; `useBranding()` re-applies the runtime value.
+      title: process.env.NUXT_PUBLIC_APP_NAME || 'DentalPin',
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
       ]
@@ -110,6 +112,13 @@ export default defineNuxtConfig({
       // Client-side (browser)
       apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:8000',
       demoMode: process.env.NUXT_PUBLIC_DEMO_MODE === 'true',
+      // White-label chrome: product name shown in the login page, sidebar,
+      // document title and public layout, plus the mark next to it (a path
+      // under frontend/public/). Patient documents and emails keep using
+      // the clinic name; these only brand the app shell. Overridable at
+      // runtime with NUXT_PUBLIC_APP_NAME / NUXT_PUBLIC_APP_LOGO.
+      appName: process.env.NUXT_PUBLIC_APP_NAME || 'DentalPin',
+      appLogo: process.env.NUXT_PUBLIC_APP_LOGO || '/logo-icon.svg',
       // Documentation portal origin used by the in-app help drawer
       // (Fase 5 of issue #75). Empty disables the help button.
       docsUrl: process.env.NUXT_PUBLIC_DOCS_URL || 'https://docs.dentalpin.com',

@@ -8,6 +8,7 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const { appName, appLogo } = useBranding()
 const route = useRoute()
 const api = useApi()
 const auth = useAuth()
@@ -56,8 +57,8 @@ async function onSubmit() {
   <div class="w-full max-w-[440px] p-4 sm:p-6">
     <div class="text-center mb-6">
       <img
-        src="/logo-icon.svg"
-        alt="DentalPin"
+        :src="appLogo"
+        :alt="appName"
         width="56"
         height="56"
         class="mx-auto mb-3"

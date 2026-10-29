@@ -2,6 +2,7 @@
 import { groupNavigationItems } from '~/utils/navigation'
 
 const { t } = useI18n()
+const { appName, appLogo } = useBranding()
 const auth = useAuth()
 const clinic = useClinic()
 const { navigationItems, ensureLoaded } = useModules()
@@ -134,10 +135,10 @@ function isActive(to: string): boolean {
         <NuxtLink
           to="/"
           class="flex items-center gap-2 overflow-hidden"
-          aria-label="DentalPin"
+          :aria-label="appName"
         >
           <img
-            src="/logo-icon.svg"
+            :src="appLogo"
             alt=""
             width="32"
             height="32"
@@ -147,7 +148,7 @@ function isActive(to: string): boolean {
             v-if="!isSidebarCollapsed"
             class="text-h2 text-default truncate"
           >
-            DentalPin
+            {{ appName }}
           </span>
         </NuxtLink>
       </div>
@@ -263,17 +264,17 @@ function isActive(to: string): boolean {
             <NuxtLink
               to="/"
               class="flex items-center gap-2 overflow-hidden"
-              aria-label="DentalPin"
+              :aria-label="appName"
               @click="mobileNavOpen = false"
             >
               <img
-                src="/logo-icon.svg"
+                :src="appLogo"
                 alt=""
                 width="32"
                 height="32"
                 class="shrink-0"
               >
-              <span class="text-h2 text-default truncate">DentalPin</span>
+              <span class="text-h2 text-default truncate">{{ appName }}</span>
             </NuxtLink>
             <UButton
               variant="ghost"

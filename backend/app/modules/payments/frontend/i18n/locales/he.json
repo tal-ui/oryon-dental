@@ -1,0 +1,311 @@
+{
+  "payments": {
+    "nav": {
+      "payments": "תשלומים",
+      "reports": "דוחות תשלומים"
+    },
+    "balance": {
+      "debt": "חוב",
+      "credit": "יתרת זכות",
+      "paid": "סה״כ שולם"
+    },
+    "list": {
+      "title": "תשלומים",
+      "subtitle": "תשלומי מטופלים, מקדמות על הצעות מחיר ויתרות זכות.",
+      "empty": "לא נרשמו תשלומים.",
+      "new": "תשלום חדש",
+      "searchPlaceholder": "מטופל או אסמכתא",
+      "filterDateFrom": "מתאריך",
+      "filterDateTo": "עד תאריך",
+      "filterMethod": "אמצעי",
+      "filterPatient": "מטופל",
+      "filter": {
+        "method": "אמצעי",
+        "hasRefunds": "עם החזרים",
+        "hasUnallocated": "לא משויך",
+        "patient": "מטופל",
+        "withDebt": "עם חוב",
+        "paymentStatus": "סטטוס"
+      },
+      "sort": {
+        "paymentDate": "תאריך",
+        "amount": "סכום"
+      },
+      "budgetStatus": {
+        "paid": "שולם",
+        "partial": "חלקי",
+        "unpaid": "לא שולם"
+      },
+      "row": {
+        "debtTooltip": "יתרת חוב של המטופל",
+        "creditTooltip": "יתרת זכות של המטופל",
+        "allocationsLabel": "שיוך",
+        "refundedLabel": "הוחזר",
+        "noPatient": "ללא מטופל"
+      },
+      "columnDate": "תאריך",
+      "columnPatient": "מטופל",
+      "columnAmount": "סכום",
+      "columnMethod": "אמצעי",
+      "columnAllocations": "שיוך",
+      "columnNet": "נטו",
+      "columnActions": "פעולות"
+    },
+    "detail": {
+      "title": "תשלום {reference}",
+      "amount": "סכום",
+      "method": "אמצעי",
+      "date": "תאריך",
+      "recordedBy": "נרשם על ידי",
+      "allocations": "שיוכים",
+      "refunds": "החזרים",
+      "refund": "החזר",
+      "refundedTotal": "הוחזר",
+      "netAmount": "נטו",
+      "reference": "אסמכתא",
+      "notes": "הערות"
+    },
+    "new": {
+      "title": "רישום תשלום",
+      "patient": "מטופל",
+      "patientPlaceholder": "חיפוש מטופל...",
+      "unknownPatient": "מטופל לא ידוע",
+      "amount": "סכום",
+      "suggestedHint": "ממתין לגבייה: {amount}",
+      "useSuggested": "שימוש בסכום זה",
+      "method": "אמצעי",
+      "moreMethods": "אפשרויות נוספות",
+      "date": "תאריך",
+      "today": "היום",
+      "advanced": "אפשרויות מתקדמות",
+      "reference": "אסמכתא",
+      "referencePlaceholder": "מספר אישור אשראי, אסמכתת העברה...",
+      "notes": "הערות",
+      "allocations": "שיוך",
+      "allocationsHint": "פיצול התשלום בין הצעות מחיר או השארתו כיתרת זכות של המטופל.",
+      "addAllocation": "הוספת שיוך",
+      "allocationToBudget": "להצעת מחיר",
+      "allocationOnAccount": "על חשבון",
+      "sumLabel": "סכום:",
+      "sumMismatch": "אינו תואם לסכום",
+      "submit": "רישום",
+      "submitWithAmount": "גבייה של {amount}",
+      "cancel": "ביטול",
+      "errPatient": "יש לבחור מטופל",
+      "errAmount": "יש להזין סכום גדול מ‑0",
+      "errSum": "סכום השיוכים חייב להיות שווה לסכום התשלום",
+      "errUnknown": "לא ניתן לרשום את התשלום. נסו שוב.",
+      "methodRecord": "רישום תשלום שכבר התקבל",
+      "methodCollect": "גבייה עכשיו"
+    },
+    "methods": {
+      "cash": "מזומן",
+      "card": "כרטיס אשראי",
+      "bank_transfer": "העברה",
+      "direct_debit": "הוראת קבע",
+      "insurance": "ביטוח",
+      "other": "אחר",
+      "upi": "UPI",
+      "netbanking": "בנקאות מקוונת"
+    },
+    "refund": {
+      "title": "החזר תשלום",
+      "amount": "סכום",
+      "method": "אמצעי",
+      "reason": "סיבה",
+      "note": "פרטים",
+      "submit": "החזר",
+      "reasonCodes": {
+        "duplicate": "תשלום כפול",
+        "overpaid": "תשלום יתר",
+        "treatment_cancelled": "הטיפול בוטל",
+        "dispute": "מחלוקת",
+        "other": "אחר"
+      }
+    },
+    "ledger": {
+      "title": "כרטסת המטופל",
+      "totalPaid": "סה״כ שולם",
+      "totalEarned": "טיפול שבוצע",
+      "patientCredit": "יתרת זכות של המטופל",
+      "clinicReceivable": "חוב למרפאה",
+      "onAccount": "על חשבון",
+      "empty": "אין תנועות."
+    },
+    "budgetCard": {
+      "title": "תשלומים על הצעת המחיר",
+      "budgetTotal": "סכום הצעת המחיר",
+      "collected": "נגבה",
+      "pending": "ממתין",
+      "collect": "גבייה",
+      "empty": "עדיין לא שויכו תשלומים להצעת מחיר זו.",
+      "collectedLabel": "נגבה",
+      "pendingLabel": "ממתין",
+      "outOfTotal": "מתוך {total} סה״כ",
+      "settled": "הצעת המחיר נגבתה במלואה",
+      "history": "היסטוריית תשלומים",
+      "payment": "תשלום",
+      "emptyDetailed": "עדיין לא נגבו תשלומים. יש ללחוץ על ״גבייה״ כדי לרשום את הראשון."
+    },
+    "budgetCollect": {
+      "title": "גביית הצעת מחיר",
+      "amountLabel": "סכום",
+      "methodLabel": "אמצעי תשלום",
+      "dateLabel": "תאריך התשלום",
+      "today": "היום",
+      "quickFull": "מלא",
+      "optionalDetails": "הוספת אסמכתא או הערות (לא חובה)",
+      "referenceLabel": "אסמכתא",
+      "referencePlaceholder": "לדוגמה: מזהה עסקה במסוף",
+      "notesLabel": "הערות פנימיות",
+      "submit": "גבייה",
+      "cancel": "ביטול",
+      "success": "התשלום נרשם",
+      "errorGeneric": "לא ניתן לרשום את התשלום",
+      "noteAppliedToBudget": "ייזקף להצעת המחיר.",
+      "notePendingAfter": "יתרה",
+      "noteFullySettled": "הצעת המחיר תיסגר במלואה.",
+      "noteToBudget": "ייזקף להצעת המחיר ו‑",
+      "noteExcessToOnAccount": "ליתרת הזכות של המטופל.",
+      "noteBudgetSettled": "הצעת המחיר כבר שולמה במלואה.",
+      "noteToOnAccount": "יועבר ליתרת הזכות של המטופל."
+    },
+    "pendingCharges": {
+      "title": "ממתין לגבייה",
+      "count": "{n} מפגשים",
+      "more": "+ {n} נוספים",
+      "collect": "גבייה של {amount}",
+      "unnamedSession": "מפגש ללא שם"
+    },
+    "patientPanel": {
+      "title": "כרטסת המטופל",
+      "kpis": {
+        "totalPaid": "סה״כ שולם",
+        "debt": "חוב למרפאה",
+        "onAccount": "על חשבון"
+      },
+      "sidebar": {
+        "title": "סיכום",
+        "credit": "יתרת זכות",
+        "lastPayment": "תשלום אחרון",
+        "noLastPayment": "אין תשלומים עדיין",
+        "totalEarned": "טיפול שבוצע"
+      },
+      "banner": {
+        "debtTitle": "חוב של {amount} למרפאה",
+        "debtDescription": "סה״כ התשלומים נמוך מהטיפול שבוצע.",
+        "creditTitle": "יתרת זכות של {amount}",
+        "creditDescription": "שולם מעבר לטיפול שבוצע."
+      },
+      "cobrar": "רישום תשלום",
+      "timeline": {
+        "title": "תנועות",
+        "empty": "לא נרשמו תנועות",
+        "emptyCta": "רישום התשלום הראשון",
+        "loadError": "לא ניתן לטעון את כרטסת המטופל.",
+        "retry": "ניסיון חוזר",
+        "drPrefix": "ד״ר {name}",
+        "types": {
+          "payment": "תשלום",
+          "refund": "החזר",
+          "earned": "טיפול שבוצע"
+        },
+        "treatmentStatus": {
+          "planned": "מתוכנן",
+          "performed": "בוצע",
+          "completed": "הושלם",
+          "cancelled": "בוטל",
+          "in_progress": "בתהליך"
+        },
+        "rowMenu": {
+          "refund": "החזר",
+          "reallocate": "שיוך להצעת מחיר…"
+        }
+      },
+      "refundModal": {
+        "title": "החזר תשלום",
+        "amount": "סכום ההחזר",
+        "method": "אמצעי ההחזר",
+        "reason": "סיבה",
+        "note": "פרטים (לא חובה)",
+        "submit": "אישור ההחזר",
+        "cancel": "ביטול",
+        "errorGeneric": "לא ניתן לרשום את ההחזר"
+      }
+    },
+    "reports": {
+      "title": "דוחות תשלומים",
+      "subtitle": "גבייה, החזרים, יתרות מטופלים ומגמות לתקופה.",
+      "loadError": "לא ניתן לטעון את דוחות התשלומים",
+      "cardDescription": "גבייה, החזרים, יתרות מטופלים, גיול ומגמות.",
+      "period": "תקופה",
+      "refresh": "רענון",
+      "collected": "נגבה",
+      "refunded": "הוחזר",
+      "net": "נטו",
+      "patientCredit": "סה״כ יתרות זכות",
+      "patientCreditHint": "יתרות על חשבון או מקדמות.",
+      "clinicReceivable": "חובות למרפאה",
+      "refundRatio": "שיעור החזרים",
+      "byMethod": "לפי אמצעי",
+      "byProfessional": "לפי מטפל",
+      "byProfessionalHint": "טיפול שבוצע, לא גבייה.",
+      "aging": "גיול חובות",
+      "agingHint": "מטופלים עם יתרת חוב מקובצים לפי גיל החוב.",
+      "refunds": "החזרים לפי סיבה",
+      "refundsHint": "התפלגות ההחזרים לפי הסיבה שנרשמה.",
+      "bucket": "{range} ימים",
+      "unknownProfessional": "לא משובץ",
+      "countShort": "{n} עסקאות",
+      "countPatients": "{n} מטופלים",
+      "granularity": {
+        "day": "יום",
+        "week": "שבוע",
+        "month": "חודש"
+      },
+      "hero": {
+        "netCollected": "גבייה נטו",
+        "netCollectedHint": "גבייה בניכוי החזרים בתקופה.",
+        "receivable": "חובות פתוחים",
+        "receivableHint": "טיפול שבוצע וטרם נגבה, לפי גיל.",
+        "vsPrevious": "לעומת התקופה הקודמת",
+        "transactionsCount": "{n} עסקאות בתקופה"
+      },
+      "trend": {
+        "title": "מגמת גבייה",
+        "subtitle": "נטו לכל יחידת זמן. הקו המקווקו מציג החזרים."
+      },
+      "empty": {
+        "noDataTitle": "אין נתונים בטווח זה",
+        "noDataDescription": "שנו את התקופה או רשמו תשלום כדי להתחיל לראות את הדוח.",
+        "noTrend": "אין מספיק נקודות לשרטוט המגמה.",
+        "noMethods": "אין גבייה לפי אמצעי בתקופה.",
+        "noProfessionals": "לא בוצעו טיפולים בתקופה.",
+        "noReceivable": "אין מטופלים עם חוב פתוח."
+      },
+      "drilldown": {
+        "viewPayments": "הצגת התשלומים בתקופה",
+        "viewPatients": "הצגת מטופלים עם חוב"
+      }
+    },
+    "target": {
+      "label": "זקיפה ל",
+      "placeholder": "בחירת יעד",
+      "onAccount": "יתרת זכות של המטופל (על חשבון)",
+      "onAccountHint": "נשאר כיתרת זכות של המטופל. לא נזקף לאף חשבונית או הצעת מחיר עד לשיוך.",
+      "budgetHint": "ייזקף להצעת מחיר זו ולחשבוניות שהופקו ממנה.",
+      "lockedBudget": "ייזקף להצעת המחיר {budget} ולחשבוניות שלה."
+    },
+    "reallocate": {
+      "title": "שיוך להצעת מחיר",
+      "hint": "מלוא התשלום בסך {amount} יועבר להצעת המחיר שנבחרה ולחשבוניות שהופקו ממנה.",
+      "submit": "שיוך",
+      "success": "התשלום שויך להצעת המחיר",
+      "error": "לא ניתן לשייך מחדש את התשלום. נסו שוב."
+    },
+    "followup": {
+      "collect": "גביית תשלום",
+      "collected": "התשלום נרשם."
+    }
+  }
+}

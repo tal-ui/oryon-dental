@@ -1,0 +1,21 @@
+{
+  "staffAttendance": {
+    "nav": {
+      "title": "נוכחות"
+    },
+    "title": "נוכחות צוות",
+    "clockTitle": "כניסה / יציאה",
+    "member": "איש צוות",
+    "pickMember": "בחירת איש צוות",
+    "note": "הערה",
+    "notePlaceholder": "הערה (לא חובה)",
+    "clockIn": "כניסה",
+    "clockOut": "יציאה",
+    "today": "היום",
+    "noEvents": "אין החתמות ביום זה.",
+    "report": "דוח יומי",
+    "openShift": "עדיין בפנים",
+    "in": "כניסה",
+    "out": "יציאה"
+  }
+}

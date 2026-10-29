@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "accountingExport": "ייצוא לרואה חשבון"
+  },
+  "accountingExport": {
+    "title": "ייצוא לרואה חשבון",
+    "subtitle": "הורדת החשבוניות והתשלומים של התקופה להעברה לרואה החשבון.",
+    "period": "תקופה",
+    "from": "מתאריך",
+    "to": "עד תאריך",
+    "presets": {
+      "currentMonth": "החודש הנוכחי",
+      "previousMonth": "החודש הקודם",
+      "currentQuarter": "הרבעון הנוכחי",
+      "previousQuarter": "הרבעון הקודם",
+      "yearToDate": "מתחילת השנה",
+      "custom": "מותאם אישית"
+    },
+    "actions": {
+      "preview": "תצוגה מקדימה",
+      "download": "הורדה (.zip)"
+    },
+    "counters": {
+      "invoices": "חשבוניות",
+      "payments": "תשלומים",
+      "base": "בסיס",
+      "total": "סה״כ"
+    },
+    "cols": {
+      "numero": "מספר",
+      "fecha_emision": "תאריך",
+      "cliente": "לקוח",
+      "nif": "ת״ז / ח״פ",
+      "base": "בסיס",
+      "cuota_iva": "מע״מ",
+      "total": "סה״כ",
+      "estado": "סטטוס"
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "orthodontics": {
+    "tab": {
+      "label": "אורתודונטיה"
+    },
+    "nav": {
+      "title": "אורתודונטיה"
+    },
+    "appliance": {
+      "brackets_metal": "סמכים (ברקטים) ממתכת",
+      "brackets_esthetic": "סמכים אסתטיים",
+      "self_ligating": "קשירה עצמית",
+      "aligners": "קשתיות שקופות",
+      "functional": "פונקציונלי",
+      "retention": "קיבוע (ריטיינר)"
+    },
+    "status": {
+      "active": "פעיל",
+      "paused": "מושהה",
+      "finished": "הסתיים",
+      "transferred_out": "הועבר למרפאה אחרת",
+      "session_pending": "ממתין",
+      "session_completed": "הושלם"
+    },
+    "inbox": {
+      "title": "אורתודונטיה",
+      "active": "פעילים",
+      "overdue": "ביקורת באיחור",
+      "unscheduled": "ללא ביקורת הבאה",
+      "finished": "הסתיימו",
+      "new": "מקרה חדש",
+      "empty": "אין מקרים בתצוגה זו",
+      "nextDue": "הביקורת הבאה",
+      "monthOf": "חודש {x} מתוך ~{n}"
+    },
+    "case": {
+      "new": "מקרה אורתודונטי חדש",
+      "appliance": "מכשיר",
+      "professional": "אורתודונט/ית",
+      "startDate": "תאריך התחלה",
+      "estimatedMonths": "חודשים משוערים",
+      "notes": "אבחנה / מטרות",
+      "create": "פתיחת מקרה",
+      "inMouthNow": "בפה כעת",
+      "upper": "עליונה",
+      "lower": "תחתונה",
+      "noWire": "לא נרשמה קשת",
+      "changeStatus": "שינוי סטטוס",
+      "statusNote": "סיבה (לא חובה)",
+      "save": "שמירה",
+      "none": "אין עדיין מקרה אורתודונטי"
+    },
+    "control": {
+      "new": "רישום ביקורת",
+      "wires": "קשתות (ללא שינוי כברירת מחדל)",
+      "procedures": "פרוצדורות",
+      "proceduresOther": "פרוצדורות אחרות",
+      "hygiene": "היגיינה",
+      "hygiene_good": "טובה",
+      "hygiene_fair": "סבירה",
+      "hygiene_poor": "ירודה",
+      "alignerNumber": "מספר קשתית",
+      "notes": "תצפיות / הוראות",
+      "nextControl": "הביקורת הבאה",
+      "weeks": "{n} שבועות",
+      "noNext": "ללא ביקורת הבאה",
+      "save": "שמירת הביקורת",
+      "history": "ביקורות",
+      "empty": "אין ביקורות עדיין",
+      "appointment": "תור",
+      "session": "מפגש מקושר",
+      "sessionHint": "לעיון בלבד - הגבייה מתבצעת בתשלומים."
+    },
+    "card": {
+      "title": "אורתודונטיה",
+      "noCase": "אין מקרה פעיל",
+      "view": "פתיחה"
+    },
+    "photos": {
+      "title": "תמונות ({n})",
+      "upload": "הוספת תמונה"
+    },
+    "procedures": {
+      "power_chain": "שרשרת כוח",
+      "elastics_class_2": "גומיות מחלקה II",
+      "elastics_class_3": "גומיות מחלקה III",
+      "niti_open_coil": "קפיץ פתוח NiTi",
+      "metal_ligature": "ליגטורה מתכתית",
+      "ligature_change": "החלפת ליגטורות",
+      "button_attachment": "כפתור / אטצ׳מנט",
+      "ipr": "IPR",
+      "bite_turbos": "מגביהי סגר",
+      "bracket_rebonding": "הדבקה מחדש של סמך",
+      "expander_activation": "הפעלת מרחיב",
+      "band_placement": "התקנת טבעת",
+      "bracket_removal": "הסרת סמכים",
+      "retainer_placement": "התקנת ריטיינר"
+    },
+    "errors": {
+      "saveFailed": "לא ניתן לשמור. נסו שוב.",
+      "loadFailed": "לא ניתן לטעון את הנתונים האורתודונטיים."
+    },
+    "plan": {
+      "title": "תוכנית טיפול",
+      "link": "קישור תוכנית",
+      "unlink": "ביטול קישור התוכנית",
+      "noLink": "אין תוכנית מקושרת (מטופלים שהועברו יכולים להיות במעקב גם בלעדיה)",
+      "completed": "{n} הושלמו",
+      "pending": "{n} ממתינים",
+      "generate": "יצירת תשלומים",
+      "collect": "גביית תשלום",
+      "confirmUnlink": "לבטל את קישור תוכנית הטיפול?",
+      "downPayment": "מקדמה",
+      "installmentN": "תשלום {n}",
+      "months": "חודשים",
+      "monthlyAmount": "סכום חודשי",
+      "pendingTotal": "סה״כ ממתין: {n}",
+      "closeSuggested": "המקרה הועבר למרפאה אחרת עם תוכנית מקושרת: כדאי לשקול לסגור את התוכנית."
+    },
+    "settings": {
+      "title": "קטלוגי צ׳יפים",
+      "wires": "קשתות (אחת בכל שורה)",
+      "procedures": "פרוצדורות (אחת בכל שורה)",
+      "save": "שמירת הקטלוגים"
+    }
+  }
+}

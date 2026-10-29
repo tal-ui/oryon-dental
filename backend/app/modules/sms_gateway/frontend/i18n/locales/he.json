@@ -1,0 +1,22 @@
+{
+  "sms_gateway": {
+    "settings": {
+      "title": "שער SMS",
+      "description": "ספק SMS יוצא עבור המרפאה",
+      "provider": "ספק",
+      "fromNumber": "מספר השולח",
+      "active": "מופעל",
+      "activeHelp": "רק ספק מופעל עם שורה שמורה יכול לשלוח.",
+      "placeholderNote": "הספק המובנה רק רושם הודעות ביומן השרת. דבר לא נשלח עד שמוגדר ספק אמיתי.",
+      "test": "בדיקה",
+      "testResult": "מוגדר: {configured}. היה נשלח: {wouldSend}."
+    },
+    "common": {
+      "save": "שמירה",
+      "saved": "ההגדרות נשמרו",
+      "saveError": "לא ניתן לשמור את ההגדרות",
+      "loadError": "לא ניתן לטעון את ההגדרות",
+      "retry": "ניסיון חוזר"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "staffTasks": {
+    "title": "משימות צוות",
+    "add": "משימה חדשה",
+    "taskTitle": "משימה",
+    "details": "פרטים",
+    "priority": "עדיפות",
+    "dueDate": "תאריך יעד",
+    "status": "סטטוס",
+    "assignee": "אחראי/ת",
+    "filterByStatus": "סינון לפי סטטוס",
+    "all": "הכול",
+    "delete": "מחיקה",
+    "deleteTitle": "מחיקת משימה",
+    "deleteMessage": "למחוק משימה זו? לא ניתן לבטל פעולה זו.",
+    "updateFailed": "לא ניתן לעדכן את המשימה.",
+    "saveFailed": "לא ניתן לשמור את המשימה.",
+    "deleteFailed": "לא ניתן למחוק את המשימה.",
+    "statuses": {
+      "open": "פתוחה",
+      "claimed": "נלקחה",
+      "done": "בוצעה",
+      "cancelled": "בוטלה"
+    },
+    "priorities": {
+      "low": "נמוכה",
+      "normal": "רגילה",
+      "high": "גבוהה"
+    }
+  },
+  "nav": {
+    "staffTasks": "משימות צוות"
+  }
+}

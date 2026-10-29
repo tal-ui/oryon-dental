@@ -1,0 +1,49 @@
+{
+  "prescriptions": {
+    "nav": {
+      "title": "מרשמים"
+    },
+    "title": "מרשמים",
+    "openAll": "הצגת הכול",
+    "emptyHint": "אין מרשמים עדיין.",
+    "items": "פריטים",
+    "newPrescription": "מרשם חדש",
+    "safetyTitle": "לבדוק לפני ההנפקה",
+    "edit": "עריכה",
+    "issue": "הנפקה",
+    "cancel": "ביטול",
+    "downloadPdf": "PDF",
+    "editorTitle": "טיוטת מרשם",
+    "medicationName": "תרופה",
+    "dosage": "מינון",
+    "unit": "יחידה",
+    "frequency": "תדירות",
+    "duration": "משך",
+    "instructions": "הוראות",
+    "removeLine": "הסרת שורה",
+    "notes": "הערות",
+    "templateName": "שם התבנית",
+    "saveTemplate": "שמירה כתבנית",
+    "save": "שמירה",
+    "noTemplates": "אין תבניות עדיין. שמרו אחת מתוך טיוטה.",
+    "rename": "שינוי שם",
+    "deleteTemplate": "מחיקת תבנית",
+    "addLine": "הוספת שורה",
+    "pickPatient": "יש לפתוח עם מטופל נבחר כדי לראות את המרשמים שלו.",
+    "settingsLabel": "תבניות מרשמים",
+    "settingsDescription": "שילובי תרופות מועדפים לטיוטות מרשם בלחיצה אחת.",
+    "status": {
+      "draft": "טיוטה",
+      "issued": "הונפק",
+      "cancelled": "בוטל"
+    },
+    "profileLabel": "זהות הרושם/ת",
+    "profileDescription": "רישיון מקצועי וחתימה למרשמים שלך.",
+    "licenseLabel": "מספר רישיון",
+    "issueConfirm": "להנפיק מרשם זה? לא ניתן לבטל פעולה זו.",
+    "cancelConfirm": "לבטל מרשם זה? לא ניתן לבטל פעולה זו.",
+    "noLicenseWarning": "המרשם מונפק ללא מספר רישיון ב‑PDF. ניתן להוסיף אותו בהגדרות.",
+    "emptyDraft": "יש להוסיף לפחות שורה אחת לפני השמירה.",
+    "route": "דרך מתן"
+  }
+}

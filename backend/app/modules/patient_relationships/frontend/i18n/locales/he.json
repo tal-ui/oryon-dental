@@ -1,0 +1,22 @@
+{
+  "patientRelationships": {
+    "title": "משפחה",
+    "emptyHint": "אין קשרי משפחה רשומים.",
+    "relationships": {
+      "title": "קשרי משפחה",
+      "searchPatient": "חיפוש מטופל לקישור…",
+      "addSuccess": "הקשר נוסף",
+      "addError": "לא ניתן להוסיף את הקשר",
+      "removeError": "לא ניתן להסיר את הקשר",
+      "types": {
+        "parent": "הורה",
+        "child": "ילד/ה",
+        "spouse": "בן/בת זוג",
+        "sibling": "אח/ות",
+        "guardian": "אפוטרופוס",
+        "ward": "חסוי/ה",
+        "other": "אחר"
+      }
+    }
+  }
+}

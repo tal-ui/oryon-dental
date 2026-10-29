@@ -1,0 +1,26 @@
+{
+  "whatsapp_webhook": {
+    "settings": {
+      "title": "וואטסאפ דרך webhook",
+      "description": "שליחת התראות וואטסאפ דרך hook של Zapier / Make / n8n — ללא צורך בחשבון ספק."
+    },
+    "connection": "חיבור",
+    "targetUrl": "כתובת ה‑hook",
+    "targetUrlHelp": "כתובת HTTPS שמקבלת כל התראה כ‑JSON חתום (Zapier, Make, n8n…).",
+    "active": "מופעל",
+    "delivering": "שולח",
+    "lastErrorBadge": "שגיאת מסירה",
+    "secret": "סוד חתימה",
+    "secretShownOnce": "העתיקו את הסוד עכשיו — הוא מוצג פעם אחת בלבד. השתמשו בו לאימות הכותרת X-DentalPin-Signature באוטומציה שלכם.",
+    "rotateSecret": "החלפת הסוד",
+    "copy": "העתקה",
+    "copied": "הועתק ללוח",
+    "saved": "ההגדרות נשמרו",
+    "saveError": "לא ניתן לשמור את ההגדרות",
+    "test": "בדיקת מסירה",
+    "testHelp": "שולח מטען בדיקה חתום ל‑hook שלכם כדי שתוכלו לחבר את האוטומציה.",
+    "sendTest": "שליחת בדיקה",
+    "testOk": "מטען הבדיקה נמסר",
+    "testFail": "בדיקת המסירה נכשלה"
+  }
+}

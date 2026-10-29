@@ -1,0 +1,50 @@
+{
+  "labOrders": {
+    "title": "הזמנות עבודה למעבדה",
+    "add": "הזמנת מעבדה חדשה",
+    "patient": "מטופל",
+    "lab": "מעבדה",
+    "loading": "טוען…",
+    "selectPatient": "בחירת מטופל",
+    "selectLab": "בחירת מעבדה",
+    "workType": "סוג העבודה",
+    "tooth": "שן / מספר אסמכתא",
+    "impressionType": "מטבע",
+    "antagonistInfo": "מידע על האנטגוניסט",
+    "shade": "גוון",
+    "sentDate": "תאריך שליחה",
+    "expectedDate": "תאריך צפוי",
+    "status": "סטטוס",
+    "notes": "הערות",
+    "save": "שליחת ההזמנה",
+    "cancel": "ביטול",
+    "noLabsHint": "יש ליצור תחילה איש קשר מסוג מעבדה באנשי הקשר.",
+    "workTypes": {
+      "crown": "כתר",
+      "bridge": "גשר",
+      "denture": "תותבת",
+      "implant": "שתל",
+      "veneer": "ציפוי",
+      "orthodontic": "אורתודונטי",
+      "repair": "תיקון",
+      "other": "אחר"
+    },
+    "impressionTypes": {
+      "alginate": "אלג׳ינט",
+      "pvs_silicone": "PVS / סיליקון",
+      "digital_scan": "סריקה דיגיטלית",
+      "other": "אחר"
+    },
+    "statuses": {
+      "sent": "נשלח",
+      "in_progress": "בעבודה",
+      "ready": "מוכן",
+      "received": "התקבל",
+      "cancelled": "בוטל"
+    }
+  },
+  "nav": {
+    "labOrdersForm": "הזמנת מעבדה חדשה",
+    "labOrdersStatus": "הזמנות מעבדה"
+  }
+}

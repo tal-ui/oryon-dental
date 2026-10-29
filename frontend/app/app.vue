@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { fr, es, en, pt, pt_br, de, hu, pl, it, ar } from '@nuxt/ui/locale'
+import { fr, es, en, pt, pt_br, de, hu, pl, it, ar, he } from '@nuxt/ui/locale'
 
 const { t, locale } = useI18n()
+const { appName } = useBranding()
 
 // @nuxt/ui does not ship Tamil or Telugu locales yet; fall back to English for
 // built-in UI labels while vue-i18n still serves the app's ta/te messages.
-const nuxtUILocales: Record<string, typeof en> = { en, fr, es, pt, 'pt-BR': pt_br, de, hu, pl, it, ar, 'ta': en, 'te': en, 'hi': en }
+const nuxtUILocales: Record<string, typeof en> = { en, fr, es, pt, 'pt-BR': pt_br, de, hu, pl, it, ar, he, 'ta': en, 'te': en, 'hi': en }
 const nuxtUILocale = computed(() => nuxtUILocales[locale.value] || en)
 
-// Direction comes from the Nuxt UI locale entry (ar has dir: 'rtl').
+// Direction comes from the Nuxt UI locale entry (ar and he have dir: 'rtl').
 const htmlDir = computed(() => nuxtUILocale.value.dir ?? 'ltr')
 
 useHead(() => ({
@@ -25,8 +26,8 @@ useHead(() => ({
 }))
 
 useSeoMeta({
-  title: 'DentalPin',
-  description: t('app.tagline')
+  title: () => appName.value,
+  description: () => t('app.tagline')
 })
 </script>
 

@@ -1,0 +1,88 @@
+{
+  "documents": {
+    "title": "מסמכים",
+    "subtitle": "ניהול מרשמים, אישורים רפואיים, הפניות ובקשות לצילומים",
+    "newDocument": "מסמך חדש",
+    "editDocument": "עריכת מסמך",
+    "filterType": "סינון לפי סוג",
+    "filterStatus": "סינון לפי סטטוס",
+    "empty": "אין מסמכים עדיין. צרו את המסמך הראשון כדי להתחיל.",
+    "patient": "מטופל",
+    "selectPatient": "בחירת מטופל",
+    "patientSearchEmpty": "לא נמצאו מטופלים התואמים לחיפוש",
+    "type": "סוג המסמך",
+    "selectType": "בחירת סוג",
+    "titleLabel": "כותרת",
+    "titlePlaceholder": "לדוגמה: מרשם לאמוקסיצילין",
+    "types": {
+      "all": "כל הסוגים",
+      "prescription": "מרשם",
+      "medical_certificate": "אישור רפואי",
+      "referral": "מכתב הפניה",
+      "radiology_request": "בקשה לצילום"
+    },
+    "status": {
+      "all": "כל הסטטוסים",
+      "draft": "טיוטה",
+      "generated": "הופק",
+      "archived": "בארכיון"
+    },
+    "actions": {
+      "generate": "הפקת PDF",
+      "edit": "עריכה",
+      "archive": "העברה לארכיון",
+      "download": "הורדת PDF"
+    },
+    "messages": {
+      "created": "המסמך נוצר",
+      "updated": "המסמך עודכן",
+      "generated": "המסמך הופק בהצלחה",
+      "archived": "המסמך הועבר לארכיון",
+      "downloaded": "ה‑PDF הורד",
+      "downloadFailed": "הורדת ה‑PDF נכשלה"
+    },
+    "content": {
+      "diagnosis": "אבחנה",
+      "diagnosisPlaceholder": "הזנת אבחנה...",
+      "medications": "תרופות",
+      "addMedication": "הוספת תרופה",
+      "medName": "שם התרופה",
+      "medDose": "מינון",
+      "medFrequency": "תדירות",
+      "medDuration": "משך",
+      "notes": "הערות",
+      "notesPlaceholder": "הערות נוספות...",
+      "description": "תיאור",
+      "recommendations": "המלצות",
+      "referredTo": "הפניה אל",
+      "specialty": "התמחות",
+      "reason": "סיבת ההפניה",
+      "clinicalSummary": "סיכום קליני",
+      "examType": "סוג הבדיקה",
+      "region": "אזור",
+      "clinicalQuestion": "שאלה קלינית"
+    },
+    "settings": {
+      "cards": {
+        "letterhead": {
+          "title": "נייר מכתבים למסמכים",
+          "description": "מיתוג המרפאה במרשמים, אישורים, הפניות ובקשות לצילומים"
+        }
+      },
+      "letterhead": {
+        "help": "שדות אלה גוברים על פרופיל המרפאה בקובצי ה‑PDF שמופקים. השאירו שדה ריק כדי להשתמש בשם, בכתובת ובמספר העוסק השמורים של המרפאה.",
+        "name": "שם בכותרת",
+        "nameHint": "ברירת המחדל היא שם המרפאה",
+        "address": "כתובת בכותרת",
+        "phone": "טלפון בכותרת",
+        "email": "אימייל בכותרת",
+        "registrationNumber": "מספר רישיון",
+        "logo": "לוגו",
+        "logoHint": "מוצג בפינה העליונה של כל PDF. מומלץ: PNG ריבועי שקוף עד 512&times;512 פיקסלים.",
+        "chooseLogo": "בחירת תמונה",
+        "save": "שמירת נייר המכתבים",
+        "saved": "נייר המכתבים נשמר"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "medicalReference": {
+    "settingsLabel": "רשימות ייחוס רפואיות",
+    "settingsDescription": "ניהול רשימות האלרגיות, התרופות והמחלות המשמשות בתיקי המטופלים.",
+    "title": "רשימות ייחוס רפואיות",
+    "description": "רשימות אלה מזינות את תפריטי החיפוש בהיסטוריה הרפואית של המטופל. השבתת פריט מסירה אותו מחיפושים עתידיים מבלי להשפיע על תיקי מטופלים קיימים.",
+    "tabs": {
+      "allergies": "אלרגיות",
+      "medications": "תרופות",
+      "diseases": "מחלות",
+      "surgeries": "ניתוחים",
+      "interactions": "אינטראקציות",
+      "contraindications": "התוויות נגד"
+    },
+    "name": "שם",
+    "status": "סטטוס",
+    "active": "פעיל",
+    "inactive": "לא פעיל",
+    "showInactive": "הצגת לא פעילים",
+    "newItemPlaceholder": "שם פריט חדש…",
+    "addSuccess": "נוסף",
+    "addError": "לא ניתן להוסיף את הפריט",
+    "updateError": "לא ניתן לעדכן את הפריט",
+    "deactivate": "השבתה",
+    "deactivateError": "לא ניתן להשבית את הפריט",
+    "itemCount": "{count} פריטים",
+    "medicationA": "תרופה א׳",
+    "medicationB": "תרופה ב׳",
+    "riskNote": "סיכון",
+    "riskNotePlaceholder": "תיאור הסיכון…",
+    "flags": {
+      "interaction": "אינטראקציה בין {a} ל‑{b}",
+      "contraindication": "{a}: התוויית נגד עם {b}"
+    }
+  }
+}

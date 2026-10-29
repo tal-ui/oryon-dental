@@ -1,0 +1,88 @@
+{
+  "schedules": {
+    "nav": {
+      "clinicHours": "שעות פעילות",
+      "professionalSchedules": "לוחות זמנים של מטפלים"
+    },
+    "settingsCards": {
+      "clinicHoursTitle": "שעות פעילות",
+      "clinicHoursDescription": "הגדרת שעות הפתיחה השבועיות של המרפאה ותאריכים מיוחדים (חגים, שעות מקוצרות).",
+      "professionalHoursTitle": "לוחות זמנים של מטפלים",
+      "professionalHoursDescription": "הגדרת לוח זמנים אישי לכל מטפל וניהול חופשות ותקופות אי‑זמינות אחרות."
+    },
+    "clinicHours": {
+      "title": "שעות פעילות",
+      "subtitle": "הגדרה מתי המרפאה פתוחה בכל יום בשבוע.",
+      "weeklyTemplate": "תבנית שבועית",
+      "overrides": "תאריכים מיוחדים",
+      "addOverride": "הוספת תאריך מיוחד",
+      "editOverride": "עריכת תאריך מיוחד",
+      "save": "שמירת שינויים",
+      "saved": "לוח הזמנים עודכן",
+      "savedError": "שמירת לוח הזמנים נכשלה"
+    },
+    "professionalHours": {
+      "title": "לוחות זמנים של מטפלים",
+      "selectProfessional": "בחירת מטפל",
+      "weeklyTemplate": "לוח זמנים שבועי",
+      "overrides": "היעדרויות ושעות מיוחדות",
+      "addOverride": "הוספת היעדרות",
+      "editOverride": "עריכת היעדרות",
+      "save": "שמירת שינויים",
+      "saved": "לוח הזמנים עודכן"
+    },
+    "weekday": {
+      "0": "יום שני",
+      "1": "יום שלישי",
+      "2": "יום רביעי",
+      "3": "יום חמישי",
+      "4": "יום שישי",
+      "5": "שבת",
+      "6": "יום ראשון",
+      "closed": "סגור",
+      "addShift": "הוספת משמרת",
+      "removeShift": "הסרת משמרת",
+      "start": "התחלה",
+      "end": "סיום"
+    },
+    "overrides": {
+      "startDate": "תאריך התחלה",
+      "endDate": "תאריך סיום",
+      "kind": "סוג",
+      "reason": "סיבה",
+      "reasonPlaceholder": "לדוגמה: חג, כנס...",
+      "closed": "סגור",
+      "customHours": "שעות מותאמות",
+      "unavailable": "לא זמין",
+      "noOverrides": "אין תאריכים מיוחדים מתוכננים",
+      "delete": "מחיקה",
+      "confirmDelete": "למחוק תקופה זו?",
+      "add": "הוספה",
+      "save": "שמירה",
+      "cancel": "ביטול"
+    },
+    "analytics": {
+      "occupancyTitle": "תפוסה לפי חדר",
+      "utilizationTitle": "ניצולת לפי מטפל",
+      "peakHoursTitle": "שעות שיא",
+      "bookedMinutes": "דקות מוזמנות",
+      "availableMinutes": "דקות זמינות",
+      "rate": "תפוסה",
+      "noData": "אין נתונים בטווח שנבחר"
+    },
+    "availability": {
+      "clinicClosed": "המרפאה סגורה",
+      "professionalOff": "המטפל אינו זמין",
+      "outsideHours": "מחוץ לשעות שהוגדרו",
+      "confirmOutside": "מועד זה מחוץ לשעות העבודה. ליצור את התור בכל זאת?",
+      "confirm": "יצירה בכל זאת",
+      "cancel": "ביטול"
+    },
+    "onboarding": {
+      "hoursLabel": "שעות פעילות",
+      "hoursDescription": "היומן פתוח כרגע 24/7. הגדירו את שעות הפתיחה האמיתיות שלכם.",
+      "presetSplit": "ימי עבודה 9–14 ו‑16–20",
+      "presetContinuous": "ימי עבודה 9–18"
+    }
+  }
+}

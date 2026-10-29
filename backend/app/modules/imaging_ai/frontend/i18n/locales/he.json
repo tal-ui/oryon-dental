@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "imagingAi": "דימות AI"
+  },
+  "imagingAi": {
+    "list": {
+      "title": "משימות סגמנטציה ב‑AI",
+      "empty": "אין עדיין משימות AI למטופל זה.",
+      "noPatient": "לא נבחר מטופל",
+      "noPatientHint": "פתחו עמוד זה עם ?patient_id=... למשל מתיק המטופל.",
+      "queueHint": "הוסיפו הרצה לתור למטה; התוצאות יופיעו כאן ברגע שהמתזמן יאסוף אותה.",
+      "visualizationNote": "פלט ה‑AI הוא עזר תצוגה בלבד — לעולם לא אבחנה."
+    },
+    "status": {
+      "queued": "בתור",
+      "running": "רץ",
+      "done": "הסתיים",
+      "failed": "נכשל",
+      "cancelled": "בוטל",
+      "proposed": "מוצע"
+    },
+    "queue": {
+      "patient": "מטופל",
+      "searchPatients": "חיפוש מטופלים לפי שם...",
+      "title": "הוספת הרצת AI לתור",
+      "noDicom": "אין עדיין מסמכי DICOM למטופל זה.",
+      "backend": "מנוע",
+      "submit": "הוספה לתור",
+      "seriesHint": "הקובץ המסומן הראשון הוא המסמך הראשי; סמנו את שאר הסדרה להרצות נפחיות (nnU-Net)."
+    },
+    "backends": {
+      "pano": "ממצאים בפנורמי (פריים יחיד)",
+      "nnunet": "נפח nnU-Net (סדרת DICOM)"
+    },
+    "review": {
+      "pending_review": "טיוטה - ממתין לסקירה",
+      "confirmed": "נסקר",
+      "not_applicable": "לא רלוונטי"
+    },
+    "job": {
+      "artifacts": "תוצרי טיוטה",
+      "cancel": "ביטול",
+      "authorize": "אישור ההרצה",
+      "markReviewed": "סימון כנסקר"
+    }
+  }
+}

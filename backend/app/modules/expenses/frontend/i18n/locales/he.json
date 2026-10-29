@@ -1,0 +1,24 @@
+{
+  "expenses": {
+    "title": "הוצאות",
+    "add": "הוספת הוצאה",
+    "date": "תאריך",
+    "category": "קטגוריה",
+    "amount": "סכום",
+    "description": "תיאור",
+    "filterByCategory": "סינון לפי קטגוריה",
+    "delete": "מחיקה",
+    "deleteTitle": "מחיקת הוצאה",
+    "deleteMessage": "למחוק הוצאה זו? לא ניתן לבטל פעולה זו.",
+    "categories": {
+      "rent": "שכירות",
+      "utilities": "חשבונות (חשמל, מים…)",
+      "salaries": "משכורות",
+      "supplies": "חומרים מתכלים",
+      "equipment": "ציוד",
+      "insurance": "ביטוח",
+      "maintenance": "תחזוקה",
+      "other": "אחר"
+    }
+  }
+}

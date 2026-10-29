@@ -1,0 +1,3195 @@
+{
+  "app": {
+    "name": "DentalPin",
+    "tagline": "ניהול מרפאת שיניים"
+  },
+  "demo": {
+    "bannerMessage": "הדגמה ציבורית — אין להזין נתוני מטופלים אמיתיים. בסיס הנתונים מאופס מעת לעת.",
+    "bannerDismiss": "סגירה",
+    "credentialsTitle": "פרטי כניסה להדגמה",
+    "credentialsNote": "להערכה בלבד — מוצג כי זוהי סביבת הדגמה ציבורית.",
+    "copyEmail": "העתקת אימייל",
+    "copyPassword": "העתקת סיסמה",
+    "copied": "הועתק ללוח"
+  },
+  "nav": {
+    "dashboard": "ראשי",
+    "journal": "יומן פעילות",
+    "staffTasks": "משימות צוות",
+    "patients": "מטופלים",
+    "appointments": "יומן",
+    "recalls": "ריקולים",
+    "inventory": "מלאי",
+    "treatmentConsumables": "מתכלים לטיפולים",
+    "expenses": "הוצאות",
+    "labOrdersForm": "הזמנת מעבדה חדשה",
+    "labOrdersStatus": "הזמנות מעבדה",
+    "treatmentPlans": "תוכניות טיפול",
+    "budgets": "הצעות מחיר",
+    "invoices": "חשבוניות",
+    "reports": "דוחות",
+    "settings": "הגדרות",
+    "defaultClinicName": "מרפאה",
+    "catalog": "קטלוג",
+    "contacts": "אנשי קשר",
+    "menu": "תפריט",
+    "openMenu": "פתיחת תפריט",
+    "close": "סגירה",
+    "sections": {
+      "clinical": "קליני",
+      "lab": "מעבדה",
+      "financials": "כספים",
+      "inventory": "מלאי",
+      "practice": "ניהול המרפאה"
+    },
+    "toggleSidebar": "הצגה/הסתרה של סרגל הצד",
+    "documents": "מסמכים"
+  },
+  "auth": {
+    "login": "כניסה",
+    "logout": "יציאה",
+    "email": "אימייל",
+    "password": "סיסמה",
+    "loginButton": "כניסה למערכת",
+    "loginSuccess": "הכניסה בוצעה בהצלחה",
+    "invalidCredentials": "אימייל או סיסמה שגויים",
+    "emailRequired": "יש להזין אימייל",
+    "passwordRequired": "יש להזין סיסמה",
+    "emailInvalid": "כתובת אימייל לא תקינה",
+    "accountInactive": "החשבון שלך אינו פעיל. יש לפנות למנהל המערכת",
+    "tooManyAttempts": "יותר מדי ניסיונות. נסו שוב בעוד כמה דקות",
+    "sessionExpired": "פג תוקף ההתחברות",
+    "networkError": "לא ניתן להתחבר לשרת",
+    "serverError": "השרת אינו זמין. נסו שוב בעוד כמה דקות",
+    "unknownError": "שגיאה לא צפויה. נסו שוב"
+  },
+  "setup": {
+    "title": "הגדרה ראשונית",
+    "subtitle": "יצירת החשבון והמרפאה שלך. תוך שתי דקות אפשר להתחיל לעבוד.",
+    "stepAccount": "חשבון מנהל",
+    "stepClinic": "פרטי המרפאה",
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "email": "אימייל",
+    "password": "סיסמה",
+    "passwordConfirm": "אימות סיסמה",
+    "passwordHint": "לפחות 8 תווים, עם אותיות ומספרים",
+    "clinicName": "שם המרפאה",
+    "taxId": "מספר עוסק / ח״פ",
+    "next": "הבא",
+    "back": "חזרה",
+    "submit": "יצירת המרפאה שלי",
+    "success": "הכול מוכן! ברוכים הבאים ל‑DentalPin",
+    "firstNameRequired": "יש להזין שם פרטי",
+    "lastNameRequired": "יש להזין שם משפחה",
+    "emailRequired": "יש להזין אימייל",
+    "emailInvalid": "האימייל אינו תקין",
+    "passwordRequired": "יש להזין סיסמה",
+    "passwordTooShort": "הסיסמה חייבת להכיל לפחות 12 תווים",
+    "passwordWeak": "הסיסמה חייבת לכלול אותיות ומספרים",
+    "passwordMismatch": "הסיסמאות אינן תואמות",
+    "clinicNameRequired": "יש להזין את שם המרפאה",
+    "taxIdRequired": "יש להזין מספר עוסק / ח״פ",
+    "alreadyInitialized": "המערכת כבר הוגדרה. יש להתחבר.",
+    "error": "לא ניתן היה להשלים את ההגדרה. נסו שוב",
+    "stepOf": "שלב {current} מתוך {total}",
+    "country": "מדינה",
+    "countryHelp": "קובע עבורך מסים, מטבע ואזור זמן",
+    "countryRequired": "יש לבחור מדינה",
+    "taxIdGeneric": "מספר עוסק / ח״פ",
+    "taxIdLooksInvalid": "המספר לא נראה כמספר זיהוי תקין. כדאי לבדוק אותו לפני הפקת חשבוניות.",
+    "taxIdFormat": "פורמט לא תקין (לדוגמה: {example})",
+    "timezoneRequired": "יש לבחור אזור זמן",
+    "currencyRequired": "יש לבחור מטבע",
+    "derivedSettings": "אזור זמן ומטבע",
+    "willSeed": "ניצור עבורך את קטלוג הטיפולים, סוגי המע״מ, סדרת חשבוניות, חדר טיפולים אחד ושעות פעילות לשבוע העבודה. הכול ניתן לשינוי מאוחר יותר.",
+    "willSuggestVerifactu": "לאחר מכן נציע להפעיל את VeriFactu.",
+    "invalidData": "יש לבדוק את הנתונים: אחד השדות אינו תקין.",
+    "attendPatientsMyself": "אני מטפל/ת במטופלים בעצמי",
+    "attendPatientsMyselfHelp": "מסמן אותך כמטפל/ת שניתן לקבוע אליו/ה תורים. ניתן לשנות זאת מאוחר יותר בהגדרות הצוות.",
+    "addressTitle": "כתובת המרפאה",
+    "addressOptional": "לא חובה"
+  },
+  "onboarding": {
+    "title": "צעדים ראשונים",
+    "progress": "{done} מתוך {total} שלבים הושלמו",
+    "configure": "הגדרה",
+    "skip": "דילוג",
+    "unskip": "ביטול דילוג",
+    "dismiss": "הסתרה",
+    "guidedMode": "מצב מודרך",
+    "optional": "לא חובה ({count})",
+    "stepOf": "שלב {current} מתוך {total}",
+    "next": "הבא",
+    "finish": "סיום",
+    "exit": "יציאה",
+    "completedTitle": "המרפאה שלך מוכנה!",
+    "completedDescription": "ההגדרה הושלמה. אפשר לעבוד כרגיל.",
+    "guidedDoneTitle": "הסיור הסתיים",
+    "guidedDoneDescription": "לא נותרו שלבים ממתינים.",
+    "items": {
+      "team": {
+        "label": "הצוות שלך",
+        "description": "הוסיפו את המטפלים שמקבלים מטופלים, או סמנו את עצמכם כמטפל/ת אם אתם עובדים לבד."
+      },
+      "verifactu": {
+        "label": "הפעלת VeriFactu",
+        "description": "נדרש בספרד להפקת חשבוניות תקפות מול רשות המסים (AEAT)."
+      }
+    }
+  },
+  "actions": {
+    "edit": "עריכה",
+    "change": "שינוי",
+    "cancel": "ביטול",
+    "save": "שמירה",
+    "create": "יצירה",
+    "delete": "מחיקה",
+    "close": "סגירה",
+    "remove": "הסרה"
+  },
+  "attachments": {
+    "linkError": "שגיאה בקישור הקובץ המצורף"
+  },
+  "patients": {
+    "title": "מטופלים",
+    "create": "מטופל חדש",
+    "edit": "עריכת מטופל",
+    "search": "חיפוש מטופל...",
+    "searchPlaceholder": "שם או טלפון",
+    "noResults": "לא נמצאו מטופלים",
+    "empty": "אין מטופלים רשומים",
+    "emptyAction": "יצירת המטופל הראשון",
+    "name": "שם",
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "phone": "טלפון",
+    "email": "אימייל",
+    "dateOfBirth": "תאריך לידה",
+    "notes": "הערות",
+    "created": "המטופל נוצר",
+    "updated": "המטופל עודכן",
+    "archived": "המטופל הועבר לארכיון",
+    "notFound": "המטופל לא נמצא",
+    "archiveConfirm": "להעביר את המטופל {name} לארכיון?",
+    "archiveDescription": "פעולה זו תסתיר את המטופל מהחיפושים. תורים קיימים לא יימחקו.",
+    "cancel": "ביטול",
+    "archive": "העברה לארכיון",
+    "dangerZone": {
+      "title": "אזור מסוכן",
+      "archiveHelp": "העברת המטופל לארכיון מסתירה אותו מהחיפושים. התורים וההיסטוריה נשמרים."
+    },
+    "billingSection": "פרטי חיוב",
+    "billingSectionHint": "נתונים אלה ישמשו אוטומטית בעת יצירת חשבוניות למטופל זה.",
+    "editingBillingForInvoice": "עריכת פרטי החיוב. השינויים ישתקפו בחשבונית.",
+    "returnToInvoice": "חזרה לחשבונית",
+    "billingName": "שם לחיוב",
+    "billingNamePlaceholder": "שם או חברה לחשבוניות",
+    "billingTaxId": "ת״ז / ח״פ",
+    "billingEmail": "אימייל לחיוב",
+    "billingAddress": "כתובת לחיוב",
+    "billingComplete": "מלא",
+    "billingIncomplete": "חסר",
+    "demographics": "פרטים דמוגרפיים",
+    "nationalId": "מסמך זיהוי",
+    "nationalIdType": "סוג מסמך",
+    "passport": "דרכון",
+    "profession": "מקצוע",
+    "workplace": "מקום עבודה",
+    "years": "שנים",
+    "status": {
+      "active": "פעיל",
+      "archived": "בארכיון"
+    },
+    "filters": {
+      "status": "סטטוס",
+      "city": "עיר",
+      "withDebt": "עם חוב",
+      "doNotContact": "לא ליצור קשר",
+      "doNotContactOnly": "רק מסומנים ״לא ליצור קשר״",
+      "doNotContactOnlyContactable": "רק ניתנים ליצירת קשר"
+    },
+    "columns": {
+      "city": "עיר",
+      "contact": "פרטי קשר",
+      "debt": "חוב"
+    },
+    "sort": {
+      "lastVisit": "ביקור אחרון",
+      "lastName": "שם משפחה",
+      "firstName": "שם פרטי",
+      "createdAt": "תאריך הצטרפות",
+      "updatedAt": "נערכו לאחרונה"
+    },
+    "doNotContact": {
+      "label": "לא ליצור קשר",
+      "hint": "המטופל יוחרג מרשימת השיחות ומפניות אוטומטיות",
+      "badge": "לא ליצור קשר"
+    },
+    "gender": {
+      "label": "מגדר",
+      "select": "בחירת מגדר",
+      "male": "זכר",
+      "female": "נקבה",
+      "other": "אחר",
+      "preferNotSay": "מעדיפ/ה לא לציין"
+    },
+    "emergencyContact": {
+      "title": "איש קשר לשעת חירום",
+      "hasContact": "קיים איש קשר לשעת חירום",
+      "noContact": "לא רשום איש קשר לשעת חירום",
+      "name": "שם מלא",
+      "namePlaceholder": "שם איש הקשר",
+      "relationship": "קרבה",
+      "relationshipPlaceholder": "בחירת קרבה",
+      "phone": "טלפון",
+      "phonePlaceholder": "טלפון איש הקשר",
+      "email": "אימייל",
+      "emailPlaceholder": "אימייל איש הקשר",
+      "isLegalGuardian": "אפוטרופוס חוקי",
+      "remove": "הסרת איש קשר",
+      "relationships": {
+        "spouse": "בן/בת זוג",
+        "parent": "הורה",
+        "child": "ילד/ה",
+        "sibling": "אח/ות",
+        "friend": "חבר/ה",
+        "other": "אחר"
+      }
+    },
+    "medicalHistory": {
+      "title": "היסטוריה רפואית",
+      "save": "שמירת ההיסטוריה",
+      "fetchError": "שגיאה בטעינת ההיסטוריה הרפואית",
+      "saveSuccess": "ההיסטוריה הרפואית נשמרה",
+      "saveError": "שגיאה בשמירת ההיסטוריה הרפואית",
+      "allergies": "אלרגיות",
+      "allergiesCount": "אלרגיה {n} | {n} אלרגיות",
+      "onAnticoagulants": "בטיפול נוגד קרישה",
+      "allergyName": "שם האלרגיה",
+      "type": "סוג",
+      "allergyTypes": {
+        "drug": "תרופה",
+        "food": "מזון",
+        "material": "חומר",
+        "environmental": "סביבתי"
+      },
+      "severity": {
+        "low": "נמוכה",
+        "medium": "בינונית",
+        "high": "גבוהה",
+        "critical": "קריטית"
+      },
+      "medications": "תרופות",
+      "medicationName": "שם התרופה",
+      "dosage": "מינון",
+      "frequency": "תדירות",
+      "systemicDiseases": "מחלות סיסטמיות",
+      "diseaseName": "שם המחלה",
+      "diseaseTypes": {
+        "cardiovascular": "קרדיווסקולרי",
+        "respiratory": "נשימתי",
+        "endocrine": "אנדוקריני",
+        "neurological": "נוירולוגי",
+        "autoimmune": "אוטואימוני",
+        "other": "אחר"
+      },
+      "critical": "קריטי",
+      "controlled": "מאוזן",
+      "notControlled": "לא מאוזן",
+      "specialConditions": "מצבים מיוחדים",
+      "pregnant": "בהיריון",
+      "pregnancyWeek": "שבוע היריון",
+      "lactating": "מניקה",
+      "anticoagulants": "נוגדי קרישה",
+      "anticoagulantMedication": "תרופה נוגדת קרישה",
+      "inrValue": "ערך INR",
+      "anesthesiaReaction": "תגובה להרדמה",
+      "anesthesiaReactionDetails": "פרטי התגובה",
+      "bruxism": "ברוקסיזם (חריקת שיניים)",
+      "lifestyle": "אורח חיים",
+      "smoker": "מעשן/ת",
+      "smokingFrequency": "סיגריות ביום",
+      "alcoholConsumption": "צריכת אלכוהול",
+      "alcohol": {
+        "none": "ללא",
+        "occasional": "מזדמנת",
+        "moderate": "מתונה",
+        "heavy": "מרובה"
+      },
+      "surgicalHistory": "היסטוריה ניתוחית",
+      "procedure": "פרוצדורה"
+    },
+    "timeline": {
+      "empty": "עדיין לא נרשמה פעילות",
+      "emptyFiltered": "אין אירועים בקטגוריה זו",
+      "clearFilter": "הצגת כל הפעילות",
+      "endOfTimeline": "סוף ציר הזמן",
+      "totalEntries": "רשומה {count} | {count} רשומות",
+      "groups": {
+        "today": "היום",
+        "yesterday": "אתמול",
+        "thisWeek": "השבוע",
+        "thisMonth": "החודש",
+        "earlier": "מוקדם יותר"
+      },
+      "author": "על ידי {name}",
+      "meta": {
+        "cabinet": "חדר {name}",
+        "teeth": "שיניים: {list}",
+        "total": "סה״כ: {amount}",
+        "number": "מס׳ {value}",
+        "via": "דרך {channel}",
+        "template": "תבנית: {key}",
+        "docType": "סוג: {type}"
+      },
+      "categories": {
+        "all": "הכול",
+        "visit": "ביקורים",
+        "treatment": "טיפולים",
+        "financial": "כספים",
+        "communication": "תקשורת",
+        "medical": "היסטוריה רפואית",
+        "document": "מסמכים",
+        "note": "רשומות קליניות"
+      }
+    },
+    "alerts": {
+      "title": "התראה {count} | {count} התראות",
+      "label": "התראות קליניות"
+    },
+    "editDemographics": "עריכת פרטים דמוגרפיים",
+    "editEmergencyContact": "עריכת איש קשר לשעת חירום",
+    "editBilling": "עריכת פרטי חיוב",
+    "editMedicalHistory": "עריכת ההיסטוריה הרפואית",
+    "medicalSnapshot": {
+      "title": "מידע רפואי",
+      "allergiesLabel": "אלרגיות",
+      "allergiesEmpty": "אין אלרגיות ידועות",
+      "allergiesNotReviewed": "ההיסטוריה הרפואית לא תועדה",
+      "completeHistory": "השלמת ההיסטוריה",
+      "reviewedOn": "נבדק בתאריך {date}",
+      "conditions": {
+        "pregnantWeek": "בהיריון · שבוע {week}",
+        "anticoagulantInr": "נוגד קרישה · INR {inr}",
+        "smokerFreq": "מעשן/ת · {freq} ביום"
+      }
+    },
+    "personalInfo": {
+      "title": "פרטים אישיים",
+      "ageLabel": "{age} שנים",
+      "birthWithAge": "{date} ({age} שנים)"
+    },
+    "contactInfo": {
+      "title": "פרטי קשר",
+      "copyPhone": "העתקת טלפון",
+      "copyEmail": "העתקת אימייל",
+      "address": "כתובת",
+      "addEmergency": "הוספת איש קשר לשעת חירום",
+      "addGuardian": "הוספת אפוטרופוס",
+      "guardianRequired": "נדרש אפוטרופוס חוקי"
+    },
+    "administrative": {
+      "title": "מנהלה"
+    },
+    "header": {
+      "ariaLabel": "כותרת המטופל"
+    },
+    "quickActions": {
+      "ariaLabel": "פעולות מהירות למטופל"
+    },
+    "onboarding": {
+      "label": "יצירת המטופל הראשון",
+      "description": "הדרך המהירה ביותר לראות את התיק, היומן והצעות המחיר בפעולה."
+    },
+    "editLegalGuardian": "עריכת אפוטרופוס",
+    "legalGuardian": {
+      "title": "אפוטרופוס חוקי",
+      "hasGuardian": "רשום אפוטרופוס חוקי",
+      "noGuardian": "לא רשום אפוטרופוס חוקי",
+      "name": "שם מלא",
+      "namePlaceholder": "שם האפוטרופוס",
+      "dni": "מספר זהות",
+      "dniPlaceholder": "מסמך זיהוי",
+      "relationship": "קרבה",
+      "relationshipPlaceholder": "בחירת קרבה",
+      "relationships": {
+        "parent": "הורה",
+        "legal_tutor": "אפוטרופוס ממונה",
+        "grandparent": "סב/סבתא",
+        "other": "אחר"
+      },
+      "phone": "טלפון",
+      "phonePlaceholder": "טלפון האפוטרופוס",
+      "email": "אימייל",
+      "emailPlaceholder": "אימייל האפוטרופוס",
+      "address": "כתובת",
+      "addressPlaceholder": "כתובת האפוטרופוס",
+      "notes": "הערות",
+      "notesPlaceholder": "הערות נוספות...",
+      "remove": "הסרת אפוטרופוס"
+    }
+  },
+  "patientDetail": {
+    "tabs": {
+      "summary": "סיכום",
+      "info": "פרטים",
+      "clinical": "קליני",
+      "odontogram": "תרשים שיניים",
+      "administration": "מנהלה",
+      "history": "היסטוריה",
+      "timeline": "פעילות",
+      "appointments": "תורים",
+      "budgets": "הצעות מחיר",
+      "billing": "חיוב",
+      "payments": "תשלומים",
+      "documents": "מסמכים",
+      "gallery": "גלריה"
+    },
+    "historyPlaceholder": "רשומות קליניות יהיו זמינות בגרסה עתידית",
+    "noAppointments": "למטופל זה אין תורים",
+    "scheduleAppointment": "קביעת תור",
+    "noBudgets": "למטופל זה אין הצעות מחיר",
+    "createBudget": "יצירת הצעת מחיר",
+    "viewAllBudgets": "כל הצעות המחיר",
+    "activePlan": "תוכנית פעילה",
+    "noActivePlan": "אין תוכנית פעילה",
+    "viewPlan": "פתיחת התוכנית",
+    "createPlan": "יצירת תוכנית",
+    "nextAppointment": "התור הבא",
+    "noUpcomingAppointments": "אין תורים קרובים",
+    "openAppointment": "פתיחת התור",
+    "lastVisit": "ביקור אחרון",
+    "neverVisited": "טרם ביקר/ה",
+    "reschedule": "שינוי מועד",
+    "balance": "יתרה",
+    "collect": "גבייה",
+    "viewLedger": "פתיחת הכרטסת",
+    "noPayments": "אין תנועות",
+    "diagnoses": "אבחנות",
+    "pending": "לא טופל",
+    "noDiagnoses": "אין ממצאים ממתינים",
+    "openOdontogram": "פתיחת תרשים השיניים",
+    "medicalHistory": "היסטוריה רפואית",
+    "completeMedicalHistory": "אין היסטוריה רפואית. יש להשלים אותה כדי לתעד אלרגיות, מצבים רפואיים ותרופות.",
+    "editMedicalHistory": "עריכת ההיסטוריה הרפואית",
+    "quickActions": "פעולות מהירות",
+    "edit": "עריכה",
+    "editPatient": "עריכת מטופל",
+    "noSummaryCards": "אין מודולים רשומים בסיכום.",
+    "actions": {
+      "label": "פעולות",
+      "newAppointment": "תור",
+      "collect": "גבייה",
+      "newNote": "רשומה",
+      "newBudget": "הצעת מחיר",
+      "uploadDocument": "מסמך"
+    }
+  },
+  "patientBilling": {
+    "totalBudgeted": "סה״כ בהצעות מחיר",
+    "workInProgress": "עבודה בתהליך",
+    "workCompleted": "עבודה שהושלמה",
+    "totalInvoiced": "סה״כ חויב",
+    "totalPaid": "סה״כ שולם",
+    "balancePending": "יתרה לתשלום",
+    "invoices": "חשבוניות",
+    "createInvoice": "יצירת חשבונית",
+    "noInvoices": "למטופל זה אין חשבוניות",
+    "pending": "ממתין",
+    "totalDiscount": "בהנחות"
+  },
+  "odontogram": {
+    "title": "תרשים שיניים",
+    "tooth": "שן",
+    "globals": {
+      "category": "כל הפה",
+      "applied": "{name} נוסף לתוכנית",
+      "archPickerTitle": "לאיזו קשת עבור \"{name}\"?",
+      "upperArch": "קשת עליונה",
+      "lowerArch": "קשת תחתונה",
+      "searchPlaceholder": "חיפוש טיפול…"
+    },
+    "selectCondition": "בחירת מצב",
+    "readOnly": "לצפייה בלבד",
+    "legend": "מקרא",
+    "statusLegend": "סטטוס טיפול",
+    "toothPosition": "מיקום השן",
+    "displaced": "מוסטת",
+    "rotated": "מסובבת",
+    "dentition": {
+      "permanent": "קבועות",
+      "deciduous": "חלב",
+      "toggle": "החלפת סוג משנן"
+    },
+    "quadrants": {
+      "upper": "קשת עליונה",
+      "lower": "קשת תחתונה",
+      "upperRight": "עליון ימין",
+      "upperLeft": "עליון שמאל",
+      "lowerRight": "תחתון ימין",
+      "lowerLeft": "תחתון שמאל"
+    },
+    "surfaces": {
+      "M": "מזיאלי",
+      "D": "דיסטלי",
+      "O": "אוקלוזלי",
+      "V": "וסטיבולרי",
+      "L": "לינגואלי"
+    },
+    "conditions": {
+      "healthy": "בריאה",
+      "caries": "עששת",
+      "filling": "סתימה",
+      "crown": "כתר",
+      "missing": "חסרה",
+      "root_canal": "טיפול שורש",
+      "implant": "שתל",
+      "bridge_pontic": "פונטיק בגשר",
+      "bridge_abutment": "עמוד גשר",
+      "extraction_indicated": "לעקירה",
+      "sealant": "איטום חריצים",
+      "fracture": "שבר"
+    },
+    "history": {
+      "title": "היסטוריית שינויים",
+      "noChanges": "לא נרשמו שינויים",
+      "changedBy": "שונה על ידי",
+      "changeTypes": {
+        "created": "נוצר",
+        "general_condition": "מצב כללי",
+        "surface_update": "עדכון משטח",
+        "note": "הערה"
+      }
+    },
+    "messages": {
+      "updated": "תרשים השיניים עודכן",
+      "error": "שגיאה בעדכון תרשים השיניים",
+      "loadError": "לא ניתן לטעון את תרשים השיניים"
+    },
+    "actions": {
+      "save": "שמירה",
+      "reset": "איפוס",
+      "print": "הדפסה"
+    },
+    "status": {
+      "existing": "קיים",
+      "planned": "מתוכנן"
+    },
+    "treatments": {
+      "title": "טיפולים",
+      "addTreatment": "הוספת טיפול",
+      "selectStatus": "בחירת סטטוס",
+      "noTreatments": "לא נרשמו טיפולים",
+      "markPerformed": "סימון כבוצע",
+      "categories": {
+        "common": "נפוצים",
+        "restorative": "משחזר",
+        "other": "אחר",
+        "diagnostico": "אבחון",
+        "restauradora": "משחזר",
+        "cirugia": "כירורגיה",
+        "endodoncia": "אנדודונטיה",
+        "ortodoncia": "אורתודונטיה"
+      },
+      "types": {
+        "pulpitis": "פולפיטיס",
+        "caries": "עששת",
+        "incipient_caries": "עששת התחלתית",
+        "pigmentation": "פיגמנטציה",
+        "fracture": "שבר",
+        "missing": "חסרה",
+        "periapical_small": "נגע פריאפיקלי <2 מ״מ",
+        "periapical_medium": "נגע פריאפיקלי 2-4 מ״מ",
+        "periapical_large": "נגע פריאפיקלי >4 מ״מ",
+        "rotated": "מסובבת",
+        "displaced": "מוסטת",
+        "unerupted": "לא בקעה",
+        "filling": "סתימה",
+        "filling_composite": "סתימה קומפוזיט",
+        "filling_amalgam": "סתימת אמלגם",
+        "filling_temporary": "סתימה זמנית",
+        "sealant": "איטום חריצים",
+        "veneer": "ציפוי (למינייט)",
+        "inlay": "אינליי",
+        "overlay": "אוברליי",
+        "crown": "כתר",
+        "crown_on_implant": "כתר על שתל",
+        "provisional_crown_on_implant": "כתר זמני על שתל",
+        "pontic": "פונטיק",
+        "bridge_pontic": "פונטיק בגשר",
+        "bridge_abutment": "עמוד גשר",
+        "extraction": "עקירה",
+        "implant": "שתל",
+        "apicoectomy": "כריתת חוד שורש",
+        "root_canal": "טיפול שורש",
+        "root_canal_full": "טיפול שורש מלא",
+        "root_canal_two_thirds": "טיפול שורש 2/3",
+        "root_canal_half": "טיפול שורש 1/2",
+        "root_canal_overfill": "טיפול שורש במילוי יתר",
+        "post": "מבנה (פוסט)",
+        "bracket": "סמך (ברקט)",
+        "tube": "צינורית",
+        "band": "טבעת",
+        "attachment": "אטצ׳מנט",
+        "retainer": "קיבוע (ריטיינר)",
+        "rotate": "מסובבת",
+        "displace": "מוסטת",
+        "splint": "סד",
+        "migrated": "טיפול כללי",
+        "other": "טיפול אחר"
+      },
+      "treatmentAdded": "הטיפול נוסף",
+      "treatmentPerformed": "הטיפול סומן כבוצע",
+      "treatmentDeleted": "הטיפול נמחק",
+      "status": {
+        "existing": "קיים",
+        "planned": "מתוכנן"
+      },
+      "deleteConfirm": "למחוק את {name} (שן {tooth})? לא ניתן לבטל פעולה זו."
+    },
+    "position": {
+      "displaced": "מוסטת",
+      "rotated": "מסובבת",
+      "normal": "תקין"
+    },
+    "views": {
+      "occlusal": "מבט אוקלוזלי",
+      "lateral": "מבט צדי",
+      "dual": "מבט כפול"
+    },
+    "selectSurfaces": "בחירת משטחים",
+    "selectedSurfaces": "משטחים שנבחרו",
+    "surfacesSelected": "משטח(ים) נבחרו",
+    "instructions": {
+      "selectTreatment": "יש לבחור טיפול להחלה",
+      "clickTooth": "יש ללחוץ על השן כדי להחיל"
+    },
+    "addToPlan": "הוספה לתוכנית",
+    "noPlan": "אין תוכנית",
+    "createNewPlan": "יצירת תוכנית חדשה...",
+    "applyTo": "החלה על",
+    "oneTooth": "שן אחת",
+    "multipleTeeth": "מספר שיניים",
+    "surfacePricingHint": "מחיר לפי משטח: {range}",
+    "toothNames": {
+      "centralIncisor": "חותכת מרכזית",
+      "lateralIncisor": "חותכת צדית",
+      "canine": "ניב",
+      "firstPremolar": "מלתעה ראשונה",
+      "secondPremolar": "מלתעה שנייה",
+      "firstMolar": "טוחנת ראשונה",
+      "secondMolar": "טוחנת שנייה",
+      "thirdMolar": "טוחנת שלישית (בינה)"
+    },
+    "positions": {
+      "upper": "עליונה",
+      "lower": "תחתונה",
+      "left": "שמאל",
+      "right": "ימין"
+    },
+    "tooltip": {
+      "clickToEdit": "לחיצה לעריכה"
+    },
+    "planning": "תכנון",
+    "diagnosisMode": "אבחון",
+    "treatmentList": {
+      "title": "רשימת טיפולים",
+      "noTreatments": "לא נרשמו טיפולים"
+    },
+    "changeHistory": {
+      "title": "היסטוריית שינויים",
+      "noChanges": "לא נרשמו שינויים",
+      "treatmentAdded": "טיפול"
+    },
+    "timeline": {
+      "title": "ציר זמן",
+      "viewingDate": "צפייה ב: {date}",
+      "viewingHistory": "מוצג מצב היסטורי של תרשים השיניים",
+      "returnToNow": "חזרה למצב הנוכחי",
+      "noHistory": "אין היסטוריה קודמת"
+    },
+    "multiTooth": {
+      "bridge": {
+        "label": "גשר קבוע"
+      },
+      "splint": {
+        "label": "סד"
+      },
+      "veneers": {
+        "label": "מספר ציפויים"
+      },
+      "crowns": {
+        "label": "מספר כתרים"
+      },
+      "pillar": "עמוד",
+      "pontic": "פונטיק",
+      "roleHint": "לחיצה על שן מחליפה בין עמוד / פונטיק.",
+      "needPillar": "גשר דורש לפחות שן עמוד אחת.",
+      "confirmHint": "עומדים ליצור קבוצת טיפול עם {n} שיניים.",
+      "willBePlanned": "הקבוצה תסומן כמתוכננת.",
+      "willBeExisting": "הקבוצה תירשם כקיימת.",
+      "hints": {
+        "range": "לחיצה על השן הראשונה ואז על האחרונה",
+        "free": "לחיצה להוספה או הסרה של שיניים"
+      },
+      "errors": {
+        "tooFew": "נדרשות לפחות {n} שיניים",
+        "tooMany": "מותר לכל היותר {n} שיניים",
+        "sameArchRequired": "השיניים חייבות להיות באותה קשת"
+      },
+      "sectionLabel": "טיפולים מרובי שיניים"
+    }
+  },
+  "clinical": {
+    "modes": {
+      "history": "היסטוריה",
+      "diagnosis": "אבחון",
+      "plans": "תוכניות טיפול",
+      "appointments": "תורים"
+    },
+    "history": {
+      "stateAt": "מצב בתאריך",
+      "changesOnDate": "שינויים בתאריך זה",
+      "noChanges": "לא נרשמו שינויים"
+    },
+    "diagnosis": {
+      "registeredConditions": "מצבים שאובחנו",
+      "registerConditions": "רישום מצבים",
+      "noConditions": "לא נרשמו מצבים",
+      "startDiagnosis": "יש לבחור שן ולהוסיף מצבים קיימים",
+      "generalConditions": "מצבים כלליים",
+      "readyToCreatePlan": "האבחון הושלם?",
+      "createPlan": "יצירת תוכנית טיפול",
+      "continuePlan": "המשך התוכנית \"{name}\"",
+      "selectPlan": "בחירת תוכנית",
+      "continue": "המשך",
+      "odontogramTab": "תרשים שיניים",
+      "openNotes": "פתיחת רשומות"
+    },
+    "plans": {
+      "title": "תוכניות טיפול",
+      "create": "תוכנית חדשה",
+      "backToList": "חזרה לתוכניות",
+      "treatments": "טיפולי התוכנית",
+      "addTreatment": "הוספת טיפול",
+      "total": "סה״כ",
+      "activate": "הפעלת התוכנית",
+      "generateBudget": "הפקת הצעת מחיר",
+      "empty": "אין תוכניות טיפול",
+      "emptyDescription": "יש ליצור תוכנית כדי לארגן את טיפולי המטופל",
+      "createFirst": "יצירת התוכנית הראשונה",
+      "active": "תוכניות פעילות",
+      "drafts": "טיוטות",
+      "completed": "הושלמו",
+      "closed": "סגורות",
+      "other": "אחר",
+      "noItems": "אין טיפולים בתוכנית",
+      "markComplete": "סימון כהושלם",
+      "removeItem": "הסרה מהתוכנית",
+      "sessions": {
+        "progress": "{done}/{total} מפגשים",
+        "markDone": "סימון המפגש כבוצע",
+        "cancel": "ביטול מפגש",
+        "markedDone": "המפגש סומן כבוצע",
+        "cancelled": "המפגש בוטל",
+        "untitled": "מפגש {n}"
+      },
+      "unknownTreatment": "טיפול",
+      "odontogram": "תרשים שיניים",
+      "pending": "ממתין",
+      "dragToReorder": "גרירה לשינוי סדר",
+      "reorderHint": "Alt + מקשי חצים להזזה",
+      "emptyDraft": {
+        "title": "תכנון הטיפולים",
+        "step1": "בחירת טיפול מהסרגל למטה",
+        "step2": "לחיצה על שן בתרשים השיניים",
+        "step3": "אישור התוכנית להפקת הצעת מחיר ותורים"
+      },
+      "steps": {
+        "plan": "תכנון",
+        "confirm": "אישור",
+        "inProgress": "בתהליך"
+      },
+      "confirmCta": {
+        "titleWithItems": "אישור התוכנית",
+        "subtitleWithItems": "האישור מאפשר הפקת הצעת מחיר וקביעת תורים.",
+        "empty": "יש להוסיף לפחות טיפול אחד כדי לאשר את התוכנית"
+      },
+      "ghostHint": "זמין לאחר אישור התוכנית",
+      "addedToPlan": "נוסף לתוכנית",
+      "addingToPlan": "הוספה לתוכנית זו",
+      "cancelPlan": "ביטול התוכנית",
+      "locked": {
+        "title": "התוכנית נעולה",
+        "subtitle": "הצעת המחיר {number} הופקה. לעריכת טיפולים יש להשתמש ב״פתיחה מחדש״ (אם ממתינה) או לנהל מחדש את הצעת המחיר.",
+        "viewBudget": "צפייה בהצעת המחיר"
+      },
+      "removeItemConfirm": "להסיר את {name} מהתוכנית? לא ניתן לבטל פעולה זו."
+    },
+    "tooth": "שן"
+  },
+  "appointments": {
+    "title": "יומן",
+    "checkin": {
+      "qr": "QR לצ׳ק‑אין",
+      "hint": "המטופל סורק את הקוד כדי לבצע צ׳ק‑אין. תוקפו פג 15 דקות לאחר ההנפקה.",
+      "copyLink": "העתקת קישור לצ׳ק‑אין",
+      "openTitle": "צ׳ק‑אין במרפאה",
+      "success": "הצ׳ק‑אין בוצע. אפשר לשבת ולהמתין.",
+      "invalid": "קוד הצ׳ק‑אין אינו תקף או שפג תוקפו. יש לבקש קוד חדש בקבלה.",
+      "confirm": "הגעתי",
+      "confirmHint": "לחיצה על הכפתור מאשרת את ההגעה.",
+      "tooEarly": "מוקדם מדי לצ׳ק‑אין. התור שלך בשעה {time}.",
+      "tooLate": "הצ׳ק‑אין לתור זה נסגר. יש לפנות לקבלה."
+    },
+    "create": "תור חדש",
+    "edit": "עריכת תור",
+    "today": "היום",
+    "tomorrow": "מחר",
+    "yesterday": "אתמול",
+    "week": "שבוע",
+    "prevWeek": "השבוע הקודם",
+    "nextWeek": "השבוע הבא",
+    "selectPatient": "בחירת מטופל",
+    "selectProfessional": "בחירת מטפל",
+    "openPatientFile": "פתיחת תיק המטופל",
+    "patient": "מטופל",
+    "professional": "מטפל",
+    "cabinet": "חדר",
+    "date": "תאריך",
+    "time": "שעה",
+    "startTime": "שעת התחלה",
+    "duration": "משך",
+    "treatmentType": "סוג טיפול",
+    "treatments": "טיפולים",
+    "addTreatment": "הוספת טיפול",
+    "selectTreatment": "בחירת טיפול",
+    "estimatedDuration": "משך משוער",
+    "notes": "הערות",
+    "hasNotes": "יש הערות",
+    "status": {
+      "label": "סטטוס",
+      "scheduled": "נקבע",
+      "confirmed": "אושר",
+      "checked_in": "בחדר ההמתנה",
+      "in_treatment": "בכיסא",
+      "completed": "הושלם",
+      "cancelled": "בוטל",
+      "no_show": "לא הגיע/ה"
+    },
+    "transitions": {
+      "confirmed": "סימון כמאושר",
+      "checked_in": "סימון הגעה",
+      "in_treatment": "העברה לכיסא",
+      "completed": "סיום התור",
+      "cancelled": "ביטול התור",
+      "no_show": "סימון אי‑הגעה"
+    },
+    "timer": {
+      "startsIn": "מתחיל בעוד {minutes} דק׳",
+      "startsInOverdue": "איחור של {minutes} דק׳",
+      "waiting": "ממתין/ה {minutes} דק׳",
+      "inTreatment": "{elapsed}/{planned} דק׳",
+      "completedAt": "הסתיים {time}",
+      "cancelledAt": "בוטל",
+      "noShowAt": "לא הגיע/ה"
+    },
+    "confirmTransitionTitle": "אישור שינוי סטטוס",
+    "confirmCancelMessage": "לבטל את התור? השינוי יתועד.",
+    "confirmNoShowMessage": "לסמן שהמטופל לא הגיע? השינוי יתועד.",
+    "noteLabel": "הערה (לא חובה)",
+    "transitionFailed": "לא ניתן לשנות את סטטוס התור",
+    "when": "מתי",
+    "whereWho": "חדר ומטפל",
+    "followup": {
+      "title": "פעולות לאחר התור"
+    },
+    "created": "התור נוצר",
+    "saved": "התור נשמר",
+    "updated": "התור עודכן",
+    "conflict": "המועד הזה כבר תפוס",
+    "cancel": "ביטול התור",
+    "markCompleted": "סימון כהושלם",
+    "markNoShow": "לא הגיע/ה",
+    "dailyView": "יום",
+    "weeklyView": "שבוע",
+    "kanbanView": "קנבן",
+    "kanban": {
+      "upcoming": "קרובים",
+      "waiting": "חדר המתנה",
+      "inChair": "בכיסא",
+      "done": "הושלמו",
+      "missed": "לא הגיעו / בוטלו",
+      "free": "פנוי",
+      "inactive": "לא פעיל",
+      "empty": "אין תורים",
+      "nextIn": "הבא בשעה {time}",
+      "subtitleCount": "{count} תורים",
+      "subtitleEmpty": "אין תורים",
+      "subtitleWaiting": "{count} ממתינים · ממוצע {avg} דק׳",
+      "subtitleInChair": "{busy} תפוסים · {free} פנויים"
+    },
+    "cabinetAssignment": {
+      "assignLater": "שיבוץ מאוחר יותר",
+      "unassigned": "לא משובץ",
+      "assign": "שיבוץ חדר",
+      "reassign": "שיבוץ חדר מחדש",
+      "unassign": "ביטול שיבוץ חדר",
+      "requiredForTreatment": "יש לשבץ חדר לפני המעבר לטיפול"
+    },
+    "professionals": {
+      "strip": "מטפלים",
+      "state": {
+        "free": "פנוי/ה",
+        "in_treatment": "בכיסא",
+        "on_break": "בהפסקה",
+        "off": "לא במשמרת"
+      }
+    },
+    "noProfessionals": "לא הוגדרו מטפלים",
+    "overlapWarning": "זוהו חפיפות",
+    "overlapProfessional": "למטפל יש {count} תור(ים) במועד זה",
+    "overlapCabinet": "לחדר יש {count} תור(ים) במועד זה",
+    "selectDuration": "בחירת משך...",
+    "sendEmail": "שליחת אימייל",
+    "sendConfirmationEmail": "שליחת אישור",
+    "resendConfirmation": "שליחת אישור מחדש",
+    "sendReminderEmail": "שליחת תזכורת",
+    "emailSent": "האימייל נשלח בהצלחה",
+    "automatic": "אוטומטי",
+    "selectPatientFirst": "יש לבחור מטופל כדי לראות טיפולים ממתינים",
+    "noPendingTreatments": "אין טיפולים ממתינים",
+    "createPlanFirst": "יש ליצור תוכנית טיפול למטופל זה",
+    "addTreatmentFromPlan": "הוספת טיפול מהתוכנית",
+    "selectPendingTreatment": "בחירת טיפול ממתין",
+    "emptyDay": "אין תורים ליום זה",
+    "noPatient": "ללא מטופל",
+    "freeSlots": {
+      "byProfessional": "מטפל",
+      "byCabinet": "חדר",
+      "freeSuffix": "פנוי",
+      "freeShort": "פנוי",
+      "noFreeTime": "אין זמן פנוי",
+      "tapToBook": "הקשה לקביעת תור",
+      "tapToBookAria": "חלון פנוי של {duration} בשעה {time}",
+      "nextFreeAt": "הבא בשעה {time}",
+      "gapsAtLeast": "{count} חלונות ≥ {min} דק׳",
+      "minDuration": "מינימום",
+      "noFreeSlots": "אין חלונות פנויים היום",
+      "clinicClosed": "המרפאה סגורה",
+      "professionalOff": "לא במשמרת",
+      "onBreak": "בהפסקה"
+    },
+    "actionsMenu": "פעולות לתור",
+    "sendMessage": "שליחת הודעה",
+    "resendConfirmationVia": "שליחת אישור מחדש ({channel})",
+    "sendReminderVia": "שליחת תזכורת ({channel})",
+    "sendCancellationVia": "שליחת הודעת ביטול ({channel})",
+    "loadError": "לא ניתן לטעון את התורים",
+    "planAwaitingBudget": "הצעת מחיר ממתינה לאישור"
+  },
+  "dashboard": {
+    "greetings": {
+      "morning": "בוקר טוב",
+      "afternoon": "צהריים טובים",
+      "evening": "ערב טוב"
+    },
+    "welcome": "ברוכים הבאים ל‑DentalPin",
+    "welcomeMessage": "מתחילים ביצירת המטופל הראשון.",
+    "quickActions": {
+      "newAppointment": "תור חדש",
+      "newPatient": "מטופל חדש",
+      "search": "חיפוש מטופל",
+      "searchPlaceholder": "חיפוש לפי שם, טלפון או אימייל"
+    },
+    "timeline": {
+      "title": "היום",
+      "empty": "אין תורים שנקבעו להיום",
+      "now": "עכשיו",
+      "openSchedule": "פתיחת היומן"
+    },
+    "todayKpi": {
+      "title": "תורים היום",
+      "completed": "הושלמו",
+      "inProgress": "בתהליך",
+      "upcoming": "קרובים",
+      "cancelled": "בוטלו",
+      "noShow": "לא הגיעו",
+      "empty": "אין תורים היום"
+    },
+    "inClinic": {
+      "title": "במרפאה כעת",
+      "inTreatment": "{n} בכיסא",
+      "waiting": "{n} ממתינים",
+      "empty": "אין אף אחד במרפאה"
+    },
+    "unconfirmed": {
+      "title": "לא אושרו למחר",
+      "empty": "כל התורים של מחר אושרו",
+      "confirm": "אישור",
+      "confirmError": "לא ניתן לאשר"
+    },
+    "overdue": {
+      "title": "תשלומים באיחור",
+      "daysOverdue": "יום {n} באיחור | {n} ימים באיחור",
+      "viewAll": "הצגת הכול",
+      "empty": "אין חשבוניות באיחור"
+    },
+    "recent": {
+      "title": "מטופלים אחרונים",
+      "empty": "אין מטופלים עדיין"
+    },
+    "weekGlance": {
+      "title": "השבוע במבט",
+      "subtitle": "7 הימים האחרונים לעומת 7 הקודמים",
+      "appointments": "תורים",
+      "completed": "הושלמו",
+      "invoiced": "חויב",
+      "empty": "אין נתונים השבוע"
+    }
+  },
+  "settings": {
+    "title": "הגדרות",
+    "subtitle": "ניהול המרפאה, הצוות והמודולים.",
+    "allCategories": "כל הקטגוריות",
+    "navLabel": "קטגוריות הגדרות",
+    "attentionRequired": "נדרשת תשומת לב",
+    "categories": {
+      "general": {
+        "label": "כללי",
+        "description": "פרופיל המרפאה, מיתוג ואזור זמן."
+      },
+      "workspace": {
+        "label": "סביבת עבודה",
+        "description": "חדרים, שעות פעילות וזמינות."
+      },
+      "people": {
+        "label": "אנשים",
+        "description": "משתמשים, תפקידים והזמנות."
+      },
+      "clinical": {
+        "label": "קליני",
+        "description": "קטלוג, ברירות מחדל לטיפולים ותבניות."
+      },
+      "billing": {
+        "label": "חיוב ומסים",
+        "description": "סדרות חשבוניות, מע״מ ועמידה בדרישות המס."
+      },
+      "communications": {
+        "label": "תקשורת",
+        "description": "התראות, SMTP ותבניות."
+      },
+      "integrations": {
+        "label": "אינטגרציות",
+        "description": "שירותים וספקים חיצוניים."
+      },
+      "modules": {
+        "label": "מודולים",
+        "description": "התקנה, שדרוג והסרה של מודולים."
+      },
+      "account": {
+        "label": "חשבון",
+        "description": "הפרופיל, הסיסמה והשפה שלך."
+      }
+    },
+    "supergroups": {
+      "clinicalSetup": {
+        "label": "הגדרות קליניות"
+      },
+      "clinicalManagement": {
+        "label": "ניהול קליני"
+      },
+      "financialConfiguration": {
+        "label": "הגדרות כספים"
+      },
+      "systemAddons": {
+        "label": "מערכת ותוספים"
+      },
+      "myPreferences": {
+        "label": "ההעדפות שלי"
+      }
+    },
+    "search": {
+      "placeholder": "חיפוש בהגדרות…",
+      "empty": "אין התאמות לחיפוש זה.",
+      "navigate": "ניווט",
+      "open": "פתיחה"
+    },
+    "locked": {
+      "title": "אין לך גישה לאזור זה",
+      "description": "יש לבקש ממנהל המרפאה להעניק לך את ההרשאות הנדרשות."
+    },
+    "emptyCategory": {
+      "title": "אין אפשרויות זמינות",
+      "description": "כשיופעלו מודולים תואמים, ההגדרות שלהם יופיעו כאן."
+    },
+    "loadError": {
+      "description": "לא ניתן לטעון את העורך הזה. נסו שוב בעוד כמה שניות."
+    },
+    "comingSoon": {
+      "title": "בקרוב",
+      "subtitle": "אנחנו עובדים על האזור הזה. בינתיים ניתן לנהל זאת דרך ה‑API."
+    },
+    "onboarding": {
+      "title": "השלמת הגדרת המרפאה",
+      "subtitle": "נותרו {count} שלבים להשלמת ההגדרה הראשונית.",
+      "dismiss": "סגירה",
+      "items": {
+        "clinicInfo": {
+          "label": "השלמת פרופיל המרפאה",
+          "description": "השם, מספר העוסק והכתובת מופיעים בהצעות מחיר ובחשבוניות."
+        },
+        "cabinets": {
+          "label": "יצירת חדר טיפולים אחד לפחות",
+          "description": "ללא חדרים לא ניתן לקבוע תורים."
+        }
+      }
+    },
+    "cabinetsDescription": "חדרים או עמדות שבהם מטפלים במטופלים.",
+    "usersDescription": "חשבונות עם גישה למרפאה זו והתפקידים שלהם.",
+    "profileDescription": "הפרטים האישיים שלך במרפאה זו.",
+    "clinic": "מרפאה",
+    "profile": "פרופיל",
+    "clinicName": "שם המרפאה",
+    "clinicInfo": "פרטי המרפאה",
+    "clinicInfoDescription": "נתונים אלה יופיעו בהצעות מחיר ובמסמכים",
+    "taxId": "מספר עוסק / ח״פ",
+    "legalName": "שם משפטי",
+    "legalNameHelp": "השם המשפטי של הישות לצורכי חשבוניות. להשאיר ריק כדי להשתמש בשם המרפאה.",
+    "street": "כתובת",
+    "city": "עיר",
+    "postalCode": "מיקוד",
+    "country": "מדינה",
+    "countryPlaceholder": "בחירת מדינה",
+    "countrySearchPlaceholder": "חיפוש מדינה…",
+    "phone": "טלפון",
+    "timezone": "אזור זמן",
+    "timezoneHelp": "כל לוחות הזמנים והתורים מפורשים לפי אזור זמן זה.",
+    "currency": "מטבע",
+    "currencyHelp": "המטבע של המרפאה, בשימוש בהצעות מחיר, חשבוניות ובקטלוג.",
+    "editClinicInfo": "עריכת הפרטים",
+    "clinicUpdated": "פרטי המרפאה עודכנו",
+    "clinicUpdateError": "שגיאה בעדכון הפרטים",
+    "cabinets": "חדרים",
+    "language": "שפה",
+    "languageDescription": "בחירת השפה המועדפת",
+    "users": "משתמשי המרפאה",
+    "newUser": "משתמש חדש",
+    "createUser": "יצירת משתמש",
+    "editUser": "עריכת משתמש",
+    "deleteUser": "מחיקת משתמש",
+    "deleteUserConfirm": "האם להסיר את",
+    "deleteUserNote": "המשתמש יאבד את הגישה למרפאה זו, אך החשבון שלו לא יימחק.",
+    "noUsers": "אין משתמשים רשומים",
+    "youTag": "(את/ה)",
+    "userActive": "משתמש פעיל",
+    "isProfessional": "מטפל/ת במטופלים",
+    "isProfessionalHelp": "מופיע/ה ביומן, יש לו/ה שעות עבודה וניתן לשבץ טיפולים. גם מנהל יכול לטפל.",
+    "userInactiveNote": "(לא יכול להתחבר)",
+    "saveChanges": "שמירת שינויים",
+    "noCabinets": "לא הוגדרו חדרים",
+    "addCabinet": "הוספה",
+    "newCabinet": "חדר חדש",
+    "editCabinet": "עריכת חדר",
+    "deleteCabinet": "מחיקת חדר",
+    "deleteCabinetConfirm": "האם למחוק את החדר",
+    "deleteCabinetNote": "תורים קיימים בחדר זה לא יושפעו.",
+    "createCabinet": "יצירת חדר",
+    "roles": {
+      "admin": "מנהל/ת מערכת",
+      "dentist": "רופא/ת שיניים",
+      "hygienist": "שיננית",
+      "assistant": "סייע/ת",
+      "receptionist": "קבלה"
+    },
+    "errors": {
+      "loadUsers": "שגיאה בטעינת המשתמשים",
+      "createUser": "שגיאה ביצירת המשתמש",
+      "updateUser": "שגיאה בעדכון המשתמש",
+      "deleteUser": "שגיאה במחיקת המשתמש",
+      "emailExists": "האימייל כבר קיים",
+      "userNotFound": "המשתמש לא נמצא",
+      "operationNotAllowed": "הפעולה אינה מותרת",
+      "invalidData": "נתונים לא תקינים",
+      "inviteLink": "לא ניתן ליצור את קישור הגישה"
+    },
+    "messages": {
+      "userCreated": "המשתמש נוצר בהצלחה",
+      "userUpdated": "המשתמש עודכן בהצלחה",
+      "userDeleted": "המשתמש הוסר מהמרפאה"
+    },
+    "modules": {
+      "title": "מודולים",
+      "subtitle": "התקנה, הסרה ושדרוג של מודולי המרפאה.",
+      "description": "ניהול המודולים הפעילים במרפאה.",
+      "searchPlaceholder": "חיפוש מודולים…",
+      "filterState": "מצב",
+      "deps": "תלויות",
+      "noDeps": "ללא תלויות",
+      "state": {
+        "installed": "מותקן",
+        "uninstalled": "לא מותקן",
+        "toInstall": "ממתין להתקנה",
+        "toUpgrade": "ממתין לשדרוג",
+        "toRemove": "ממתין להסרה",
+        "disabled": "מושבת",
+        "error": "שגיאה"
+      },
+      "category": {
+        "official": "רשמי",
+        "community": "קהילה"
+      },
+      "actions": {
+        "install": "התקנה",
+        "uninstall": "הסרה",
+        "upgrade": "שדרוג",
+        "apply": "החלת השינויים",
+        "viewDetails": "פרטים",
+        "force": "הסרה בכפייה"
+      },
+      "confirmInstall": {
+        "title": "להתקין את {name}?",
+        "message": "המודול יתוזמן להתקנה ויופעל לאחר החלת השינויים.",
+        "scheduled": "התלויות הבאות יותקנו גם כן:"
+      },
+      "confirmUninstall": {
+        "title": "להסיר את {name}?",
+        "warning": "טבלאות המודול יוסרו. לפני כן נוצר גיבוי pg_dump כדי שניתן יהיה לשחזר את הנתונים.",
+        "forceHint": "מתעלם ממודולים תלויים. להשתמש רק אם ברור לך מה זה אומר."
+      },
+      "confirmUpgrade": {
+        "title": "לשדרג את {name}?",
+        "message": "המודול ישודרג לגרסת המניפסט שבדיסק בעת החלת השינויים."
+      },
+      "confirmApply": {
+        "title": "החלת השינויים",
+        "message": "השרת יופעל מחדש. ייתכן ניתוק קצר בזמן ביצוע הפעולות הממתינות."
+      },
+      "pending": {
+        "banner": "שינויים ממתינים:",
+        "apply": "החלת השינויים"
+      },
+      "doctor": {
+        "banner": "זוהו בעיות במערכת המודולים.",
+        "orphans": "מודולים יתומים",
+        "missingDeps": "תלויות חסרות",
+        "manifestErrors": "שגיאות מניפסט",
+        "errored": "מודולים בשגיאה"
+      },
+      "detail": {
+        "state": "מצב",
+        "category": "קטגוריה",
+        "installedAt": "הותקן בתאריך",
+        "lastChange": "שינוי אחרון",
+        "baseRevision": "גרסת בסיס",
+        "appliedRevision": "גרסה מוחלת",
+        "manifest": "מניפסט מלא",
+        "errorMessage": "הודעת שגיאה",
+        "operationLog": "יומן פעולות",
+        "noOperations": "לא נרשמו פעולות."
+      },
+      "restart": {
+        "inProgress": "מפעיל מחדש את השרת…",
+        "done": "השינויים הוחלו",
+        "failed": "החלת השינויים נכשלה",
+        "timeout": "תם הזמן בהמתנה לשרת"
+      },
+      "toasts": {
+        "scheduled": "הפעולה תוזמנה. יש להחיל את השינויים להשלמה.",
+        "applied": "השינויים הוחלו בהצלחה."
+      }
+    },
+    "invite": {
+      "linkTitle": "קישור גישה",
+      "linkHelp": "שלחו קישור זה אל {name} כדי שיבחר/תבחר סיסמה. תוקפו פג ב‑{date} והוא פועל פעם אחת בלבד.",
+      "copy": "העתקת הקישור",
+      "copied": "הקישור הועתק",
+      "whatsapp": "שליחה בוואטסאפ",
+      "shareText": "שלום {name}, הנה הגישה שלך ל‑DentalPin. יש לפתוח ולבחור סיסמה: {url}",
+      "secretNote": "יש להתייחס אליו כמו לסיסמה: כל מי שמחזיק בקישור יכול להיכנס לחשבון זה.",
+      "passwordOptionalHelp": "להשאיר ריק כדי ליצור קישור גישה שאפשר לשלוח בוואטסאפ או באימייל.",
+      "passwordOptionalPlaceholder": "לא חובה",
+      "createAndLink": "יצירה והפקת קישור",
+      "rowAction": "קישור גישה",
+      "setPasswordTitle": "בחירת סיסמה",
+      "setPasswordSubtitle": "הוזמנת ל‑DentalPin. יש ליצור סיסמה כדי להיכנס.",
+      "setPasswordSubmit": "שמירה וכניסה",
+      "invalidToken": "הקישור אינו תקף או שכבר נעשה בו שימוש. יש לבקש קישור חדש ממנהל המרפאה."
+    }
+  },
+  "selector": {
+    "recentPatients": "מטופלים אחרונים",
+    "commonTreatments": "טיפולים נפוצים",
+    "noRecentPatients": "אין מטופלים אחרונים",
+    "noCommonTreatments": "אין טיפולים נפוצים",
+    "noMatches": "אין התאמות",
+    "typeToSearch": "הקלידו לחיפוש..."
+  },
+  "density": {
+    "switchToCompact": "תצוגה דחוסה",
+    "switchToComfortable": "תצוגה מרווחת"
+  },
+  "patientSelector": {
+    "createOption": "יצירת המטופל \"{query}\"",
+    "createOptionEmpty": "יצירת מטופל חדש",
+    "newBadge": "חדש",
+    "duplicateWarning": "{name} כבר קיים עם מספר טלפון זה",
+    "useExisting": "שימוש במטופל זה",
+    "createForm": {
+      "title": "מטופל חדש",
+      "back": "חזרה לחיפוש",
+      "firstName": "שם פרטי",
+      "lastName": "שם משפחה",
+      "phone": "טלפון",
+      "phoneHint": "אפשר להוסיף מאוחר יותר בתיק המטופל.",
+      "submit": "יצירה ובחירה",
+      "cancel": "ביטול",
+      "errorGeneric": "לא ניתן ליצור את המטופל. נסו שוב."
+    }
+  },
+  "errors": {
+    "loadFailed": "הטעינה נכשלה",
+    "createFailed": "היצירה נכשלה",
+    "updateFailed": "העדכון נכשל",
+    "deleteFailed": "המחיקה נכשלה"
+  },
+  "common": {
+    "andMore": "+{count} נוספים",
+    "save": "שמירה",
+    "add": "הוספה",
+    "cancel": "ביטול",
+    "clear": "ניקוי",
+    "close": "סגירה",
+    "delete": "מחיקה",
+    "comingSoon": "בקרוב",
+    "edit": "עריכה",
+    "change": "שינוי | שינויים",
+    "back": "חזרה",
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "completed": "הושלם",
+    "retry": "ניסיון חוזר",
+    "refresh": "רענון",
+    "hide": "הסתרה",
+    "expand": "הרחבה",
+    "collapse": "כיווץ",
+    "forbidden": "הגישה נדחתה",
+    "confirm": "אישור",
+    "yes": "כן",
+    "no": "לא",
+    "actions": "פעולות",
+    "viewDetails": "הצגת פרטים",
+    "previous": "הקודם",
+    "next": "הבא",
+    "previousYear": "השנה הקודמת",
+    "nextYear": "השנה הבאה",
+    "undo": "ביטול פעולה",
+    "undone": "הפעולה בוטלה",
+    "added": "נוסף",
+    "removed": "הוסר",
+    "page": "עמוד {current} מתוך {total}",
+    "noData": "אין נתונים",
+    "noValue": "ללא ערך",
+    "noResults": "אין תוצאות",
+    "search": "חיפוש...",
+    "selectAll": "הכול",
+    "deselectAll": "ללא",
+    "all": "הכול",
+    "required": "שדה חובה",
+    "optional": "לא חובה",
+    "invalidEmail": "אימייל לא תקין",
+    "networkError": "שגיאת חיבור",
+    "serverError": "שגיאת שרת",
+    "notFound": "לא נמצא",
+    "offline": "לא מקוון — ייתכן שהנתונים אינם מעודכנים",
+    "inactive": "לא פעיל",
+    "name": "שם",
+    "color": "צבע",
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "email": "אימייל",
+    "password": "סיסמה",
+    "passwordPlaceholder": "לפחות 8 תווים",
+    "role": "תפקיד",
+    "readOnly": "לקריאה בלבד",
+    "createdBy": "נוצר על ידי",
+    "date": "תאריך",
+    "upload": "העלאה",
+    "uploading": "מעלה…",
+    "maxFileSize": "עד 10 MB",
+    "durationMinutes": "{value} דק׳",
+    "days": {
+      "sunday": "יום ראשון",
+      "monday": "יום שני",
+      "tuesday": "יום שלישי",
+      "wednesday": "יום רביעי",
+      "thursday": "יום חמישי",
+      "friday": "יום שישי",
+      "saturday": "שבת"
+    },
+    "now": "עכשיו",
+    "today": "היום",
+    "tomorrow": "מחר",
+    "yesterday": "אתמול",
+    "copied": "הועתק ללוח",
+    "copy": "העתקה",
+    "copyFailed": "לא ניתן להעתיק",
+    "download": "הורדה",
+    "remove": "הסרה",
+    "default": "ברירת מחדל"
+  },
+  "cabinet": {
+    "toast": {
+      "created": "החדר נוצר",
+      "updated": "החדר עודכן",
+      "deleted": "החדר נמחק",
+      "duplicateName": "כבר קיים חדר בשם זה",
+      "notFound": "החדר לא נמצא",
+      "createFailed": "יצירת החדר נכשלה",
+      "updateFailed": "עדכון החדר נכשל",
+      "deleteFailed": "מחיקת החדר נכשלה"
+    }
+  },
+  "professionals": {
+    "toast": {
+      "loadFailed": "טעינת המטפלים נכשלה"
+    }
+  },
+  "lists": {
+    "empty": {
+      "title": "אין תוצאות",
+      "description": "שנו את המסננים או נקו אותם כדי לראות את כל הרשומות."
+    },
+    "resultCount": "{shown} מתוך {total}",
+    "filter": {
+      "title": "מסננים",
+      "more": "מסננים",
+      "moreCount": "מסננים ({count})",
+      "clear": "ניקוי",
+      "apply": "החלה",
+      "date": "תאריכים",
+      "dateFrom": "מתאריך",
+      "dateTo": "עד תאריך",
+      "searchPlaceholder": "חיפוש...",
+      "noResults": "אין התאמות",
+      "all": "הכול"
+    },
+    "sort": {
+      "label": "מיון",
+      "asc": "סדר עולה",
+      "desc": "סדר יורד"
+    },
+    "datePreset": {
+      "today": "היום",
+      "last7": "7 הימים האחרונים",
+      "last30": "30 הימים האחרונים",
+      "thisMonth": "החודש",
+      "thisQuarter": "רבעון",
+      "thisYear": "שנה",
+      "custom": "מותאם אישית"
+    },
+    "truncatedWarning": "התוצאות קוצצו (>1000). יש לצמצם את המסננים."
+  },
+  "shared": {
+    "totals": "סיכומים",
+    "info": "פרטים",
+    "moreActions": "פעולות נוספות",
+    "criticalBanner": {
+      "dismiss": "סגירת ההתראה"
+    },
+    "collect": {
+      "amountLabel": "סכום לגבייה",
+      "methodLabel": "אמצעי תשלום",
+      "dateLabel": "תאריך התשלום",
+      "today": "היום",
+      "quickFull": "מלא",
+      "optionalDetails": "הוספת אסמכתא או הערות (לא חובה)",
+      "referenceLabel": "אסמכתא",
+      "referencePlaceholder": "לדוגמה: מספר עסקה במסוף",
+      "notesLabel": "הערות פנימיות",
+      "submit": "גבייה",
+      "cancel": "ביטול"
+    }
+  },
+  "validation": {
+    "required": "שדה חובה",
+    "email": "יש להזין אימייל תקין",
+    "minLength": "לפחות {min} תווים",
+    "maxLength": "לכל היותר {max} תווים",
+    "phone": "יש להזין מספר טלפון תקין"
+  },
+  "time": {
+    "minutes": "{n} דק׳",
+    "hours": "שעה {n} | {n} שעות"
+  },
+  "calendar": {
+    "today": "היום",
+    "prevWeek": "השבוע הקודם",
+    "nextWeek": "השבוע הבא",
+    "monday": "יום שני",
+    "tuesday": "יום שלישי",
+    "wednesday": "יום רביעי",
+    "thursday": "יום חמישי",
+    "friday": "יום שישי",
+    "saturday": "שבת",
+    "sunday": "יום ראשון"
+  },
+  "catalog": {
+    "title": "קטלוג טיפולים",
+    "description": "ניהול טיפולים, תמחור והגדרות מס",
+    "items": "טיפולים",
+    "categories": "קטגוריות",
+    "noItems": "אין טיפולים בקטלוג",
+    "searchPlaceholder": "חיפוש לפי קוד או שם...",
+    "code": "קוד",
+    "name": "שם",
+    "category": "קטגוריה",
+    "price": "מחיר",
+    "defaultPrice": "מחיר בסיס",
+    "costPrice": "מחיר עלות",
+    "currency": "מטבע",
+    "vatType": "סוג מע״מ",
+    "vatRate": "% מע״מ",
+    "duration": "משך",
+    "system": "מערכת",
+    "newItem": "טיפול חדש",
+    "editItem": "עריכת טיפול",
+    "deleteItem": "מחיקת טיפול",
+    "deleteItemConfirm": "האם למחוק את הטיפול \"{name}\"?",
+    "deleteItemNote": "לא ניתן לבטל פעולה זו.",
+    "pricing": "תמחור",
+    "scheduling": "תזמון",
+    "characteristics": "מאפיינים",
+    "scope": "היקף",
+    "requiresAppointment": "דורש תור",
+    "isDiagnostic": "אבחוני",
+    "requiresSurfaces": "דורש משטחים",
+    "materialNotes": "הערות חומרים",
+    "materialNotesPlaceholder": "חומרים או ציוד נדרשים...",
+    "active": "פעיל",
+    "vatTypes": {
+      "exempt": "פטור",
+      "reduced": "מופחת",
+      "standard": "רגיל"
+    },
+    "scopeTypes": {
+      "tooth": "שן",
+      "multi_tooth": "מספר שיניים",
+      "global_mouth": "כל הפה",
+      "global_arch": "לפי קשת"
+    },
+    "pricingStrategy": {
+      "label": "שיטת תמחור",
+      "help": "כיצד מחושב מחיר הטיפול בעת ההחלה",
+      "flat": "קבוע (מחיר אחד)",
+      "per_tooth": "לפי שן (× מספר השיניים)",
+      "per_surface": "לפי משטח (מדורג)",
+      "per_role": "לפי תפקיד (גשר: עמוד/פונטיק)"
+    },
+    "surfacePrices": {
+      "title": "מחירים לפי מספר משטחים",
+      "help": "הגדרת המחיר עבור 1–5 משטחים. כשנבחרים משטחים בשן, נעשה שימוש במדרגה המתאימה. מדרגות חסרות נופלות למדרגה הנמוכה הקרובה שהוגדרה.",
+      "tier": "{n} משט׳"
+    },
+    "sessions": {
+      "title": "מפגשים (חיוב מפוצל)",
+      "help": "הגדרת השלבים שבהם הטיפול מבוצע ומחויב (לדוגמה כתר: ׳מטבעים׳ + ׳הדבקה׳). הסכום חייב להיות שווה למחיר הבסיס.",
+      "label": "תווית",
+      "labelPlaceholder": "לדוגמה: מטבעים",
+      "price": "סכום",
+      "add": "הוספת מפגש",
+      "sumStatus": "סכום {sum} € · סה״כ {total} €"
+    },
+    "categoryCreated": "הקטגוריה נוצרה",
+    "categoryUpdated": "הקטגוריה עודכנה",
+    "categoryDeleted": "הקטגוריה נמחקה",
+    "categoryKeyExists": "כבר קיימת קטגוריה עם מפתח זה",
+    "categoryCreateFailed": "שגיאה ביצירת הקטגוריה",
+    "categoryUpdateFailed": "שגיאה בעדכון הקטגוריה",
+    "categoryDeleteFailed": "שגיאה במחיקת הקטגוריה",
+    "cannotModifySystemCategory": "לא ניתן לשנות קטגוריית מערכת",
+    "cannotDeleteSystemCategory": "לא ניתן למחוק קטגוריית מערכת",
+    "itemCreated": "הטיפול נוצר",
+    "itemUpdated": "הטיפול עודכן",
+    "itemDeleted": "הטיפול נמחק",
+    "itemCodeExists": "כבר קיים טיפול עם קוד זה",
+    "categoryNotFound": "הקטגוריה לא נמצאה",
+    "itemCreateFailed": "שגיאה ביצירת הטיפול",
+    "itemUpdateFailed": "שגיאה בעדכון הטיפול",
+    "itemDeleteFailed": "שגיאה במחיקת הטיפול",
+    "cannotModifySystemItem": "לא ניתן לשנות טיפול מערכת",
+    "systemItemHint": "טיפול מערכת: הקוד, הקטגוריה, שיטת התמחור וההיקף נעולים; ניתן לערוך מחיר, עלות, מע״מ, שמות, משך, מפגשים וסטטוס.",
+    "cannotDeleteSystemItem": "לא ניתן למחוק טיפול מערכת",
+    "odontogramMapping": "תצוגה בתרשים השיניים",
+    "odontogramMappingDescription": "שיוך הטיפול לסוג תצוגה בתרשים השיניים כדי שיופיע בתיק המטופל.",
+    "odontogramType": "סוג טיפול",
+    "clinicalCategory": "קטגוריה קלינית",
+    "noOdontogramMapping": "ללא שיוך",
+    "odontogramMappingHint": "מאפייני הטיפול יותאמו אוטומטית לפי הסוג שנבחר.",
+    "selectCategory": "בחירת קטגוריה...",
+    "selectVatType": "בחירת סוג מע״מ...",
+    "selectScope": "בחירת היקף...",
+    "selectOdontogramType": "בחירת סוג...",
+    "selectClinicalCategory": "בחירת קטגוריה...",
+    "expandAll": "הרחבת הכול",
+    "collapseAll": "כיווץ הכול",
+    "unnamed": "ללא שם",
+    "activeHint": "זמין להצעות מחיר ולתוכניות",
+    "tabs": {
+      "general": "כללי",
+      "pricing": "תמחור",
+      "scheduling": "תזמון",
+      "clinical": "קליני"
+    },
+    "onboarding": {
+      "label": "קטלוג טיפולים",
+      "description": "ללא טיפולים אין הצעות מחיר ותוכניות. טענו את קטלוג ברירת המחדל או צרו קטלוג משלכם.",
+      "createOwn": "אצור קטלוג משלי"
+    },
+    "manageCategories": "ניהול קטגוריות",
+    "newCategory": "קטגוריה חדשה",
+    "categoryName": "שם",
+    "categoryNamePlaceholder": "לדוגמה: אורתודונטיה",
+    "categoryOrder": "סדר",
+    "noCategories": "אין קטגוריות. צרו אחת או טענו את קטלוג ברירת המחדל.",
+    "inactiveCategories": "קטגוריות לא פעילות",
+    "reactivate": "הפעלה מחדש",
+    "deleteCategoryConfirm": "הקטגוריה תושבת; הטיפולים שבה יישמרו. להמשיך?",
+    "systemCategoryNote": "לא ניתן לערוך או למחוק קטגוריות מערכת.",
+    "loadDefaults": "טעינת קטלוג ברירת המחדל",
+    "loadDefaultsHint": "סוגי מע״מ, קטגוריות וטיפולי ייחוס למדינת המרפאה. נוספות רק שורות חסרות.",
+    "defaultsLoaded": "הקטלוג נטען: {categories} קטגוריות, {items} טיפולים, {vat_types} סוגי מע״מ",
+    "defaultsFailed": "לא ניתן לטעון את קטלוג ברירת המחדל",
+    "loadError": "לא ניתן לטעון את קטלוג הטיפולים"
+  },
+  "placeholders": {
+    "selectRole": "בחירת תפקיד..."
+  },
+  "vatTypes": {
+    "title": "סוגי מע״מ",
+    "description": "ניהול סוגי המע״מ הזמינים לטיפולים",
+    "name": "שם",
+    "rate": "שיעור",
+    "default": "ברירת מחדל",
+    "system": "מערכת",
+    "active": "פעיל",
+    "new": "סוג מע״מ חדש",
+    "edit": "עריכת סוג מע״מ",
+    "delete": "מחיקת סוג מע״מ",
+    "setAsDefault": "הגדרה כברירת מחדל",
+    "showInactive": "הצגת לא פעילים",
+    "noItems": "לא הוגדרו סוגי מע״מ",
+    "namePlaceholder": "לדוגמה: מע״מ (18%)",
+    "systemNote": "בסוגי מע״מ של המערכת ניתן לשנות רק את סטטוס ברירת המחדל.",
+    "deleteConfirm": "האם למחוק את סוג המע״מ",
+    "deleteNote": "טיפולים המשתמשים בסוג מע״מ זה לא יושפעו.",
+    "created": "סוג המע״מ נוצר",
+    "updated": "סוג המע״מ עודכן",
+    "deleted": "סוג המע״מ נמחק",
+    "loadError": "שגיאה בטעינת סוגי המע״מ",
+    "createError": "שגיאה ביצירת סוג המע״מ",
+    "updateError": "שגיאה בעדכון סוג המע״מ",
+    "deleteError": "שגיאה במחיקת סוג המע״מ"
+  },
+  "treatmentPlans": {
+    "title": "תוכניות טיפול",
+    "description": "ניהול תוכניות טיפול למטופלים",
+    "new": "תוכנית חדשה",
+    "create": "יצירת תוכנית טיפול",
+    "edit": "עריכת תוכנית",
+    "view": "צפייה בתוכנית",
+    "delete": "מחיקת תוכנית",
+    "noItems": "בתוכנית זו אין טיפולים",
+    "noPlans": "למטופל זה אין תוכניות טיפול",
+    "noPlansHint": "סמנו טיפולים בתרשים השיניים וצרו תוכנית כדי לארגן אותם",
+    "createFirst": "יצירת התוכנית הראשונה",
+    "empty": "אין תוכניות טיפול רשומות",
+    "emptyAction": "יצירת התוכנית הראשונה",
+    "searchPlaceholder": "חיפוש לפי מספר, מטופל או כותרת...",
+    "planNumber": "מספר",
+    "patient": "מטופל",
+    "untitled": "ללא כותרת",
+    "untitledPlan": "תוכנית ללא כותרת",
+    "itemCount": "טיפול {count} | {count} טיפולים",
+    "treatments": "טיפולים",
+    "progress": "התקדמות",
+    "pendingTreatments": "טיפולים ממתינים",
+    "completedTreatments": "טיפולים שהושלמו",
+    "linkedBudget": "הצעת מחיר מקושרת",
+    "unknownTreatment": "טיפול לא ידוע",
+    "globalTreatment": "טיפול כללי",
+    "activePlan": "תוכנית פעילה",
+    "otherPlans": "תוכניות אחרות",
+    "viewAllPlans": "היסטוריית התוכניות",
+    "activate": "הפעלה",
+    "generateBudget": "הפקת הצעת מחיר",
+    "scheduleAppointment": "קביעת תור",
+    "status": {
+      "draft": "טיוטה",
+      "pending": "ממתינה",
+      "active": "פעילה",
+      "completed": "הושלמה",
+      "closed": "סגורה",
+      "archived": "בארכיון"
+    },
+    "fields": {
+      "title": "כותרת",
+      "titlePlaceholder": "לדוגמה: שיקום פה מלא",
+      "assignedProfessional": "מטפל אחראי",
+      "selectProfessional": "בחירת מטפל",
+      "diagnosisNotes": "הערות אבחון",
+      "diagnosisNotesPlaceholder": "אבחון ותצפיות קליניות...",
+      "internalNotes": "הערות פנימיות",
+      "internalNotesPlaceholder": "הערות הגלויות לצוות בלבד..."
+    },
+    "modal": {
+      "subtitle": "ארגון טיפולי המטופל",
+      "titleHint": "לא חובה - עוזר לזהות את התוכנית",
+      "additionalNotes": "הערות נוספות",
+      "quickTip": "לאחר יצירת התוכנית ניתן להוסיף טיפולים מתרשים השיניים או מהקטלוג.",
+      "createButton": "יצירת תוכנית"
+    },
+    "actions": {
+      "activate": "הפעלת התוכנית",
+      "confirm": "אישור התוכנית",
+      "complete": "סימון כהושלמה",
+      "generateBudget": "הפקת הצעת מחיר",
+      "linkBudget": "קישור הצעת מחיר",
+      "syncBudget": "סנכרון הצעת המחיר",
+      "cancelPlan": "ביטול התוכנית",
+      "reopen": "פתיחה מחדש",
+      "close": "סגירת התוכנית",
+      "reactivate": "הפעלת התוכנית מחדש",
+      "logContact": "תיעוד פנייה"
+    },
+    "items": {
+      "title": "טיפולים",
+      "add": "הוספת טיפול",
+      "addSelected": "הוספת טיפול {count} | הוספת {count} טיפולים",
+      "remove": "הסרת טיפול",
+      "empty": "אין טיפולים בתוכנית זו",
+      "assignedProfessional": "רופא/ה אחראי/ת",
+      "assignedProfessionalAriaLabel": "שינוי הרופא/ה האחראי/ת לטיפול זה",
+      "useUsersPlanDoctor": "שימוש ברופא/ת התוכנית",
+      "noProfessional": "לא שובץ/ה רופא/ה",
+      "inactiveProfessional": "מטפל לא פעיל",
+      "cascadeReassign": {
+        "title": "לשבץ מחדש טיפולים ממתינים?",
+        "body": "שיניתם את רופא/ת התוכנית. {count} טיפול(ים) ממתינים היו משובצים ל{previousName}. לשבץ גם אותם לרופא/ה החדש/ה?",
+        "confirm": "כן, לשבץ מחדש את הממתינים",
+        "cancel": "לא, להשאיר כפי שהם"
+      }
+    },
+    "filters": {
+      "allStatuses": "כל הסטטוסים"
+    },
+    "confirmations": {
+      "delete": "למחוק תוכנית טיפול זו?",
+      "completeItem": "לסמן את הטיפול כהושלם?",
+      "completeItemDescription": "לא ניתן לבטל פעולה זו.",
+      "activateTitle": "לאשר את תוכנית הטיפול?",
+      "activateDescription": "האישור מאפשר הפקת הצעת מחיר וקביעת תורים. ניתן להמשיך להוסיף או להשלים טיפולים לאחר מכן.",
+      "unlockTitle": "לשנות את התוכנית?",
+      "unlockIntro": "לתוכנית זו כבר הופקה הצעת המחיר {number}. כדי לשנות אותה יש לבטל את הצעת המחיר הנוכחית.",
+      "unlockConsequence1": "הצעת המחיר {number} תבוטל ולא תהיה עוד תקפה עבור המטופל.",
+      "unlockConsequence2": "ניתן יהיה להוסיף, לערוך או להסיר טיפולים מהתוכנית.",
+      "unlockConsequence3": "בסיום השינויים יהיה צורך להפיק הצעת מחיר חדשה.",
+      "unlockConsequence4": "הצעת המחיר שבוטלה נשמרת בהיסטוריה לצורכי מעקב.",
+      "cancelTitle": "לבטל את תוכנית הטיפול?",
+      "cancelDescription": "התוכנית תעבור למצב מבוטל וכל טיפול מתוכנן שלא בוצע יוסר מתרשים השיניים. היסטוריית התוכנית נשמרת."
+    },
+    "messages": {
+      "created": "תוכנית הטיפול נוצרה",
+      "updated": "תוכנית הטיפול עודכנה",
+      "deleted": "תוכנית הטיפול נמחקה",
+      "itemsAdded": "הטיפולים נוספו לתוכנית"
+    },
+    "itemCompleted": "הטיפול הושלם",
+    "budgetGenerated": "הצעת המחיר הופקה",
+    "created": "תוכנית הטיפול נוצרה",
+    "updated": "תוכנית הטיפול עודכנה",
+    "statusUpdated": "סטטוס התוכנית עודכן",
+    "deleted": "תוכנית הטיפול נמחקה",
+    "budgetLinked": "הצעת המחיר קושרה לתוכנית",
+    "budgetSynced": "הצעת המחיר סונכרנה",
+    "errors": {
+      "load": "שגיאה בטעינת תוכניות הטיפול",
+      "create": "שגיאה ביצירת תוכנית הטיפול",
+      "update": "שגיאה בעדכון תוכנית הטיפול",
+      "delete": "שגיאה במחיקת תוכנית הטיפול"
+    },
+    "notes": {
+      "title": "רשומות קליניות",
+      "empty": "אין עדיין רשומות קליניות",
+      "addNote": "הוספת רשומה",
+      "edit": "עריכת רשומה",
+      "delete": "מחיקת רשומה",
+      "attachments": "קבצים מצורפים",
+      "author": "מחבר/ת",
+      "createdAt": "נוצר",
+      "templatePicker": "תבניות",
+      "bodyPlaceholder": "כתיבת הרשומה הקלינית…",
+      "saved": "הרשומה נשמרה",
+      "deleted": "הרשומה נמחקה"
+    },
+    "completionNudge": {
+      "title": "השלמת הטיפול",
+      "description": "הוסיפו רשומה קלינית המתעדת את מה שבוצע בביקור לפני סימונו כהושלם.",
+      "completeWithNote": "השלמה עם רשומה",
+      "skip": "דילוג על הרשומה",
+      "skipConfirm": "להשלים ללא רשומה קלינית?"
+    },
+    "visitNote": {
+      "title": "רשומה קלינית לביקור",
+      "save": "שמירת הרשומה",
+      "empty": "אין עדיין רשומה לביקור",
+      "saved": "הרשומה נשמרה"
+    },
+    "clinicalNotesTab": "רשומות קליניות",
+    "filterBy": {
+      "plan": "תוכנית",
+      "item": "טיפול",
+      "visit": "ביקור",
+      "all": "הכול"
+    },
+    "byPlan": {
+      "empty": "למטופל זה אין רשומות קליניות באף תוכנית טיפול",
+      "planNotesLabel": "רשומות התוכנית",
+      "noNotesForTreatment": "אין רשומות לטיפול זה",
+      "noNotesForPlan": "אין רשומות בתוכנית זו"
+    },
+    "noteTemplates": {
+      "endo": {
+        "singleVisit": "אנדודונטיה — ביקור יחיד",
+        "multiVisit": "אנדודונטיה — מספר ביקורים"
+      },
+      "perio": {
+        "scaling": "הסרת אבנית / הקצעת שורשים"
+      },
+      "implant": {
+        "placement": "החדרת שתל"
+      },
+      "general": {
+        "followUp": "מעקב כללי"
+      }
+    },
+    "closureReason": {
+      "rejected_by_patient": "נדחה על ידי המטופל",
+      "expired": "פג תוקף",
+      "cancelled_by_clinic": "בוטל על ידי המרפאה",
+      "patient_abandoned": "המטופל נטש",
+      "other": "סיבה אחרת"
+    },
+    "confirmed": "התוכנית אושרה",
+    "reopened": "התוכנית נפתחה מחדש",
+    "closed": "התוכנית נסגרה",
+    "reactivated": "התוכנית הופעלה מחדש",
+    "contactLogged": "הפנייה תועדה",
+    "modals": {
+      "confirm": {
+        "title": "אישור התוכנית",
+        "description": "התוכנית תעבור למצב ממתינה ותיווצר אוטומטית טיוטת הצעת מחיר. לאחר האישור הטיפולים יהיו לקריאה בלבד.",
+        "submit": "אישור התוכנית"
+      },
+      "reopen": {
+        "title": "פתיחת התוכנית מחדש לעריכה",
+        "description": "פעולה זו תבטל את הצעת המחיר הנוכחית. התוכנית תחזור לטיוטה כדי שניתן יהיה לערוך טיפולים.",
+        "submit": "פתיחה מחדש"
+      },
+      "close": {
+        "title": "סגירת התוכנית",
+        "description": "יש לבחור את סיבת הסגירה. טיפולים ממתינים יועברו לארכיון.",
+        "reasonLabel": "סיבה",
+        "noteLabel": "הערה (לא חובה)",
+        "submit": "סגירת התוכנית"
+      },
+      "reactivate": {
+        "title": "הפעלה מחדש של תוכנית סגורה",
+        "description": "פעולה זו תפעיל מחדש תוכנית שנסגרה ב‑{date} בסיבה «{reason}». להמשיך?",
+        "submit": "הפעלה מחדש"
+      },
+      "contactLog": {
+        "title": "תיעוד פנייה",
+        "description": "מתעד את נקודת המגע מבלי לשנות את סטטוס התוכנית.",
+        "channelLabel": "ערוץ",
+        "noteLabel": "הערה (לא חובה)",
+        "submit": "תיעוד"
+      }
+    },
+    "newBudgetHint": {
+      "text": "למטופל זה יש תוכנית {plan} ללא הצעת מחיר. הפיקו את הצעת המחיר מהתוכנית כדי שיישארו מקושרות.",
+      "cta": "פתיחת התוכנית"
+    },
+    "viewDraftBudget": "הצעת מחיר {number} (טיוטה)",
+    "followup": {
+      "subtitle": "הטיפולים המתוכננים הבאים מהביקור לא סומנו כבוצעו:",
+      "markPerformed": "סימון כבוצע",
+      "marked": "סומנו כבוצעו: {count}."
+    }
+  },
+  "pipeline": {
+    "title": "צינור תוכניות",
+    "description": "ניהול צינור הטיפולים.",
+    "tabs": {
+      "por_presupuestar": "להצעת מחיר",
+      "esperando_paciente": "ממתין למטופל",
+      "sin_cita": "ללא תור",
+      "sin_proxima_cita": "ללא תור הבא",
+      "cerrados": "סגורות",
+      "listado": "רשימה"
+    },
+    "row": {
+      "patient": "מטופל",
+      "plan": "תוכנית",
+      "budget": "הצעת מחיר",
+      "items": "טיפולים",
+      "daysIn": "{n} ימים בסטטוס",
+      "nextAppt": "התור הבא",
+      "noNextAppt": "אין תור",
+      "noBudget": "אין הצעת מחיר"
+    },
+    "actions": {
+      "open": "פתיחה",
+      "send": "שליחה",
+      "remind": "שליחה מחדש",
+      "schedule": "קביעת תור",
+      "scheduleNext": "קביעת התור הבא",
+      "reactivate": "הפעלה מחדש",
+      "call": "התקשרות",
+      "whatsapp": "וואטסאפ",
+      "markContacted": "סימון כנוצר קשר",
+      "acceptInClinic": "אישור במרפאה"
+    },
+    "search": "חיפוש לפי שם או מספר…",
+    "empty": "אין שורות בלשונית זו.",
+    "loading": "טוען…"
+  },
+  "budget": {
+    "title": "הצעות מחיר",
+    "description": "ניהול הצעות מחיר לטיפולים למטופלים",
+    "new": "הצעת מחיר חדשה",
+    "edit": "עריכת הצעת מחיר",
+    "view": "צפייה בהצעת המחיר",
+    "delete": "מחיקת הצעת מחיר",
+    "duplicate": "יצירת גרסה חדשה",
+    "noItems": "אין הצעות מחיר",
+    "empty": "אין הצעות מחיר רשומות",
+    "emptyAction": "יצירת הצעת המחיר הראשונה",
+    "linkedToPlan": "מקושרת לתוכנית",
+    "searchPlaceholder": "חיפוש לפי מספר או מטופל...",
+    "budgetNumber": "מספר",
+    "version": "גרסה",
+    "treatmentPlan": "תוכנית טיפול",
+    "patient": "מטופל",
+    "selectPatient": "בחירת מטופל",
+    "selectPatientHint": "חיפוש ובחירת המטופל להצעת מחיר זו",
+    "professional": "מטפל",
+    "validFrom": "בתוקף מ",
+    "validUntil": "בתוקף עד",
+    "validUntilHint": "להשאיר ריק להצעת מחיר ללא תאריך תפוגה",
+    "noExpiry": "ללא תאריך תפוגה",
+    "createAndAddItems": "יצירה והוספת טיפולים",
+    "subtotal": "סכום ביניים",
+    "totalDiscount": "סה״כ הנחה",
+    "totalTax": "סה״כ מע״מ",
+    "total": "סה״כ",
+    "globalDiscount": "הנחה כללית",
+    "discountType": "סוג הנחה",
+    "discountValue": "ערך ההנחה",
+    "percentage": "אחוז",
+    "absolute": "סכום קבוע",
+    "internalNotes": "הערות פנימיות",
+    "internalNotesPlaceholder": "הערות הגלויות לצוות בלבד...",
+    "patientNotes": "הערות למטופל",
+    "patientNotesPlaceholder": "הערות שיופיעו בהצעת המחיר...",
+    "status": {
+      "title": "סטטוס",
+      "draft": "טיוטה",
+      "sent": "נשלחה",
+      "partially_accepted": "אושרה חלקית",
+      "accepted": "אושרה",
+      "in_progress": "בתהליך",
+      "completed": "הושלמה",
+      "invoiced": "חויבה",
+      "rejected": "נדחתה",
+      "expired": "פג תוקף",
+      "cancelled": "בוטלה"
+    },
+    "itemStatus": {
+      "pending": "ממתין",
+      "accepted": "אושר",
+      "rejected": "נדחה",
+      "in_progress": "בתהליך",
+      "completed": "הושלם"
+    },
+    "actions": {
+      "send": "שליחה למטופל",
+      "accept": "אישור הצעת המחיר",
+      "acceptPartial": "אישור הנבחרים",
+      "reject": "דחייה",
+      "cancel": "ביטול הצעת המחיר",
+      "duplicate": "יצירת גרסה חדשה",
+      "downloadPdf": "הורדת PDF",
+      "previewPdf": "תצוגה מקדימה של PDF",
+      "startTreatment": "התחלת טיפול",
+      "completeTreatment": "השלמת טיפול",
+      "renegotiate": "ניהול מו״מ מחדש",
+      "acceptInClinic": "אישור במרפאה",
+      "resend": "שליחה מחדש",
+      "sendReminder": "שליחת תזכורת",
+      "setPublicCode": "הגדרת קוד גישה",
+      "unlockPublic": "שחרור נעילת גישה"
+    },
+    "items": {
+      "title": "טיפולים",
+      "add": "הוספת טיפול",
+      "remove": "הסרת טיפול",
+      "edit": "עריכת טיפול",
+      "empty": "אין טיפולים בהצעת מחיר זו",
+      "singular": "טיפול",
+      "plural": "טיפולים",
+      "addFromCatalog": "הוספה מהקטלוג",
+      "addFromOdontogram": "הוספה מתרשים השיניים",
+      "treatment": "טיפול",
+      "searchCatalog": "חיפוש בקטלוג הטיפולים...",
+      "unitPrice": "מחיר ליחידה",
+      "quantity": "כמות",
+      "discount": "הנחה",
+      "lineTotal": "סה״כ שורה",
+      "tooth": "שן",
+      "toothNumber": "מספר שן",
+      "toothNumberPlaceholder": "לדוגמה: 11, 21, 36...",
+      "surfaces": "משטחים",
+      "notes": "הערות",
+      "notesPlaceholder": "הערות על טיפול זה...",
+      "managedByPlan": "שורות הצעת מחיר זו מנוהלות מתוכנית הטיפול {plan}."
+    },
+    "signature": {
+      "title": "חתימה דיגיטלית",
+      "viewAction": "צפייה בחתימה",
+      "signedBy": "נחתם על ידי",
+      "signedAt": "נחתם בתאריך",
+      "methodLabel": "שיטה",
+      "relationshipLabel": "קרבה",
+      "documentHash": "גיבוב המסמך (SHA-256)",
+      "hashHint": "גיבוב {short} — קושר את החתימה ל‑PDF המדויק הזה. כל שינוי יבטל אותה.",
+      "downloadSignedPdf": "הורדת ה‑PDF החתום",
+      "downloadError": "לא ניתן להוריד את ה‑PDF החתום.",
+      "notSigned": "עדיין לא נקלטה חתימה להצעת מחיר זו.",
+      "method": {
+        "drawn": "חתימה ידנית",
+        "clickAccept": "אישור בלחיצה",
+        "external": "ספק חיצוני"
+      },
+      "email": "אימייל",
+      "relationship": "קרבה למטופל",
+      "patient": "מטופל",
+      "guardian": "אפוטרופוס חוקי",
+      "representative": "נציג",
+      "accept": "אני מאשר/ת את תנאי הצעת המחיר",
+      "signHere": "חתימה כאן",
+      "clear": "ניקוי החתימה",
+      "loadError": "לא ניתן לטעון את סטטוס החתימה"
+    },
+    "history": {
+      "title": "היסטוריית שינויים",
+      "noChanges": "לא נרשמו שינויים",
+      "actions": {
+        "created": "הצעת המחיר נוצרה",
+        "updated": "הצעת המחיר עודכנה",
+        "status_changed": "הסטטוס שונה",
+        "item_added": "טיפול נוסף",
+        "item_removed": "טיפול הוסר",
+        "signed": "הצעת המחיר נחתמה",
+        "sent": "הצעת המחיר נשלחה",
+        "duplicated": "נוצרה גרסה חדשה",
+        "deleted": "הצעת המחיר נמחקה",
+        "item_treatment_started": "הטיפול התחיל",
+        "item_treatment_completed": "הטיפול הושלם"
+      }
+    },
+    "versions": {
+      "title": "גרסאות",
+      "current": "נוכחית",
+      "viewVersion": "צפייה בגרסה"
+    },
+    "confirmations": {
+      "send": "לשלוח את הצעת המחיר למטופל?",
+      "sendDescription": "הצעת המחיר תסומן כנשלחה.",
+      "reject": "לדחות את הצעת המחיר?",
+      "rejectDescription": "לא ניתן לבטל פעולה זו.",
+      "cancel": "לבטל את הצעת המחיר?",
+      "cancelDescription": "לא ניתן לבטל פעולה זו.",
+      "resend": "ליצור גרסה חדשה של הצעת מחיר זו? תוכנית הטיפול המקושרת תעקוב אחר הגרסה החדשה.",
+      "delete": "למחוק את הצעת המחיר?",
+      "deleteDescription": "לא ניתן לבטל פעולה זו."
+    },
+    "send": {
+      "description": "ניתן לשלוח את הצעת המחיר באימייל או בוואטסאפ, או לסמן אותה כנשלחה ידנית (הודפסה או נמסרה).",
+      "sendByEmail": "שליחה באימייל",
+      "willSendTo": "תישלח אל",
+      "noPatientEmail": "למטופל אין אימייל רשום",
+      "customMessage": "הודעה מותאמת אישית (לא חובה)",
+      "customMessagePlaceholder": "הוספת הודעה למטופל...",
+      "manualNote": "הצעת המחיר תסומן כנשלחה מבלי לשלוח הודעה.",
+      "sendEmail": "שליחת אימייל",
+      "markAsSent": "סימון כנשלחה",
+      "sendByWhatsapp": "שליחה בוואטסאפ",
+      "sendWhatsapp": "שליחת וואטסאפ",
+      "willSendToPhone": "תישלח בוואטסאפ אל"
+    },
+    "messages": {
+      "created": "הצעת המחיר נוצרה",
+      "updated": "הצעת המחיר עודכנה",
+      "deleted": "הצעת המחיר נמחקה",
+      "sent": "הצעת המחיר נשלחה",
+      "sentByEmail": "הצעת המחיר נשלחה באימייל",
+      "sentManually": "הצעת המחיר סומנה כנשלחה",
+      "accepted": "הצעת המחיר אושרה",
+      "rejected": "הצעת המחיר נדחתה",
+      "cancelled": "הצעת המחיר בוטלה",
+      "duplicated": "נוצרה גרסה חדשה",
+      "resent": "נוצרה גרסה חדשה מהצעת המחיר הקודמת",
+      "itemAdded": "הטיפול נוסף",
+      "itemUpdated": "הטיפול עודכן",
+      "itemRemoved": "הטיפול הוסר",
+      "treatmentStarted": "הטיפול התחיל",
+      "treatmentCompleted": "הטיפול הושלם",
+      "sentByWhatsapp": "הצעת המחיר נשלחה בוואטסאפ"
+    },
+    "errors": {
+      "load": "שגיאה בטעינת הצעות המחיר",
+      "create": "שגיאה ביצירת הצעת המחיר",
+      "update": "שגיאה בעדכון הצעת המחיר",
+      "delete": "שגיאה במחיקת הצעת המחיר",
+      "send": "שגיאה בשליחת הצעת המחיר",
+      "accept": "שגיאה באישור הצעת המחיר",
+      "reject": "שגיאה בדחיית הצעת המחיר",
+      "notFound": "הצעת המחיר לא נמצאה",
+      "onlyDraft": "ניתן לערוך רק הצעות מחיר בטיוטה"
+    },
+    "filters": {
+      "allStatuses": "כל הסטטוסים",
+      "status": "סטטוס",
+      "paymentStatus": "סטטוס",
+      "professional": "מטפל",
+      "validity": "תוקף",
+      "validityValid": "בתוקף",
+      "validityExpiringSoon": "פג תוקף בעוד 7 ימים",
+      "validityExpired": "פג תוקף",
+      "dateFrom": "מתאריך",
+      "dateTo": "עד תאריך",
+      "showExpired": "הצגת פגי תוקף",
+      "advanced": "מסננים מתקדמים",
+      "clear": "ניקוי המסננים"
+    },
+    "sortFields": {
+      "createdAt": "נוצר",
+      "validUntil": "בתוקף עד",
+      "total": "סה״כ",
+      "status": "סטטוס",
+      "budgetNumber": "מספר"
+    },
+    "validity": {
+      "expired": "פג תוקף",
+      "expiresIn": "פג תוקף בעוד {days} ימים"
+    },
+    "pdf": {
+      "generating": "מפיק PDF...",
+      "downloadError": "שגיאה בהורדת ה‑PDF"
+    },
+    "modals": {
+      "renegotiate": {
+        "title": "ניהול מו״מ מחדש על הצעת המחיר",
+        "description": "פעולה זו תבטל את הצעת המחיר הנוכחית ותחזיר את התוכנית לטיוטה כדי שניתן יהיה להתאים טיפולים.",
+        "submit": "מו״מ מחדש"
+      },
+      "acceptInClinic": {
+        "title": "אישור הצעת המחיר במרפאה",
+        "description": "קליטת אישור המטופל. ניתן להחתים על טאבלט (לא חובה).",
+        "signerLabel": "שם מלא של החותם/ת",
+        "captureSignature": "קליטת חתימה",
+        "submit": "סימון כאושרה"
+      },
+      "setPublicCode": {
+        "title": "הגדרת קוד גישה",
+        "description": "למטופל זה אין טלפון ולא תאריך לידה בתיק. הגדירו קוד בן 4-6 ספרות ומסרו אותו למטופל בעל פה. אין לכלול את הקוד באימייל.",
+        "codeLabel": "קוד (4-6 ספרות)",
+        "submit": "שמירת הקוד"
+      }
+    },
+    "publicLink": {
+      "action": "שיתוף קישור",
+      "title": "קישור למטופל",
+      "help": "העתיקו קישור זה ושתפו אותו עם המטופל בוואטסאפ או באימייל. לפני הצפייה בהצעת המחיר יתבקש פרט אימות אחד.",
+      "copy": "העתקת הקישור",
+      "copied": "הועתק!",
+      "whatsapp": "פתיחה בוואטסאפ",
+      "whatsappNoPhone": "למטופל אין טלפון בתיק",
+      "whatsappGreeting": "שלום {name}, הנה הצעת המחיר שלך:",
+      "whatsappGreetingFallback": "שלום, הנה הצעת המחיר שלך:",
+      "preview": "תצוגה מקדימה",
+      "statusSent": "נשלחה",
+      "statusAccepted": "אושרה",
+      "statusRejected": "נדחתה",
+      "statusExpired": "פג תוקף"
+    },
+    "public": {
+      "title": "הצעת המחיר שלך",
+      "intro": "{clinic} שלחה לך את הצעת המחיר הזו. עברו על הטיפולים ובחרו אפשרות.",
+      "subtitle": "תוכנית הטיפול האישית שלך",
+      "budgetNumber": "הצעת מחיר",
+      "issuedOn": "הופקה בתאריך {date}",
+      "items": "הטיפולים הכלולים",
+      "tooth": "שן {number}",
+      "subtotal": "סכום ביניים",
+      "discount": "הנחה",
+      "tax": "מע״מ",
+      "total": "סה״כ",
+      "validUntil": "בתוקף עד {date}",
+      "trustSecure": "חיבור מאובטח",
+      "trustEncrypted": "נתונים מוצפנים",
+      "trustSignature": "חתימה מחייבת משפטית",
+      "needHelp": "זקוקים לעזרה? התקשרו למרפאה",
+      "noteFromClinic": "הודעה מהמרפאה",
+      "callClinic": "התקשרות למרפאה",
+      "emailClinic": "שליחת אימייל",
+      "cta_accept": "אישור וחתימה",
+      "cta_reject": "לא מעוניין/ת",
+      "expired": "תוקף הצעת המחיר פג. יש ליצור קשר עם המרפאה.",
+      "locked": "הגישה ננעלה לאחר יותר מדי ניסיונות. יש להתקשר למרפאה.",
+      "already_accepted": "כבר אישרת את הצעת המחיר הזו. המרפאה תיצור איתך קשר לקביעת התור הראשון.",
+      "already_rejected": "דחית את הצעת המחיר הזו. אם תשני/תשנה את דעתך, יש להתקשר למרפאה.",
+      "download": {
+        "signedPdf": "הורדת ה‑PDF החתום",
+        "notSigned": "להצעת מחיר זו עדיין לא מצורפת חתימה.",
+        "error": "לא ניתן להוריד את ה‑PDF. נסו שוב.",
+        "reauthIntro": "מטעמי אבטחה, יש לאמת שוב את הזהות כדי להוריד את ה‑PDF החתום."
+      },
+      "verify": {
+        "title": "אימות זהות",
+        "intro": "כדי להגן על המידע שלך, יש לאשר פרט אחד לפני הצפייה בהצעת המחיר.",
+        "phone_last4_label": "4 הספרות האחרונות של הטלפון שלך",
+        "dob_label": "תאריך הלידה שלך",
+        "manual_code_label": "הקוד שקיבלת מהמרפאה",
+        "submit": "המשך",
+        "invalid": "הפרט שגוי. נסו שוב.",
+        "locked": "הגישה ננעלה לאחר יותר מדי ניסיונות. יש להתקשר למרפאה.",
+        "rate_limited": "יותר מדי ניסיונות. יש להמתין 15 דקות."
+      },
+      "accept": {
+        "title": "אישור וחתימה",
+        "signerLabel": "השם המלא שלך",
+        "signatureLabel": "חתימה כאן (לא חובה)",
+        "signatureClear": "ניקוי",
+        "consent": "אני מאשר/ת את הצעת המחיר ומסכימ/ה לטיפול המתואר.",
+        "submit": "אישור הקבלה",
+        "success": "בוצע! המרפאה תיצור איתך קשר לקביעת התור הראשון."
+      },
+      "reject": {
+        "title": "לא מעוניין/ת",
+        "intro": "מדוע הצעת המחיר הזו לא מתאימה לך?",
+        "reasonLabel": "סיבה",
+        "noteLabel": "הערה (לא חובה)",
+        "submit": "אישור הדחייה",
+        "success": "עדכנו את המרפאה.",
+        "reasons": {
+          "price": "מחיר",
+          "time": "חוסר זמן",
+          "second_opinion": "חוות דעת שנייה",
+          "other": "סיבה אחרת"
+        }
+      }
+    },
+    "settings": {
+      "title": "הגדרות הצעות מחיר",
+      "description": "הגדרת תפוגה, תזכורות ואימות הקישור הציבורי.",
+      "cards": {
+        "expiry": {
+          "title": "תפוגה וסגירה אוטומטית",
+          "description": "כמה זמן הצעת מחיר תקפה לפני שפג תוקפה ומתי לסגור אוטומטית תוכניות ממתינות."
+        },
+        "reminders": {
+          "title": "תזכורות אוטומטיות",
+          "description": "הפעלה/כיבוי של תזכורות אימייל לאחר 7 / 14 ימים למטופלים שלא הגיבו."
+        },
+        "publicLink": {
+          "title": "קישור ציבורי ואימות",
+          "description": "הגדרת ההגנה על קישור הצעת המחיר המיועד למטופל."
+        }
+      },
+      "expiry": {
+        "validityDays": "תוקף הצעת המחיר (ימים)",
+        "validityHelp": "לאחר מספר ימים זה ללא תגובה, הצעת המחיר הופכת לפגת תוקף (טווח 7-180).",
+        "autoCloseDays": "ימים עד סגירה אוטומטית של התוכנית",
+        "autoCloseHelp": "תוכניות עם הצעת מחיר שפג תוקפה וללא פעולה במשך מספר ימים זה עוברות לסגורות (טווח 7-180).",
+        "save": "שמירה"
+      },
+      "reminders": {
+        "enabled": "שליחת תזכורות אוטומטיות לאחר 7 ו‑14 ימים",
+        "enabledHelp": "כשמופעל, המערכת שולחת למטופל אימייל על הצעות מחיר ממתינות. כשכבוי, הקבלה עוקבת ידנית.",
+        "save": "שמירה"
+      },
+      "publicLink": {
+        "authDisabled": "ביטול אימות הקישור הציבורי",
+        "authDisabledHelp": "כשמופעל, המטופל רואה את הצעת המחיר באמצעות הקישור בלבד — ללא אימות טלפון או תאריך לידה. יש לקבל את הסיכון אם הקישור משותף.",
+        "save": "שמירה"
+      },
+      "saved": "ההגדרות נשמרו"
+    }
+  },
+  "notifications": {
+    "communications": {
+      "language": {
+        "cardTitle": "שפת התקשורת",
+        "cardDescription": "השפה שבה מוצגת הצעת המחיר למטופל ונשלחים אימיילים והודעות וואטסאפ.",
+        "title": "שפת התקשורת עם מטופלים",
+        "label": "שפה",
+        "help": "חל על תצוגת הצעת המחיר למטופל ועל תבניות האימייל/וואטסאפ האוטומטיות. ממשק הצוות שומר על העדפת השפה של כל משתמש.",
+        "save": "שמירה",
+        "saved": "השפה נשמרה"
+      }
+    },
+    "title": "התראות",
+    "description": "הגדרת התראות האימייל של המרפאה",
+    "pageDescription": "הגדרה אילו התראות נשלחות אוטומטית ואילו דורשות שליחה ידנית.",
+    "autoVsManual": "התראות אוטומטיות לעומת ידניות",
+    "autoVsManualDescription": "הגדירו אילו התראות נשלחות אוטומטית כשמתרחש אירוע ואילו דורשות מהמשתמש לשלוח אותן ידנית.",
+    "notificationType": "סוג ההתראה",
+    "enabled": "מופעל",
+    "autoSend": "שליחה אוטומטית",
+    "options": "אפשרויות",
+    "hoursBefore": "שעות לפני",
+    "testConnection": "בדיקת חיבור",
+    "testEmailTitle": "שליחת אימייל בדיקה",
+    "testEmailDescription": "נשלח אימייל בדיקה כדי לוודא שההגדרות פועלות כראוי.",
+    "sendTestEmail": "שליחת בדיקה",
+    "test_email_sent": "אימייל הבדיקה נשלח בהצלחה",
+    "settings_saved": "ההגדרות נשמרו",
+    "emailProvider": "ספק אימייל",
+    "providerConfigured": "ספק האימייל מוגדר",
+    "providerNote": "הגדרת שרת האימייל נעשית במשתני הסביבה של השרת.",
+    "infoTitle": "מידע",
+    "infoAutoSend": "שליחה אוטומטית: ההתראה נשלחת כשמתרחש האירוע (לדוגמה, בעת יצירת תור).",
+    "infoManualSend": "שליחה ידנית: יופיע כפתור לשליחת ההתראה לפי הצורך.",
+    "infoDisabled": "מושבת: ההתראה לא תישלח ואפשרות השליחה לא תופיע.",
+    "types": {
+      "appointment_confirmation": "אישור תור",
+      "appointment_confirmation_desc": "אימייל אישור כשנקבע תור",
+      "appointment_cancelled": "ביטול תור",
+      "appointment_cancelled_desc": "אימייל הודעה כשתור מבוטל",
+      "appointment_reminder": "תזכורת לתור",
+      "appointment_reminder_desc": "אימייל תזכורת לפני התור",
+      "budget_sent": "שליחת הצעת מחיר",
+      "budget_sent_desc": "אימייל עם פרטי הצעת המחיר",
+      "budget_accepted": "הצעת מחיר אושרה",
+      "budget_accepted_desc": "אימייל אישור כשהצעת מחיר מאושרת",
+      "welcome": "ברוכים הבאים",
+      "welcome_desc": "אימייל קבלת פנים למטופלים חדשים",
+      "invoice_sent": "שליחת חשבונית",
+      "invoice_sent_desc": "הודעה עם החשבונית כשהיא נשלחת למטופל",
+      "budget_reminder": "תזכורת להצעת מחיר",
+      "budget_reminder_desc": "מעקב אחר הצעות מחיר ללא מענה (7 ו‑14 ימים)",
+      "recall_reminder": "תזכורת ריקול",
+      "recall_reminder_desc": "תזכורת לקביעת ביקור המעקב התקופתי"
+    },
+    "sendConfirmation": "שליחת אישור",
+    "sendReminder": "שליחת תזכורת",
+    "sendCancellation": "שליחת הודעת ביטול",
+    "sendBudget": "שליחה באימייל",
+    "sendAcceptance": "שליחת אישור",
+    "sendWelcome": "שליחת ברכת קבלת פנים",
+    "sendEmail": "שליחת אימייל",
+    "errors": {
+      "fetch_failed": "שגיאה בטעינת ההגדרות",
+      "save_failed": "שגיאה בשמירת ההגדרות",
+      "test_failed": "שגיאה בשליחת אימייל הבדיקה",
+      "send_failed": "שגיאה בשליחת ההתראה"
+    },
+    "smtp": {
+      "title": "הגדרת שרת האימייל",
+      "description": "הגדרת שרת ה‑SMTP לשליחת אימיילים מהמרפאה. לכל מרפאה יכולה להיות הגדרה משלה.",
+      "configure": "הגדרה",
+      "provider": "ספק",
+      "host": "שרת",
+      "port": "פורט",
+      "username": "שם משתמש",
+      "password": "סיסמה",
+      "passwordHint": "להשאיר ריק כדי לשמור על הסיסמה הנוכחית",
+      "useTls": "שימוש ב‑TLS",
+      "useSsl": "שימוש ב‑SSL",
+      "fromEmail": "אימייל השולח",
+      "fromName": "שם השולח",
+      "security": "אבטחה",
+      "testConnection": "בדיקת חיבור",
+      "testConnectionTitle": "בדיקת ההגדרות לפני השמירה",
+      "testEmailPlaceholder": "כתובת אימייל לבדיקה",
+      "test_success": "חיבור ה‑SMTP הצליח. אימייל הבדיקה נשלח.",
+      "test_failed": "שגיאת חיבור SMTP",
+      "settings_saved": "הגדרות ה‑SMTP נשמרו",
+      "consoleNote": "במצב קונסולה, האימיילים מוצגים בקונסולת השרת במקום להישלח. שימושי לפיתוח.",
+      "disabledNote": "כשהאימייל מושבת, לא יישלחו התראות אימייל ממרפאה זו.",
+      "status": {
+        "not_configured": "לא מוגדר",
+        "verified": "אומת ופועל",
+        "not_verified": "מוגדר אך לא אומת",
+        "disabled": "האימייל מושבת",
+        "console": "מצב קונסולה (פיתוח)"
+      },
+      "errors": {
+        "fetch_failed": "שגיאה בטעינת הגדרות ה‑SMTP",
+        "save_failed": "שגיאה בשמירת הגדרות ה‑SMTP",
+        "test_failed": "שגיאה בבדיקת חיבור ה‑SMTP"
+      }
+    },
+    "onboarding": {
+      "label": "שליחת אימיילים",
+      "description": "הגדרת השולח לשליחת אישורי תורים והצעות מחיר באימייל."
+    },
+    "channels": {
+      "cardTitle": "ערוצים",
+      "cardDescription": "כיצד המרפאה מגיעה למטופלים: הערוץ שבו נשלחות הודעות אוטומטיות וכפתורי השליחה שהצוות רואה.",
+      "preferredLabel": "ערוץ מועדף",
+      "preferredHelp": "משמש להודעות אוטומטיות (תור חדש, תזכורת, קבלת פנים…).",
+      "fallbackLabel": "מעבר לערוץ האחר במקרה הצורך",
+      "fallbackHelp": "אם הערוץ המועדף לא יכול לשלוח, ננסה את הערוץ הזמין האחר במקום לדלג על ההודעה.",
+      "manualLabel": "הצגת כפתור שליחה עבור…",
+      "manualHelp": "אילו כפתורי שליחה הקבלה רואה בתורים, בהצעות מחיר ובחשבוניות.",
+      "manualAtLeastOne": "יש לבחור לפחות ערוץ אחד.",
+      "email": "אימייל",
+      "whatsapp": "וואטסאפ",
+      "whatsappUnavailableHint": "וואטסאפ אינו זמין עד שמספר המרפאה יחובר.",
+      "whatsappConnect": "חיבור וואטסאפ (Kapso)",
+      "noEmail": "למטופל אין אימייל בתיק",
+      "noPhone": "למטופל אין טלפון בתיק",
+      "sms": "SMS",
+      "smsUnavailableHint": "SMS אינו זמין עד שיוגדר ספק SMS.",
+      "smsConnect": "הגדרה",
+      "smsDailyLimitLabel": "מגבלת SMS יומית",
+      "smsDailyLimitHelp": "מספר הודעות ה‑SMS היוצאות המרבי ליום עבור המרפאה."
+    },
+    "channelSent": {
+      "email": "האימייל נשלח בהצלחה",
+      "whatsapp": "הודעת הוואטסאפ נשלחה בהצלחה",
+      "sms": "הודעת ה‑SMS נשלחה בהצלחה"
+    },
+    "prefs": {
+      "title": "העדפות התראות",
+      "description": "אילו ערוצים רשאים להגיע למטופל זה. ביטול הסכמה חוסם את הערוץ גם בשליחות כפויות.",
+      "saved": "ההעדפות נשמרו",
+      "typesDescription": "סוגי ההודעות שמטופל זה מקבל. כיבוי סוג חוסם אותו בכל הערוצים, כולל שליחות ידניות."
+    }
+  },
+  "invoice": {
+    "title": "חשבוניות",
+    "description": "ניהול חשבוניות וחיוב",
+    "new": "חשבונית חדשה",
+    "edit": "עריכת חשבונית",
+    "view": "צפייה בחשבונית",
+    "delete": "מחיקת חשבונית",
+    "noItems": "אין חשבוניות",
+    "empty": "אין חשבוניות רשומות",
+    "emptyAction": "יצירת החשבונית הראשונה",
+    "searchPlaceholder": "חיפוש לפי מספר או מטופל...",
+    "notFound": "החשבונית לא נמצאה",
+    "draftNoNumber": "טיוטה",
+    "details": "פרטים",
+    "invoiceNumber": "מספר חשבונית",
+    "patient": "מטופל",
+    "searchPatient": "חיפוש מטופל",
+    "searchPatientPlaceholder": "חיפוש לפי שם...",
+    "professional": "מטפל",
+    "billingData": "פרטי חיוב",
+    "billingName": "שם לחיוב",
+    "taxId": "ת״ז / ח״פ",
+    "billingEmail": "אימייל לחיוב",
+    "billingAddress": "כתובת לחיוב",
+    "billingDataComplete": "מלא",
+    "billingDataIncomplete": "חסר",
+    "billingDataIncompleteHint": "למטופל חסרים חלק מפרטי החיוב.",
+    "editPatientBilling": "עריכת פרטי המטופל",
+    "fromPatient": "מהמטופל",
+    "editInPatient": "עריכה בפרופיל",
+    "billingFromPatientHint": "נתונים אלה מגיעים מתיק המטופל. כדי לשנותם יש לערוך את פרטי החיוב של המטופל.",
+    "paymentTerms": "תנאי תשלום",
+    "linkedToBudget": "מקושרת להצעת מחיר",
+    "selectPatient": "בחירת מטופל",
+    "noBillingData": "אין פרטי חיוב",
+    "street": "רחוב",
+    "city": "עיר",
+    "postalCode": "מיקוד",
+    "province": "מחוז",
+    "country": "מדינה",
+    "linkedBudget": "הצעת מחיר מקושרת",
+    "creditNoteFor": "חשבונית זיכוי עבור",
+    "paymentTermDays": "תנאי תשלום (ימים)",
+    "dueDate": "תאריך לתשלום",
+    "issueDate": "תאריך הפקה",
+    "subtotal": "סכום ביניים",
+    "discount": "הנחה",
+    "tax": "מס",
+    "total": "סה״כ",
+    "paid": "שולם",
+    "balance": "יתרה",
+    "balanceDue": "יתרה לתשלום",
+    "overdue": "באיחור",
+    "overdueDays": "באיחור {n} ימים",
+    "info": {
+      "issueDate": "תאריך הפקה",
+      "dueDate": "תאריך לתשלום",
+      "issuedBy": "הופקה על ידי",
+      "createdBy": "נוצרה על ידי",
+      "createdAt": "נוצרה",
+      "budget": "הצעת מחיר",
+      "creditNoteFor": "חשבונית זיכוי עבור"
+    },
+    "criticalBanner": {
+      "aeatRejected": {
+        "title": "רשות המסים (AEAT) דחתה חשבונית זו",
+        "cta": "תיקון ושליחה מחדש"
+      },
+      "billingIncomplete": {
+        "title": "פרטי החיוב חסרים",
+        "cta": "השלמת הפרטים"
+      }
+    },
+    "collect": {
+      "title": "גביית חשבונית",
+      "submit": "גבייה",
+      "noteAppliedToInvoice": "ייזקף לחשבונית זו.",
+      "notePendingAfter": "יתרה שתישאר",
+      "noteFullySettled": "תשלום זה סוגר את החשבונית במלואה.",
+      "noteToInvoice": "ייזקף לחשבונית זו ו‑",
+      "noteExcessToOnAccount": "ייזקף לזכות המטופל כיתרה על חשבון.",
+      "noteInvoiceSettled": "חשבונית זו כבר שולמה.",
+      "noteToOnAccount": "ייזקף לזכות המטופל כיתרה על חשבון."
+    },
+    "tooth": "שן",
+    "vat": "מע״מ",
+    "internalNotes": "הערות פנימיות",
+    "internalNotesPlaceholder": "הערות הגלויות לצוות בלבד...",
+    "publicNotes": "הערות גלויות",
+    "publicNotesPlaceholder": "הערות שיופיעו בחשבונית...",
+    "items": "פריטים",
+    "addItem": "הוספת פריט",
+    "editItem": "עריכת פריט",
+    "selectTreatment": "טיפול",
+    "searchCatalog": "חיפוש טיפול בקטלוג...",
+    "itemDescription": "תיאור",
+    "itemPrice": "מחיר ליחידה",
+    "itemQuantity": "כמות",
+    "selectVatType": "בחירת סוג מע״מ",
+    "summary": "סיכום",
+    "createDraft": "יצירת טיוטה",
+    "createFromBudget": "יצירת חשבונית מהצעת מחיר",
+    "notes": "הערות",
+    "status": {
+      "draft": "טיוטה",
+      "issued": "הופקה",
+      "partial": "שולמה חלקית",
+      "paid": "שולמה",
+      "cancelled": "בוטלה",
+      "voided": "מבוטלת"
+    },
+    "actions": {
+      "issue": "הפקת חשבונית",
+      "void": "ביטול",
+      "recordPayment": "רישום תשלום",
+      "createCreditNote": "יצירת חשבונית זיכוי",
+      "downloadPdf": "הורדת PDF",
+      "previewPdf": "תצוגה מקדימה של PDF",
+      "sendEmail": "שליחה באימייל"
+    },
+    "recordPayment": "רישום תשלום",
+    "paymentAmount": "סכום",
+    "paymentMethod": "אמצעי תשלום",
+    "paymentDate": "תאריך התשלום",
+    "paymentReference": "אסמכתא",
+    "paymentReferencePlaceholder": "מספר עסקה, קבלה...",
+    "paymentNotes": "הערות לתשלום",
+    "paymentVoided": "התשלום בוטל",
+    "createCreditNote": "יצירת חשבונית זיכוי",
+    "creditNoteReason": "סיבת הזיכוי",
+    "creditNoteReasonPlaceholder": "תיאור הסיבה לחשבונית הזיכוי...",
+    "creditNoteInfo": "תיווצר חשבונית זיכוי על מלוא סכום החשבונית.",
+    "prompts": {
+      "voidPaymentReason": "יש להזין את הסיבה לביטול תשלום זה"
+    },
+    "payments": {
+      "title": "תשלומים",
+      "void": "ביטול תשלום",
+      "amount": "סכום",
+      "method": "אמצעי תשלום",
+      "date": "תאריך",
+      "reference": "אסמכתא",
+      "notes": "הערות",
+      "noPayments": "לא נרשמו תשלומים",
+      "voided": "התשלום בוטל",
+      "voidReason": "סיבת הביטול",
+      "voidReasonPlaceholder": "הסיבה לביטול תשלום זה...",
+      "methods": {
+        "cash": "מזומן",
+        "card": "כרטיס אשראי",
+        "bank_transfer": "העברה בנקאית",
+        "direct_debit": "הוראת קבע",
+        "insurance": "ביטוח",
+        "upi": "UPI",
+        "netbanking": "בנקאות מקוונת",
+        "other": "אחר"
+      }
+    },
+    "creditNote": {
+      "title": "חשבונית זיכוי",
+      "create": "יצירת חשבונית זיכוי",
+      "reason": "סיבה",
+      "reasonPlaceholder": "הסיבה לחשבונית הזיכוי...",
+      "selectItems": "בחירת פריטים לתיקון",
+      "originalInvoice": "החשבונית המקורית"
+    },
+    "history": {
+      "title": "היסטוריה",
+      "noChanges": "לא נרשמו שינויים",
+      "actions": {
+        "created": "החשבונית נוצרה",
+        "updated": "החשבונית עודכנה",
+        "issued": "החשבונית הופקה",
+        "voided": "החשבונית בוטלה",
+        "payment_recorded": "תשלום נרשם",
+        "payment_voided": "תשלום בוטל",
+        "credit_note_created": "חשבונית זיכוי נוצרה"
+      }
+    },
+    "fromBudget": "יצירת חשבונית מהצעת מחיר",
+    "selectItems": "בחירת פריטים לחיוב",
+    "selectItemsHint": "בחירת פריטי הצעת המחיר שברצונכם לחייב",
+    "availableQuantity": "זמין",
+    "quantityToInvoice": "כמות לחיוב",
+    "alreadyInvoiced": "כבר חויב",
+    "remaining": "נותר",
+    "noItemsAvailable": "אין פריטים זמינים לחיוב",
+    "allItemsInvoiced": "כל הפריטים חויבו",
+    "series": {
+      "title": "סדרות חשבוניות",
+      "prefix": "קידומת",
+      "type": "סוג",
+      "currentNumber": "מספר נוכחי",
+      "resetYearly": "איפוס שנתי",
+      "default": "ברירת מחדל"
+    },
+    "filters": {
+      "allStatuses": "סטטוס",
+      "overdueOnly": "באיחור",
+      "dateFrom": "מתאריך",
+      "dateTo": "עד תאריך"
+    },
+    "sortFields": {
+      "created": "נוצרה",
+      "issueDate": "תאריך הפקה",
+      "dueDate": "תאריך לתשלום",
+      "total": "סה״כ"
+    },
+    "overdueByDays": "באיחור {days} ימים",
+    "pdf": {
+      "generating": "מפיק PDF...",
+      "downloadError": "שגיאה בהורדת ה‑PDF"
+    },
+    "reports": {
+      "title": "דוחות חיוב",
+      "summary": "סיכום",
+      "overdue": "באיחור",
+      "overdueInvoices": "חשבוניות באיחור",
+      "byPaymentMethod": "לפי אמצעי תשלום",
+      "byProfessional": "לפי מטפל",
+      "vatSummary": "סיכום מע״מ",
+      "gaps": "פערים במספור",
+      "period": "תקופה",
+      "from": "מ",
+      "to": "עד",
+      "refresh": "רענון",
+      "totalInvoiced": "סה״כ חויב",
+      "totalCollected": "סה״כ נגבה",
+      "totalPaid": "סה״כ שולם",
+      "totalPending": "סה״כ ממתין",
+      "pending": "יתרה פתוחה",
+      "invoices": "חשבוניות",
+      "paid": "שולמו",
+      "payments": "תשלומים",
+      "noGaps": "אין פערים במספור",
+      "gapsFound": "נמצאו {count} פער(ים) במספור",
+      "gapsDetected": "זוהו פערים במספור",
+      "missingNumbers": "מספרים חסרים:",
+      "noData": "אין נתונים לתקופה שנבחרה",
+      "noOverdue": "אין חשבוניות באיחור",
+      "daysOverdue": "ימים באיחור",
+      "vatType": "סוג מע״מ",
+      "base": "בסיס",
+      "tax": "מס",
+      "thisMonth": "החודש",
+      "thisQuarter": "הרבעון הנוכחי",
+      "thisYear": "השנה",
+      "lastMonth": "החודש שעבר",
+      "lastQuarter": "הרבעון הקודם",
+      "lastYear": "השנה שעברה"
+    },
+    "confirmations": {
+      "issue": "להפיק את החשבונית?",
+      "issueDescription": "לאחר ההפקה לא ניתן לערוך את החשבונית. ניתן רק לרשום תשלומים או ליצור חשבוניות זיכוי.",
+      "void": "לבטל את החשבונית?",
+      "voidDescription": "לא ניתן לבטל פעולה זו.",
+      "delete": "למחוק את החשבונית?",
+      "deleteDescription": "לא ניתן לבטל פעולה זו."
+    },
+    "messages": {
+      "created": "החשבונית נוצרה",
+      "updated": "החשבונית עודכנה",
+      "deleted": "החשבונית נמחקה",
+      "issued": "החשבונית הופקה",
+      "voided": "החשבונית בוטלה",
+      "itemAdded": "הפריט נוסף",
+      "itemUpdated": "הפריט עודכן",
+      "sentByEmail": "החשבונית נשלחה באימייל",
+      "sentManually": "החשבונית סומנה כנשלחה",
+      "sentByWhatsapp": "החשבונית נשלחה בוואטסאפ",
+      "creditNoteCreated": "חשבונית הזיכוי נוצרה",
+      "paymentRecorded": "התשלום נרשם"
+    },
+    "send": {
+      "title": "שליחת חשבונית",
+      "description": "ניתן לשלוח את החשבונית באימייל או בוואטסאפ, או לסמן אותה כנשלחה ידנית (הודפסה או נמסרה אישית).",
+      "sendByEmail": "שליחה באימייל",
+      "willSendTo": "תישלח אל",
+      "noPatientEmail": "למטופל אין כתובת אימייל",
+      "customMessage": "הודעה מותאמת אישית (לא חובה)",
+      "customMessagePlaceholder": "הוספת הודעה למטופל...",
+      "manualNote": "החשבונית תסומן כנשלחה מבלי לשלוח הודעה.",
+      "sendEmail": "שליחת אימייל",
+      "markAsSent": "סימון כנשלחה",
+      "sendByWhatsapp": "שליחה בוואטסאפ",
+      "sendWhatsapp": "שליחת וואטסאפ",
+      "willSendToPhone": "תישלח בוואטסאפ אל"
+    },
+    "errors": {
+      "load": "שגיאה בטעינת החשבוניות",
+      "create": "שגיאה ביצירת החשבונית",
+      "update": "שגיאה בעדכון החשבונית",
+      "delete": "שגיאה במחיקת החשבונית",
+      "issue": "שגיאה בהפקת החשבונית",
+      "void": "שגיאה בביטול החשבונית",
+      "recordPayment": "שגיאה ברישום התשלום",
+      "voidPayment": "שגיאה בביטול התשלום",
+      "createCreditNote": "שגיאה ביצירת חשבונית הזיכוי",
+      "send": "שגיאה בשליחת החשבונית",
+      "creditNoteReasonRequired": "יש לציין סיבה לחשבונית הזיכוי",
+      "notFound": "החשבונית לא נמצאה",
+      "canOnlyDeleteDraft": "ניתן למחוק רק חשבוניות בטיוטה",
+      "patientRequired": "יש לבחור מטופל",
+      "itemsRequired": "נדרש לפחות פריט אחד",
+      "itemRequired": "נדרשים תיאור ומחיר",
+      "selectCatalogItem": "יש לבחור טיפול מהקטלוג",
+      "cannotEdit": "ניתן לערוך רק חשבוניות בטיוטה"
+    },
+    "newItemsPending": "פריטים חדשים ממתינים לשמירה",
+    "linkedPlan": "תוכנית טיפול"
+  },
+  "reports": {
+    "title": "דוחות",
+    "subtitle": "ניתוחים וסטטיסטיקות של המרפאה",
+    "viewReports": "צפייה בדוחות",
+    "noAccess": "אין לך גישה לאף דוח",
+    "dashboard": {
+      "title": "לוח בקרה",
+      "subtitle": "המרפאה שלך במבט אחד",
+      "period": "תקופה",
+      "snapshotBadge": "היום",
+      "snapshotTooltip": "אינו מושפע מטווח התאריכים",
+      "vsPrev": "לעומת התקופה הקודמת",
+      "empty": {
+        "noData": "אין נתונים בטווח זה"
+      },
+      "drilldown": {
+        "title": "פירוט",
+        "payments": "תשלומים"
+      },
+      "kpi": {
+        "cashCollected": "גבייה",
+        "cashCollectedHint": "{count} תשלומים",
+        "patientAdvance": "יתרת זכות מטופלים",
+        "patientAdvanceHint": "מקדמות שלא שויכו",
+        "production": "ייצור",
+        "productionHint": "{count} טיפולים",
+        "byMethod": "לפי אמצעי תשלום",
+        "methodCount": "{count} תשלומים",
+        "total": "סה״כ",
+        "newPatients": "מטופלים חדשים",
+        "newPatientsHint": "{rate}% מכלל התורים",
+        "appointmentFunnel": "שיעור אי‑הגעה",
+        "funnelHint": "{completed}% הושלמו",
+        "avgCollectedTicket": "גבייה ממוצעת לתשלום",
+        "avgTicketHint": "על פני {count} תשלומים",
+        "aging": "גיול חובות"
+      },
+      "charts": {
+        "cashOverTime": "גבייה לאורך זמן",
+        "productionByDoctor": "ייצור לפי רופא/ה",
+        "refunded": "החזרים"
+      },
+      "production": {
+        "unassigned": "לא משובץ",
+        "others": "אחרים",
+        "treatmentCount": "{count} טיפולים"
+      },
+      "aging": {
+        "bucket0_30": "0-30 ימים",
+        "bucket31_60": "31-60 ימים",
+        "bucket61_90": "61-90 ימים",
+        "bucket90plus": "90+ ימים",
+        "empty": "אין חובות פתוחים",
+        "patientCount": "{count} מטופלים"
+      }
+    },
+    "billing": {
+      "title": "חיוב",
+      "description": "הכנסות, תשלומים, מע״מ וחשבוניות באיחור",
+      "summary": "סיכום",
+      "overdue": "באיחור",
+      "overdueInvoices": "חשבוניות באיחור",
+      "byPaymentMethod": "לפי אמצעי תשלום",
+      "byProfessional": "לפי מטפל",
+      "vatSummary": "סיכום מע״מ",
+      "gaps": "פערים במספור",
+      "period": "תקופה",
+      "from": "מ",
+      "to": "עד",
+      "refresh": "רענון",
+      "totalInvoiced": "סה״כ חויב",
+      "totalCollected": "סה״כ נגבה",
+      "pending": "יתרה פתוחה",
+      "invoices": "חשבוניות",
+      "paid": "שולמו",
+      "payments": "תשלומים",
+      "gapsDetected": "זוהו פערים במספור",
+      "missingNumbers": "מספרים חסרים:",
+      "noData": "אין נתונים לתקופה שנבחרה",
+      "noOverdue": "אין חשבוניות באיחור",
+      "invoiceAging": "גיול חשבוניות",
+      "invoiceAgingDescription": "סכומים פתוחים של חשבוניות שהופקו לפי טווח. חשבוניות שטרם הגיע מועדן מוצגות בנפרד.",
+      "notDue": "טרם הגיע המועד",
+      "issuedTrend": "מגמת הפקה",
+      "daysOverdue": "ימים באיחור",
+      "vatType": "סוג מע״מ",
+      "base": "בסיס",
+      "tax": "מס",
+      "thisMonth": "החודש",
+      "thisQuarter": "הרבעון הנוכחי",
+      "thisYear": "השנה",
+      "lastMonth": "החודש שעבר",
+      "lastQuarter": "הרבעון הקודם",
+      "lastYear": "השנה שעברה"
+    },
+    "budgets": {
+      "title": "הצעות מחיר",
+      "description": "שיעורי אישור, ניתוח לפי מטפל וטיפולים",
+      "comingSoonDescription": "דוחות הצעות המחיר יהיו זמינים בקרוב. ניתן יהיה לנתח שיעורי אישור, הצעות מחיר לפי מטפל והטיפולים המבוקשים ביותר.",
+      "features": {
+        "acceptanceRate": "שיעור אישור",
+        "acceptanceRateDesc": "אחוז הצעות המחיר שאושרו לעומת אלה שנדחו",
+        "byProfessional": "לפי מטפל",
+        "byProfessionalDesc": "הצעות מחיר שנוצרו על ידי כל מטפל",
+        "byTreatment": "לפי טיפול",
+        "byTreatmentDesc": "הטיפולים שהוצעו הכי הרבה",
+        "averageValue": "ערך ממוצע",
+        "averageValueDesc": "סכום ממוצע להצעת מחיר"
+      },
+      "labels": {
+        "totalCreated": "סה״כ נוצרו",
+        "accepted": "אושרו",
+        "rejected": "נדחו",
+        "pending": "ממתינות",
+        "completed": "הושלמו",
+        "acceptanceRate": "שיעור אישור",
+        "averageValue": "ערך ממוצע",
+        "byStatus": "לפי סטטוס",
+        "topTreatments": "הטיפולים שהוצעו הכי הרבה",
+        "treatment": "טיפול",
+        "occurrences": "מופעים",
+        "quantity": "כמות"
+      }
+    },
+    "scheduling": {
+      "title": "יומן",
+      "description": "ביקורים ראשונים, שעות עבודה ותפוסה",
+      "comingSoonDescription": "דוחות היומן יהיו זמינים בקרוב. ניתן יהיה לנתח ביקורים ראשונים, שעות לפי מטפל ושיעורי ביטולים.",
+      "features": {
+        "firstVisits": "ביקורים ראשונים",
+        "firstVisitsDesc": "מטופלים חדשים לתקופה",
+        "hoursWorked": "שעות עבודה",
+        "hoursWorkedDesc": "זמן לפי מטפל",
+        "cancellations": "ביטולים",
+        "cancellationsDesc": "שיעורי ביטולים ואי‑הגעה",
+        "cabinetUtilization": "תפוסת חדרים",
+        "cabinetUtilizationDesc": "ניצול כל חדר"
+      },
+      "labels": {
+        "totalAppointments": "סה״כ תורים",
+        "completionRate": "שיעור השלמה",
+        "completed": "הושלמו",
+        "cancellationRate": "שיעור ביטולים",
+        "cancelled": "בוטלו",
+        "noShowRate": "שיעור אי‑הגעה",
+        "noShows": "לא הגיעו",
+        "newPatients": "מטופלים חדשים",
+        "firstVisitRate": "שיעור ביקורים ראשונים",
+        "ofTotalAppointments": "מכלל התורים",
+        "appointmentsInPeriod": "תורים בתקופה",
+        "excludingCancelled": "ללא מבוטלים",
+        "appointments": "תורים",
+        "byDayOfWeek": "לפי יום בשבוע",
+        "statusBreakdown": "פילוח לפי סטטוס",
+        "pending": "ממתינים"
+      },
+      "analytics": {
+        "funnel": "משפך סטטוסים",
+        "funnelDesc": "התפלגות התורים לפי סטטוס בתקופה",
+        "waitingTimes": "זמני המתנה",
+        "waitingTimesDesc": "דקות בין הגעת המטופל לכניסה לכיסא",
+        "punctuality": "דייקנות מטופלים",
+        "punctualityDesc": "הפרש בין השעה שנקבעה להגעה בפועל",
+        "durationVariance": "משך מתוכנן לעומת בפועל",
+        "durationVarianceDesc": "השוואה בין המשך המתוכנן לזמן בכיסא בפועל",
+        "samples": "דגימות",
+        "average": "ממוצע",
+        "median": "חציון",
+        "p90": "P90",
+        "avgDelta": "הפרש ממוצע",
+        "medianDelta": "הפרש חציוני",
+        "onTime": "% בזמן",
+        "avgOverrun": "חריגה ממוצעת",
+        "overrunCount": "מספר חריגות",
+        "underCount": "מספר קצרים מהמתוכנן",
+        "completionRate": "השלמה",
+        "noShowRate": "אי‑הגעה",
+        "cancellationRate": "ביטול",
+        "punctuality_early": "מוקדם (<-5)",
+        "punctuality_on_time": "בזמן (±5)",
+        "punctuality_late_short": "באיחור (5-15)",
+        "punctuality_late_long": "באיחור (>15)"
+      },
+      "tabs": {
+        "overview": "סקירה",
+        "activity": "פעילות",
+        "quality": "איכות"
+      },
+      "hero": {
+        "inPeriod": "בתקופה"
+      },
+      "filters": {
+        "cabinet": "חדר",
+        "professional": "מטפל",
+        "custom": "טווח מותאם אישית",
+        "all": "הכול",
+        "clear": "ניקוי המסננים"
+      },
+      "empty": {
+        "title": "אין נתונים לתקופה זו",
+        "desc": "נסו טווח תאריכים רחב יותר או הסירו מסננים."
+      }
+    },
+    "loadError": "לא ניתן לטעון את נתוני הדוח"
+  },
+  "invoiceSeries": {
+    "title": "סדרות חשבוניות",
+    "description": "הגדרת קידומות ומספור של חשבוניות",
+    "regularInvoices": "חשבוניות",
+    "creditNotes": "חשבוניות זיכוי",
+    "new": "סדרה חדשה",
+    "newTitle": "סדרת {type} חדשה",
+    "editTitle": "עריכת סדרה",
+    "prefix": "קידומת",
+    "prefixHint": "לדוגמה: INV, CR. השנה תתווסף אוטומטית.",
+    "descriptionLabel": "תיאור",
+    "descriptionPlaceholder": "תיאור הסדרה (לא חובה)...",
+    "nextNumber": "המספר הבא",
+    "preview": "תצוגה מקדימה",
+    "resetYearly": "איפוס שנתי",
+    "resetYearlyLabel": "איפוס המספור מדי שנה",
+    "setAsDefault": "הגדרה כברירת מחדל",
+    "activeLabel": "סדרה פעילה",
+    "showInactive": "הצגת לא פעילות",
+    "noItems": "לא הוגדרו סדרות",
+    "resetCounter": "איפוס המונה",
+    "currentNumber": "מספר נוכחי",
+    "seriesPrefix": "קידומת הסדרה",
+    "newNumber": "מספר חדש",
+    "newNumberHint": "המספר חייב להיות גדול מהמספר הגבוה ביותר הקיים בסדרה זו.",
+    "resetWarningTitle": "אזהרה",
+    "resetWarning": "פעולה זו תירשם ביומן הביקורת ולא ניתן לבטלה.",
+    "confirmReset": "איפוס המונה",
+    "created": "הסדרה נוצרה בהצלחה",
+    "saved": "הסדרה עודכנה בהצלחה",
+    "resetSuccess": "המונה אופס בהצלחה",
+    "onboarding": {
+      "label": "סדרות חשבוניות",
+      "description": "נדרש להפקת החשבונית הראשונה (לדוגמה FAC-2026-0001)."
+    }
+  },
+  "documents": {
+    "title": "מסמכים",
+    "add": "הוספה",
+    "edit": "עריכת מסמך",
+    "upload": "העלאת מסמך",
+    "uploading": "מעלה...",
+    "empty": "אין מסמכים עדיין",
+    "uploadFirst": "העלאת המסמך הראשון",
+    "types": {
+      "consent": "טופס הסכמה",
+      "id_scan": "מסמך זיהוי",
+      "insurance": "ביטוח",
+      "report": "דוח",
+      "referral": "הפניה",
+      "other": "אחר"
+    },
+    "fields": {
+      "type": "סוג",
+      "title": "כותרת",
+      "titlePlaceholder": "כותרת המסמך",
+      "description": "תיאור",
+      "descriptionPlaceholder": "הערות (לא חובה)"
+    },
+    "dropzone": {
+      "hint": "גררו קובץ לכאן, או לחצו לבחירה"
+    },
+    "filter": {
+      "allTypes": "כל הסוגים"
+    },
+    "deleteConfirm": {
+      "title": "מחיקת מסמך",
+      "message": "האם למחוק מסמך זה? לא ניתן לבטל פעולה זו."
+    },
+    "fetchError": "שגיאה בטעינת המסמכים",
+    "uploadSuccess": "המסמך הועלה בהצלחה",
+    "uploadError": "שגיאה בהעלאת המסמך",
+    "downloadError": "שגיאה בהורדת המסמך",
+    "viewError": "שגיאה בטעינת המסמך",
+    "deleteSuccess": "המסמך נמחק",
+    "deleteError": "שגיאה במחיקת המסמך",
+    "updateSuccess": "המסמך עודכן",
+    "updateError": "שגיאה בעדכון המסמך",
+    "viewer": {
+      "loading": "טוען מסמך...",
+      "error": "לא ניתן לטעון את המסמך",
+      "downloadInstead": "הורדה במקום",
+      "unsupported": "תצוגה מקדימה אינה זמינה לסוג קובץ זה",
+      "zoomOut": "הקטנה",
+      "zoomIn": "הגדלה",
+      "resetZoom": "איפוס ל‑100%",
+      "zoomHint": "Ctrl + גלילה להגדלה/הקטנה"
+    },
+    "typeDesc": {
+      "consent": "מסמך חתום",
+      "id_scan": "ת״ז / דרכון",
+      "insurance": "פוליסה או כרטיס",
+      "report": "דוח קליני",
+      "referral": "מכתב הפניה",
+      "other": "לא מסווג"
+    },
+    "errors": {
+      "mime": "סוג הקובץ אינו מורשה. רק PDF, JPG או PNG.",
+      "size": "הקובץ חורג מ‑10 MB."
+    },
+    "pdfPreviewHint": "תצוגה מקדימה זמינה לאחר ההעלאה",
+    "uploadHelp": "סווגו את הקובץ כדי שיופיע בקטגוריה הנכונה."
+  },
+  "photoGallery": {
+    "title": "גלריית המטופל",
+    "add": "הוספת תמונה",
+    "empty": "אין תמונות עדיין",
+    "uploadFirst": "העלאת התמונה הראשונה",
+    "showingOf": "מוצגות {count} מתוך {total}",
+    "upload": "העלאת תמונה",
+    "uploadHelp": "סיווג כדי שתופיע בקטגוריה הנכונה",
+    "fetchError": "שגיאה בטעינת התמונות",
+    "uploadError": "שגיאה בהעלאת התמונה",
+    "uploadSuccess": "התמונה הועלתה בהצלחה",
+    "dropHere": "גררו תמונה לכאן או לחצו",
+    "category": "סוג",
+    "subtype": "מבט",
+    "titlePlaceholder": "תוך‑פה חזיתי — 02/05",
+    "capturedAt": "תאריך",
+    "exifHint": "אוטומטית מ‑EXIF",
+    "cat": {
+      "all": "הכול",
+      "intraoral": "תוך‑פה",
+      "extraoral": "חוץ‑פה",
+      "xray": "צילום רנטגן",
+      "clinical": "לפני/אחרי",
+      "other": "אחר"
+    },
+    "catDesc": {
+      "intraoral": "בתוך הפה",
+      "extraoral": "פנים ופרופיל",
+      "xray": "דימות רדיולוגי",
+      "clinical": "השוואת טיפול",
+      "other": "לא מסווג"
+    },
+    "sub": {
+      "frontal": "חזיתי",
+      "lateral_left": "צד שמאל",
+      "lateral_right": "צד ימין",
+      "occlusal_upper": "אוקלוזלי עליון",
+      "occlusal_lower": "אוקלוזלי תחתון",
+      "palatal": "חיכי",
+      "lingual": "לשוני",
+      "smile": "חיוך",
+      "rest": "מנוחה",
+      "frontal_face": "חזיתי",
+      "profile_left": "פרופיל שמאל",
+      "profile_right": "פרופיל ימין",
+      "three_quarter_left": "3/4 שמאל",
+      "three_quarter_right": "3/4 ימין",
+      "panoramic": "פנורמי",
+      "periapical": "פריאפיקלי",
+      "bitewing": "נשך (ביטווינג)",
+      "ceph_lat": "צפלומטרי צדי",
+      "ceph_pa": "צפלומטרי PA",
+      "cbct": "CBCT",
+      "occlusal_xray": "צילום אוקלוזלי",
+      "before": "לפני",
+      "after": "אחרי",
+      "progress": "התקדמות",
+      "reference": "ייחוס",
+      "portrait": "דיוקן",
+      "document_scan": "מסמך",
+      "model_photo": "מודל"
+    },
+    "compare": {
+      "before": "לפני",
+      "after": "אחרי"
+    },
+    "pair": {
+      "pickHint": "בחירת התמונה לצימוד:",
+      "noCandidates": "אין תמונות זמינות. יש להעלות תמונה נוספת קודם.",
+      "paired": "מצומד",
+      "exitCompare": "יציאה מההשוואה",
+      "compare": "השוואה",
+      "unpair": "הסרה",
+      "pair": "צימוד לפני/אחרי"
+    }
+  },
+  "help": {
+    "label": "עזרה",
+    "openHelp": "פתיחת העזרה",
+    "drawerTitle": "עזרה לעמוד זה",
+    "unavailable": "אין עדיין עזרה הקשרית לעמוד זה.",
+    "openFullManual": "פתיחת המדריך המלא"
+  },
+  "charts": {
+    "trend": {
+      "ariaLabel": "מגמה על פני {count} נקודות"
+    },
+    "donut": {
+      "ariaLabel": "תרשים טבעת, {count} מקטעים"
+    }
+  }
+}

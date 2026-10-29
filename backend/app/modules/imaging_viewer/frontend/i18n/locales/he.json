@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "imagingViewer": "דימות"
+  },
+  "imagingViewer": {
+    "list": {
+      "title": "דימות DICOM",
+      "empty": "אין עדיין בדיקות דימות הניתנות לצפייה למטופל זה.",
+      "noPatient": "לא נבחר מטופל",
+      "noPatientHint": "בחרו מטופל למעלה, או פתחו עמוד זה עם ?patient_id=... למשל מתיק המטופל.",
+      "pickPatient": "בחירת מטופל",
+      "unknownPatient": "מטופל לא ידוע",
+      "searchPatients": "חיפוש מטופלים",
+      "unknownModality": "סוג דימות לא ידוע",
+      "noStudyDate": "אין תאריך בדיקה"
+    },
+    "viewer": {
+      "title": "צפיין DICOM",
+      "unavailable": "תצוגה מקדימה אינה זמינה",
+      "fallbackHint": "לא ניתן להציג את הבדיקה. נסו להעלות את הקובץ מחדש.",
+      "visualizationNote": "עזר תצוגה בלבד - לעולם לא אבחנה."
+    },
+    "rvg": {
+      "title": "תור ייבוא RVG",
+      "empty": "אין ייבואים בתצוגה זו.",
+      "scanNow": "סריקה עכשיו",
+      "approveSuggestion": "אישור ההצעה",
+      "approveCurrentPatient": "שיוך למטופל הנוכחי",
+      "reject": "דחייה",
+      "suggested": "מטופל מוצע (ציון {score})",
+      "ambiguous": "התאמה לא חד‑משמעית - יש לבחור את המטופל במפורש",
+      "noSuggestion": "אין התאמה - יש לפתוח עם ?patient_id= כדי לשייך",
+      "loadFailed": "לא ניתן לטעון את תור ה‑RVG.",
+      "scanFailed": "הסריקה נכשלה. האם תיקיית המעקב מוגדרת?",
+      "scanSummary": "הסריקה הושלמה: {scanned} נסרקו, {created} חדשים, {approved} אושרו אוטומטית, {failed} נכשלו",
+      "actionFailed": "הפעולה נכשלה. ייתכן שהשורה כבר הוכרעה.",
+      "status": {
+        "pending": "ממתין",
+        "approved": "אושר",
+        "rejected": "נדחה",
+        "failed": "נכשל"
+      },
+      "linksTitle": "זהויות חיישן מקושרות",
+      "linksEmpty": "אין זהויות חיישן מקושרות.",
+      "unlink": "ביטול קישור"
+    },
+    "annotations": {
+      "title": "הערות על התמונה",
+      "ruler": "סרגל",
+      "freehand": "ציור",
+      "note": "הערה",
+      "notePlaceholder": "טקסט ההערה…",
+      "saveNote": "שמירת ההערה",
+      "deleteLabel": "מחיקת ההערה",
+      "mm": "{mm} מ״מ",
+      "noSpacing": "אין מרווח פיקסלים — מ״מ לא זמין",
+      "kind_ruler": "סרגל",
+      "kind_freehand": "ציור",
+      "kind_note": "הערה",
+      "loadFailed": "לא ניתן לטעון את ההערות.",
+      "actionFailed": "הפעולה נכשלה. נסו שוב.",
+      "aidNote": "שכבות העל הן עזרי תצוגה בלבד — לעולם לא אבחנה."
+    }
+  }
+}

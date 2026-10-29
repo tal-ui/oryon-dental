@@ -1,0 +1,85 @@
+{
+  "periodontogram": {
+    "tab": {
+      "label": "פריודונטוגרם"
+    },
+    "empty": {
+      "title": "אין עדיין בדיקות פריודונטליות",
+      "description": "פתחו מפגש חדש כדי לתעד עומקי כיסים, דימום, פלאק ושאר מדדי ה‑SEPA.",
+      "cta": "התחלת בדיקה"
+    },
+    "session": {
+      "draftBadge": "טיוטה בתהליך",
+      "closedBadge": "מפגש סגור",
+      "recordedAt": "תועד בתאריך {date}",
+      "openDraft": "פתיחת מפגש חדש",
+      "continueDraft": "המשך הטיוטה",
+      "closeTitle": "סגירת המפגש הפריודונטלי",
+      "closeDescription": "לאחר הסגירה המפגש אינו ניתן לשינוי ומופיע בהיסטוריה. לתיקונים יהיה צורך לפתוח מפגש חדש.",
+      "closeButton": "סגירת המפגש",
+      "discardTitle": "ביטול הטיוטה",
+      "discardDescription": "כל הנתונים שהוזנו במפגש זה יימחקו. לא ניתן לבטל פעולה זו.",
+      "discardButton": "ביטול הטיוטה",
+      "cancel": "ביטול",
+      "closeSession": "סגירת המפגש",
+      "discardDraft": "ביטול הטיוטה"
+    },
+    "indices": {
+      "bop": "דימום",
+      "pi": "פלאק",
+      "calMean": "CAL ממוצע",
+      "deepPockets": "כיסים ≥5 מ״מ"
+    },
+    "saveState": {
+      "saving": "שומר…",
+      "dirty": "שינויים שלא נשמרו",
+      "saved": "השינויים נשמרו"
+    },
+    "history": {
+      "viewingSession": "צפייה במפגש מתאריך {date} (לקריאה בלבד).",
+      "returnToCurrent": "חזרה לנוכחי"
+    },
+    "arch": {
+      "upper": "עליונה",
+      "lower": "תחתונה",
+      "palatal": "חיכי",
+      "lingual": "לשוני",
+      "vestibular": "וסטיבולרי",
+      "probing": "עומק כיס",
+      "margin": "שולי חניכיים",
+      "bleeding": "דימום",
+      "plaque": "פלאק",
+      "probingTitle": "עומק כיס {code} (0–15 מ״מ)",
+      "marginTitle": "שולי חניכיים {code} (‎-5 עד 10 מ״מ)",
+      "plaqueTitle": "פלאק {code} (לחיצה להחלפה)",
+      "bleedingTitle": "דימום {code} (לחיצה להחלפה)",
+      "implant": "שתל",
+      "implantToggleOn": "שתל (לחיצה להסרה)",
+      "implantToggleOff": "לחיצה לסימון כשתל",
+      "mobility": "ניידות",
+      "mobilityTitle": "לחיצה לשינוי הניידות (0–3)",
+      "prognosis": "פרוגנוזה",
+      "prognosisTitle": "טובה / סבירה / מפוקפקת / חסרת סיכוי",
+      "furcaV": "פורקציה V",
+      "furcaVTitle": "פורקציה וסטיבולרית (0/I/II/III)",
+      "furcaLP": "פורקציה L/P",
+      "furcaLPTitle": "פורקציה לשונית/חיכית (0/I/II/III)",
+      "gingivalWidth": "רוחב חניכיים",
+      "siteMarkerAria": "אתר {code}, עומק כיס {depth}"
+    },
+    "chart": {
+      "ariaLabel": "פריודונטוגרם — קשת עליונה ותחתונה"
+    },
+    "indicesBanner": {
+      "observationsPlaceholder": "הערות הבדיקה…",
+      "noteLabel": "הערה (לא חובה)"
+    },
+    "loading": "טוען פריודונטוגרם…",
+    "errors": {
+      "loadFailed": "לא ניתן לטעון את הפריודונטוגרם.",
+      "saveFailed": "לא ניתן לשמור את השינוי.",
+      "checkConnection": "בדקו את החיבור ונסו שוב.",
+      "closeAborted": "חלק מהמדידות עדיין לא נשמרו — הבדיקה לא נסגרה. בדקו את החיבור ונסו שוב."
+    }
+  }
+}

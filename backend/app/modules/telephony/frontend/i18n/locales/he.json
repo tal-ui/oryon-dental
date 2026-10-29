@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "telephonyCalls": "שיחות"
+  },
+  "telephony": {
+    "settings": {
+      "title": "טלפוניה (CTI)",
+      "description": "הקפצת שיחות נכנסות על המסך וניהול יומן שיחות — כל מרכזייה דרך webhook."
+    },
+    "gateway": "שער",
+    "receiving": "מקבל אירועים",
+    "defaultCountry": "מדינת ברירת מחדל",
+    "defaultCountryHelp": "קוד מדינה בן שתי אותיות לפירוש מספרי טלפון מקומיים (לדוגמה IL).",
+    "active": "מופעל",
+    "rotateSecret": "החלפת הסוד",
+    "webhook": "webhook לאירועים",
+    "webhookHelp": "הגדירו את המרכזייה או Zapier לשלוח (POST) אירועי שיחה מנורמלים לכתובת זו, חתומים בסוד.",
+    "secret": "סוד חתימה",
+    "secretShownOnce": "העתיקו את הסוד עכשיו — הוא מוצג פעם אחת בלבד. המרכזייה/האוטומציה חותמת איתו על כל אירוע (X-DentalPin-Signature).",
+    "copy": "העתקה",
+    "copied": "הועתק ללוח",
+    "saved": "ההגדרות נשמרו",
+    "saveError": "לא ניתן לשמור את ההגדרות",
+    "calls": {
+      "title": "יומן שיחות",
+      "allStatuses": "כל הסטטוסים",
+      "status": {
+        "ringing": "מצלצל",
+        "answered": "נענתה",
+        "ended": "הסתיימה",
+        "missed": "לא נענתה"
+      },
+      "unknownCaller": "מתקשר לא ידוע",
+      "openRecord": "פתיחת התיק",
+      "searchPatient": "חיפוש מטופל",
+      "empty": "אין שיחות עדיין.",
+      "when": "מתי",
+      "caller": "מתקשר",
+      "number": "מספר",
+      "statusCol": "סטטוס",
+      "duration": "משך"
+    },
+    "pop": {
+      "incoming": "שיחה נכנסת"
+    }
+  }
+}

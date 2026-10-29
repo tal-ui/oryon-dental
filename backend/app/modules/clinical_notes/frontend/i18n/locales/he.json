@@ -1,0 +1,124 @@
+{
+  "clinicalNotes": {
+    "types": {
+      "administrative": "מנהלתי",
+      "diagnosis": "אבחון",
+      "treatment": "טיפול",
+      "treatment_plan": "תוכנית",
+      "appointment_clinical": "קליני",
+      "appointment_administrative": "מנהלתי"
+    },
+    "appointment": {
+      "addByType": "הוספת רשומה {label}",
+      "empty": "אין עדיין רשומות בתור זה. השתמשו בכפתורים למעלה כדי להוסיף."
+    },
+    "feed": {
+      "filterLabel": "מסננים",
+      "filterAll": "הכול",
+      "filterClear": "ניקוי המסננים",
+      "filterStatus": "מוצגים {n} מתוך {total} סוגים",
+      "addAdministrative": "רשומה מנהלתית",
+      "loadMore": "טעינת עוד",
+      "empty": {
+        "title": "אין רשומות עדיין",
+        "help": "רשומות מנהלתיות, אבחון וטיפול יופיעו כאן בסדר כרונולוגי."
+      }
+    },
+    "diagnosisSidebar": {
+      "title": "רשומות",
+      "addNote": "הוספת רשומה",
+      "empty": "אין רשומות בקטגוריה זו."
+    },
+    "treatmentButton": {
+      "title": "רשומות טיפול",
+      "add": "הוספת רשומה",
+      "empty": "אין עדיין רשומות לטיפול זה.",
+      "aria": "רשומות טיפול ({n})"
+    },
+    "timeline": {
+      "addPlanNote": "רשומת תוכנית",
+      "empty": "אין רשומות עדיין.",
+      "emptyForFilter": "אין רשומות התואמות למסנן.",
+      "source": {
+        "plan": "תוכנית",
+        "treatment": "טיפול",
+        "visit": "ביקור"
+      }
+    },
+    "byPlan": {
+      "empty": "למטופל זה אין עדיין רשומות קליניות המקושרות לתוכנית.",
+      "planNotesLabel": "רשומות התוכנית",
+      "unknownTreatment": "טיפול",
+      "noNotesForTreatment": "אין עדיין רשומות לטיפול זה."
+    },
+    "composer": {
+      "placeholder": "כתיבת הרשומה…",
+      "templates": "תבניות",
+      "attach": "צירוף תמונה או מסמך",
+      "bindToTooth": "קישור לשן {n}"
+    },
+    "linked": {
+      "tooth": "שן {n}",
+      "treatment": "טיפול",
+      "treatmentOnTooth": "{label} (שן {n})",
+      "plan": "תוכנית",
+      "planNamed": "תוכנית: {label}"
+    },
+    "actions": {
+      "showMore": "הצגת עוד",
+      "showLess": "הצגת פחות",
+      "openLinked": "פתיחת ההקשר"
+    },
+    "author": {
+      "unknown": "מחבר/ת לא ידוע/ה"
+    },
+    "time": {
+      "justNow": "הרגע",
+      "minutesAgo": "לפני {n} דק׳",
+      "hoursAgo": "לפני {n} שע׳",
+      "daysAgo": "לפני {n} ימים"
+    },
+    "toasts": {
+      "saved": "הרשומה נשמרה",
+      "deleted": "הרשומה נמחקה",
+      "saveFailed": "לא ניתן לשמור את הרשומה"
+    },
+    "confirms": {
+      "delete": "למחוק רשומה זו? שחזור מחייב פנייה לתמיכה."
+    },
+    "templates": {
+      "endo": {
+        "singleVisit": "אנדודונטיה (ביקור יחיד)",
+        "multiVisit": "אנדודונטיה (מספר ביקורים)"
+      },
+      "perio": {
+        "scaling": "הסרת אבנית / הקצעת שורשים"
+      },
+      "implant": {
+        "placement": "החדרת שתל"
+      },
+      "diagnosis": {
+        "caries": "עששת",
+        "periapical": "נגע פריאפיקלי"
+      },
+      "admin": {
+        "phoneCall": "שיחת טלפון עם המטופל",
+        "reschedule": "בקשה לשינוי מועד"
+      },
+      "general": {
+        "followUp": "מעקב כללי"
+      }
+    },
+    "templateBodies": {
+      "endo_single_visit": "אבחנה: \nהרדמה: \nתעלות שאותרו: \nאורך עבודה: \nאוטורציה (סתימת תעלות): \nהנחיות לאחר הטיפול: ",
+      "endo_multi_visit": "מפגש: \nתעלות שטופלו: \nתרופה תוך‑תעלתית: \nהתור הבא: ",
+      "perio_scaling": "רבעים שטופלו: \nעומק כיסים: \nדימום בבדיקה: \nהדרכת היגיינה: ",
+      "implant_placement": "שתל (יצרן / קוטר / אורך): \nטורק סופי (Ncm): \nיציבות ראשונית: \nהשתלת עצם: \nהנחיות לאחר הטיפול: ",
+      "diagnosis_caries": "ממצא: עששת \nעומק: \nתסמינים: \nבדיקת חיות: \nטיפול מוצע: ",
+      "diagnosis_periapical": "נגע פריאפיקלי \nשן: \nצילום: \nבדיקות (ניקוש, מישוש): \nאבחנה: ",
+      "admin_phone_call": "שיחה עם המטופל: \nסיבה: \nפעולה שבוצעה: \nמעקב: ",
+      "admin_reschedule": "בקשה לשינוי מועד: \nהתאריך הנוכחי: \nהצעה חדשה: ",
+      "general_follow_up": "ממצאים: \nפרוצדורה שבוצעה: \nהנחיות למטופל: "
+    }
+  }
+}

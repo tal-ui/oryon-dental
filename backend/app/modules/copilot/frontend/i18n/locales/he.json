@@ -1,0 +1,183 @@
+{
+  "copilot": {
+    "title": "עוזר AI",
+    "open": "פתיחת עוזר ה‑AI",
+    "empty": "אפשר לשאול אותי על מטופלים, על היומן, או לבקש לקבוע תור.",
+    "placeholder": "הקלדת הודעה…",
+    "send": "שליחה",
+    "copy": "העתקה",
+    "new": "שיחה חדשה",
+    "thinking": "חושב…",
+    "you": "את/ה",
+    "assistant": "עוזר AI",
+    "trust": "הנתונים שלך מוגנים",
+    "phase": {
+      "working": "עובד…",
+      "writing": "כותב…"
+    },
+    "tabs": {
+      "pending": "לביצוע",
+      "chat": "צ׳אט"
+    },
+    "pending": {
+      "empty": "אין משימות ממתינות. הכול מעודכן.",
+      "unknownPatient": "מטופל לא ידוע",
+      "group": {
+        "recall": "ריקולים למעקב",
+        "budget": "הצעות מחיר הממתינות לתשובה"
+      }
+    },
+    "nudge": {
+      "act": "לבדוק",
+      "dismiss": "סגירה",
+      "appointmentCancelled": {
+        "text": "התור בשעה {time} בוטל — התפנה חלון זמן.",
+        "prompt": "התור בשעה {time} בוטל. מצא מטופלי ריקול שיכולים למלא את החלון הזה."
+      }
+    },
+    "suggest": {
+      "heading": "איך אפשר לעזור?",
+      "cat": {
+        "workflows": "תהליכי עבודה",
+        "patients": "מטופלים",
+        "agenda": "יומן",
+        "recalls": "ריקולים",
+        "money": "גבייה והצעות מחיר",
+        "reports": "דוחות"
+      },
+      "dailyBriefing": "תדריך יומי",
+      "prepareVisit": "הכנת ביקור",
+      "fillGap": "מילוי חלון פנוי",
+      "searchPatient": "חיפוש מטופל",
+      "patientSummary": "סיכום מטופל",
+      "freeSlots": "חלונות פנויים היום",
+      "bookAppointment": "קביעת תור",
+      "dueRecalls": "ריקולים שהגיע מועדם",
+      "pendingBudgets": "הצעות מחיר ללא מענה",
+      "recordPayment": "רישום תשלום",
+      "monthCollections": "הגבייה החודש",
+      "agendaSummary": "סקירת היומן",
+      "prompt": {
+        "dailyBriefing": "תן לי את התדריך היומי: התורים של היום, ריקולים באיחור והצעות מחיר ללא מענה",
+        "prepareVisit": "הכן עבורי את הביקור הבא של מטופל",
+        "fillGap": "התפנה חלון ביומן, למי אפשר להתקשר?",
+        "searchPatient": "חפש מטופל",
+        "patientSummary": "תן לי סיכום של מטופל",
+        "freeSlots": "אילו חלונות פנויים יש היום?",
+        "bookAppointment": "אני רוצה לקבוע תור",
+        "dueRecalls": "אילו ריקולים מגיעים החודש?",
+        "pendingBudgets": "אילו הצעות מחיר נשלחו ולא נענו?",
+        "recordPayment": "אני רוצה לרשום תשלום של מטופל",
+        "monthCollections": "סיכום הגבייה של החודש",
+        "agendaSummary": "תן לי סקירה של היומן של היום"
+      }
+    },
+    "settings": {
+      "title": "עוזר AI",
+      "description": "עוזר AI: תדריך יומי ומנוע",
+      "saved": "ההגדרות נשמרו",
+      "digest": {
+        "title": "אימייל תדריך בוקר",
+        "description": "בכל בוקר: התורים של היום, ריקולים באיחור והצעות מחיר ללא מענה.",
+        "enabled": "שליחת תדריך יומי",
+        "hour": "שעת שליחה",
+        "hourHelp": "לפי אזור הזמן של המרפאה.",
+        "recipients": "נמענים",
+        "recipientsHelp": "כל נמען מקבל תדריך משלו, מוגבל למה שהתפקיד שלו רשאי לראות.",
+        "recipientsPlaceholder": "בחירת אנשי צוות…"
+      },
+      "engine": {
+        "title": "מנוע",
+        "provider": "ספק",
+        "model": "מודל",
+        "redaction": "הסתרת מידע רפואי מזהה (PHI)",
+        "redactionOn": "מופעל",
+        "redactionOff": "מושבת"
+      },
+      "metrics": {
+        "title": "שימוש",
+        "description": "{days} הימים האחרונים.",
+        "toolCalls": "קריאות לכלים",
+        "errorRate": "שיעור שגיאות",
+        "avgLatency": "זמן תגובה ממוצע",
+        "conversations": "שיחות",
+        "tokenBudget": "תקציב טוקנים חודשי",
+        "topTools": "הכלים הנפוצים ביותר",
+        "toolNames": {
+          "recalls_list_due_recalls": "ריקולים באיחור",
+          "budget_list_budgets": "הצעות מחיר ממתינות",
+          "patients_list_patients": "חיפוש מטופלים",
+          "appointments_list_appointments": "תורים",
+          "invoices_list_invoices": "חשבוניות"
+        }
+      }
+    },
+    "tool": {
+      "running": "מריץ {name}…",
+      "done": "{name} הסתיים",
+      "failed": "{name} נכשל"
+    },
+    "card": {
+      "viewPatient": "פתיחת התיק",
+      "noResults": "אין תוצאות",
+      "notFound": "לא נמצא",
+      "more": "+{n} נוספים",
+      "freeSlots": "חלונות פנויים",
+      "appointments": "תורים",
+      "patients": "מטופלים"
+    },
+    "patientStatus": {
+      "active": "פעיל",
+      "archived": "בארכיון"
+    },
+    "apptStatus": {
+      "scheduled": "נקבע",
+      "confirmed": "אושר",
+      "checked_in": "הגיע/ה",
+      "in_treatment": "בטיפול",
+      "completed": "הושלם",
+      "cancelled": "בוטל",
+      "no_show": "לא הגיע/ה"
+    },
+    "confirm": {
+      "title": "אישור פעולה",
+      "body": "עוזר ה‑AI מבקש להריץ את {name}.",
+      "approve": "אישור",
+      "reject": "ביטול",
+      "approved": "אושר",
+      "rejected": "בוטל",
+      "destructiveNote": "לא ניתן לבטל פעולה זו.",
+      "action": {
+        "book_appointment": "עוזר ה‑AI מבקש לקבוע תור.",
+        "cancel_appointment": "עוזר ה‑AI מבקש לבטל תור.",
+        "create_patient": "עוזר ה‑AI מבקש ליצור מטופל."
+      },
+      "field": {
+        "patient_id": "מטופל",
+        "professional_id": "מטפל",
+        "appointment_id": "תור",
+        "cabinet_id": "חדר",
+        "cabinet": "חדר",
+        "start_time": "תאריך",
+        "end_time": "סיום",
+        "datetime": "תאריך",
+        "service": "שירות",
+        "reason": "סיבה",
+        "duration_minutes": "משך (דק׳)",
+        "first_name": "שם פרטי",
+        "last_name": "שם משפחה",
+        "phone": "טלפון",
+        "email": "אימייל",
+        "date_of_birth": "תאריך לידה",
+        "query": "חיפוש"
+      }
+    },
+    "budgetExceeded": "מכסת השימוש החודשית בעוזר ה‑AI מוצתה.",
+    "error": "משהו השתבש.",
+    "sessionExpired": "פג תוקף ההתחברות. יש להיכנס שוב כדי להמשיך.",
+    "page": {
+      "title": "עוזר AI",
+      "subtitle": "עוזר המרפאה שלך, בהתאם להרשאות שלך."
+    }
+  }
+}

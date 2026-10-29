@@ -1,0 +1,53 @@
+{
+  "whatsapp_kapso": {
+    "settings": {
+      "title": "וואטסאפ (Kapso)",
+      "description": "חיבור מספר הוואטסאפ של המרפאה דרך Kapso לשליחה וקבלה של הודעות."
+    },
+    "connection": "חיבור",
+    "verified": "מאומת",
+    "notVerified": "לא מאומת",
+    "apiKey": "מפתח API של Kapso",
+    "phoneNumberId": "מזהה מספר הטלפון",
+    "businessAccountId": "מזהה חשבון עסקי",
+    "businessAccountHelp": "נדרש לסנכרון תבניות מאושרות.",
+    "displayPhone": "מספר לתצוגה",
+    "webhookSecret": "סוד ה‑webhook",
+    "secretStored": "שמור. להשאיר ריק כדי לא לשנות.",
+    "webhook": "Webhook",
+    "webhookHelp": "הדביקו כתובת זו בהגדרות ה‑webhook של Kapso כדי לקבל סטטוסים ותשובות.",
+    "copy": "העתקה",
+    "copied": "הכתובת הועתקה",
+    "templates": "תבניות",
+    "sync": "סנכרון",
+    "noTemplates": "אין תבניות מאושרות. יש לסנכרן כדי למשוך אותן מ‑Kapso.",
+    "notificationType": "סוג ההתראה",
+    "template": "תבנית",
+    "map": "מיפוי",
+    "mapped": "התבנית מופתה",
+    "mapError": "לא ניתן למפות את התבנית",
+    "test": "שליחת בדיקה",
+    "sendTest": "שליחת בדיקה",
+    "testOk": "הודעת הבדיקה נשלחה",
+    "testFail": "שליחת הבדיקה נכשלה",
+    "saved": "ההגדרות נשמרו",
+    "saveError": "לא ניתן לשמור",
+    "synced": "סונכרנו {n} תבניות",
+    "syncError": "לא ניתן לסנכרן",
+    "types": {
+      "appointment_confirmation": "אישור תור",
+      "appointment_reminder": "תזכורת לתור",
+      "appointment_cancelled": "ביטול תור",
+      "budget_sent": "הצעת מחיר נשלחה",
+      "budget_accepted": "הצעת מחיר אושרה",
+      "budget_reminder": "תזכורת להצעת מחיר",
+      "invoice_sent": "חשבונית נשלחה",
+      "recall_reminder": "תזכורת ריקול",
+      "welcome": "ברוכים הבאים"
+    },
+    "onboarding": {
+      "label": "שליחה בוואטסאפ",
+      "description": "וואטסאפ הוא הערוץ המועדף של המרפאה אך Kapso עדיין לא מחובר. יש לחבר אותו כדי שהודעות אוטומטיות יוכלו לצאת."
+    }
+  }
+}

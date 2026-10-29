@@ -1,0 +1,20 @@
+{
+  "journal": {
+    "title": "יומן פעילות",
+    "subtitle": "רישום בלתי ניתן לשינוי של מי עשה מה ומתי — מוזן מאירועי המודולים.",
+    "filterByType": "סינון לפי סוג אירוע",
+    "filterByDateFrom": "מתאריך",
+    "filterByDateTo": "עד תאריך",
+    "event": "אירוע",
+    "actor": "מבצע/ת",
+    "patient": "מטופל",
+    "when": "מתי",
+    "source": "מקור",
+    "empty": "עדיין לא נרשמה פעילות.",
+    "total": "{total} רשומות",
+    "detailTitle": "תוכן האירוע",
+    "unattributed": "—",
+    "allEvents": "כל האירועים",
+    "viewPayload": "הצגת פרטים"
+  }
+}

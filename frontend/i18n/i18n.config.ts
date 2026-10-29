@@ -26,6 +26,7 @@ export default defineI18nConfig(() => ({
     'pt-BR': { short: { dateStyle: 'short', timeStyle: 'short' } },
     'ta': { short: { dateStyle: 'short', timeStyle: 'short' } },
     'te': { short: { dateStyle: 'short', timeStyle: 'short' } },
-    'ar': { short: { dateStyle: 'short', timeStyle: 'short' } }
+    'ar': { short: { dateStyle: 'short', timeStyle: 'short' } },
+    'he': { short: { dateStyle: 'short', timeStyle: 'short' } }
   }
 }))

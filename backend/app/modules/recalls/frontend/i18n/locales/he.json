@@ -1,0 +1,133 @@
+{
+  "recalls": {
+    "title": "ריקולים",
+    "callList": "רשימת שיחות",
+    "noRecallsThisMonth": "אין ריקולים ממתינים החודש",
+    "filters": {
+      "month": "חודש",
+      "reason": "סיבה",
+      "professional": "מטפל",
+      "status": "סטטוס",
+      "priority": "עדיפות",
+      "overdue": "הצגת באיחור",
+      "any": "הכול",
+      "thisMonth": "החודש"
+    },
+    "counters": {
+      "due_this_week": "לביצוע השבוע",
+      "due_this_month": "לביצוע החודש",
+      "overdue": "באיחור",
+      "scheduled_this_month": "נקבעו החודש",
+      "completed_this_month": "הושלמו החודש",
+      "conversion_rate": "המרה"
+    },
+    "setRecall": "קביעת ריקול",
+    "setRecallShort": "ריקול",
+    "history": "היסטוריית ריקולים",
+    "viewAll": "הצגת הכול",
+    "pillNext": "הריקול הבא: {month} · {reason}",
+    "pillNone": "אין ריקול פעיל",
+    "reasons": {
+      "hygiene": "היגיינה",
+      "checkup": "ביקורת",
+      "ortho_review": "ביקורת אורתודונטית",
+      "implant_review": "ביקורת שתלים",
+      "post_op": "מעקב לאחר ניתוח",
+      "treatment_followup": "מעקב טיפול",
+      "other": "אחר"
+    },
+    "priority": {
+      "low": "נמוכה",
+      "normal": "רגילה",
+      "high": "גבוהה"
+    },
+    "status": {
+      "pending": "ממתין",
+      "contacted_no_answer": "אין מענה",
+      "contacted_scheduled": "נקבע תור",
+      "contacted_declined": "סירב/ה",
+      "done": "בוצע",
+      "cancelled": "בוטל",
+      "needs_review": "דורש בדיקה"
+    },
+    "confirms": {
+      "cancel": "לבטל את הריקול של {name}? לא ניתן לבטל פעולה זו.",
+      "done": "לסמן את הריקול של {name} כבוצע? פעולה זו סוגרת אותו למחזור הנוכחי."
+    },
+    "actions": {
+      "call": "התקשרות",
+      "logAttempt": "תיעוד ניסיון",
+      "noAnswer": "אין מענה",
+      "book": "קביעת תור",
+      "snooze": "דחייה",
+      "cancel": "ביטול",
+      "markDone": "סימון כבוצע",
+      "exportCsv": "ייצוא CSV",
+      "save": "שמירה"
+    },
+    "closeoutPrompt": {
+      "title": "לקבוע ריקול?",
+      "subtitle": "המטופל סיים זה עתה — מתי כדאי להתקשר אליו שוב?",
+      "skip": "לא עכשיו"
+    },
+    "modal": {
+      "title": "קביעת ריקול",
+      "subtitle": "סימון המטופל לשיחה חוזרת בעתיד",
+      "patient": "מטופל",
+      "reason": "סיבה",
+      "when": "מתי",
+      "month": "חודש יעד",
+      "targetMonth": "חודש יעד",
+      "preciseDate": "בחירת יום מדויק",
+      "priority": "עדיפות",
+      "assigned": "מטפל אחראי",
+      "note": "הערה פנימית",
+      "notePlaceholder": "פירוט (לא חובה, לדוגמה ׳בדיקת סתימה בשן 47׳)",
+      "optional": "לא חובה",
+      "duplicateGuard": "כבר קיים ריקול ממתין למטופל זה ולסיבה זו. הוא יעודכן."
+    },
+    "doNotContact": {
+      "cannotSchedule": "מטופל זה מסומן ״לא ליצור קשר״. לא ניתן לקבוע ריקולים. יש לעדכן את ההעדפה בפרטים הדמוגרפיים כדי לאפשר יצירת קשר מחדש."
+    },
+    "activeRecallHint": "ריקול פעיל · הקשה לניהול",
+    "logAttempt": {
+      "channel": "ערוץ",
+      "outcome": "תוצאה",
+      "note": "הערה",
+      "submit": "תיעוד ניסיון"
+    },
+    "channel": {
+      "phone": "טלפון",
+      "whatsapp": "וואטסאפ",
+      "sms": "SMS",
+      "email": "אימייל"
+    },
+    "outcome": {
+      "no_answer": "אין מענה",
+      "voicemail": "תא קולי",
+      "scheduled": "נקבע תור",
+      "declined": "סירב/ה",
+      "wrong_number": "מספר שגוי"
+    },
+    "snoozePrompt": "לדחות בכמה חודשים?",
+    "settings": {
+      "title": "ריקולים",
+      "description": "מרווחי ברירת מחדל + מיפוי קטגוריות טיפול",
+      "intervals": "מרווחי ברירת מחדל (חודשים)",
+      "categoryMap": "טיפול ← סיבה",
+      "categoryKeyPlaceholder": "מפתח קטגוריה בקטלוג",
+      "autoSuggest": "הצעת ריקול כשטיפול מושלם",
+      "autoLink": "קישור תור שנקבע לריקול ממתין",
+      "saved": "ההגדרות נשמרו"
+    },
+    "dashboard": {
+      "title": "ריקולים"
+    },
+    "suggestion": {
+      "title": "ריקול מוצע",
+      "body": "לאחר טיפול זה מומלץ ריקול ב{month} ({reason}).",
+      "create": "יצירת ריקול",
+      "dismiss": "סגירה"
+    }
+  }
+}

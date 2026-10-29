@@ -97,7 +97,7 @@
     "countryHelp": "Sets taxes, currency and timezone for you",
     "countryRequired": "Select a country",
     "taxIdGeneric": "Tax ID",
-    "taxIdLooksInvalid": "This doesn't look like a valid NIF/CIF. Double-check it before invoicing.",
+    "taxIdLooksInvalid": "This doesn't look like a valid tax ID. Double-check it before invoicing.",
     "taxIdFormat": "Invalid format (example: {example})",
     "timezoneRequired": "Select a timezone",
     "currencyRequired": "Select a currency",

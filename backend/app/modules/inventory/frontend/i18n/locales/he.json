@@ -1,0 +1,54 @@
+{
+  "inventory": {
+    "title": "מלאי",
+    "add": "הוספת פריט",
+    "edit": "עריכת פריט",
+    "item": "פריט",
+    "category": "קטגוריה",
+    "unit": "יחידה",
+    "stock": "מלאי",
+    "minimum": "מינימום",
+    "notes": "הערות",
+    "status": "סטטוס",
+    "ok": "תקין",
+    "low": "נמוך",
+    "filterByCategory": "סינון לפי קטגוריה",
+    "lowStockOnly": "מלאי נמוך בלבד",
+    "includeInactive": "הצגת לא פעילים",
+    "increment": "הגדלת מלאי",
+    "decrement": "הקטנת מלאי",
+    "delete": "מחיקה",
+    "deleteTitle": "מחיקת פריט",
+    "deleteMessage": "למחוק פריט מלאי זה? לא ניתן לבטל פעולה זו.",
+    "cannotDeleteWithHistory": "לפריט זה יש היסטוריית מלאי. יש להשבית אותו במקום, כדי לשמר את נתיב הביקורת.",
+    "cannotDeleteInUse": "פריט זה מקושר לספק, לטיפול או להזמנת רכש. יש להשבית אותו במקום.",
+    "deactivate": "השבתה",
+    "reactivate": "הפעלה מחדש",
+    "deactivated": "הפריט הושבת",
+    "reactivated": "הפריט הופעל מחדש",
+    "empty": "אין תנועות עדיין",
+    "allCategories": "כל הקטגוריות",
+    "adjustBy": "התאמה ב…",
+    "apply": "החלה",
+    "cost": "עלות ליחידה",
+    "valuation": "שווי המלאי",
+    "movements": "תנועות",
+    "movementsTitle": "תנועות מלאי",
+    "reasons": {
+      "initial": "פתיחה",
+      "restock": "חידוש מלאי",
+      "consumption": "צריכה",
+      "adjustment": "התאמה",
+      "correction": "תיקון"
+    },
+    "categories": {
+      "consumables": "מתכלים",
+      "equipment": "ציוד",
+      "office": "משרד",
+      "other": "אחר"
+    }
+  },
+  "nav": {
+    "inventory": "מלאי"
+  }
+}

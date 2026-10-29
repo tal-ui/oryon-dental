@@ -1,0 +1,37 @@
+{
+  "treasury": {
+    "nav": {
+      "title": "קופה"
+    },
+    "title": "קופה",
+    "newAccount": "חשבון חדש",
+    "transfer": "העברה",
+    "correct": "תיקון",
+    "correctionDirection": "כיוון",
+    "accounts": "חשבונות",
+    "noAccounts": "אין חשבונות עדיין.",
+    "statement": "דף תנועות",
+    "noEntries": "אין תנועות עדיין.",
+    "accountName": "שם החשבון",
+    "accountKind": "סוג",
+    "kindCash": "מזומן",
+    "kindBank": "בנק",
+    "create": "יצירה",
+    "openingBalance": "יתרת פתיחה",
+    "deactivate": "השבתה",
+    "activate": "הפעלה מחדש",
+    "inactive": "לא פעיל",
+    "fromAccount": "מחשבון",
+    "toAccount": "לחשבון",
+    "amount": "סכום",
+    "memo": "הערה (לא חובה)",
+    "correctMemo": "הערה (חובה)",
+    "kind": {
+      "transfer_out": "העברה יוצאת",
+      "transfer_in": "העברה נכנסת",
+      "correction_in": "תיקון זכות",
+      "correction_out": "תיקון חובה",
+      "opening": "פתיחה"
+    }
+  }
+}

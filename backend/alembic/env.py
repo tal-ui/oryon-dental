@@ -18,6 +18,7 @@ during its own migration and is missing in offline ``--sql`` mode).
 """
 
 import asyncio
+import os
 from logging.config import fileConfig
 from pathlib import Path
 
@@ -200,10 +201,18 @@ def do_run_migrations(connection: Connection) -> None:
 
 async def run_async_migrations() -> None:
     """Run migrations in 'online' mode with async engine."""
+    # Same opt-in as ``app.database``: the pooler needs TLS, and asyncpg
+    # does not read ``sslmode`` out of the URL.
+    connect_args: dict[str, object] = {}
+    if os.getenv("DB_SSL", "").lower() in {"1", "true", "yes", "require"}:
+        connect_args["ssl"] = "require"
+    if os.getenv("DB_SERVERLESS", "").lower() in {"1", "true", "yes"}:
+        connect_args["statement_cache_size"] = 0
     connectable = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        connect_args=connect_args,
     )
 
     async with connectable.connect() as connection:

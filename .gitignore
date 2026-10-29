@@ -67,3 +67,4 @@ proyecto_open_source_dental.docx
 *.dpmf
 test-results/
 /.vs
+.vercel
